@@ -16,8 +16,13 @@ tags: fabric, kql, realtime, intelligence, event, stream, sql, data, analytics, 
 
 # Introduction
 
-Suppose you own an e-commerce website selling bike accessories. You have millions of
-visitors a month, you want to analyze the website traffic, consumer patterns and predict sales.
+ZAVA is a Direct-to-Consumer (D2C) European sneaker manufacturer. ZAVA operates 3 manufacturing sites in Germany, Sweden and Estonia with multiple distribution centres, 10 retail brick and mortar stores and an e-commerce store. 
+ZAVA makes sneakers for men, women and kids. For each gender type, ZAVA has 3 different categories: 
+- GenZ Pros: These are sneakers designed for modern professionals that wants to pair sneakers with suits, trousers, office wear or any professional setting to make a lasting impression
+- Altars: These sneakers can be for a coffee date, dinner with your parents, or for just taking your dog for a walk. These sneakers go with your mood in the moment when you want to step out but don’t want to decide what footwear to wear
+- Colours: Who said sneakers had to be white or black and restricted to fixed colours. Find sneakers that match your vibe whether its vibrant, classic, ultra-modern, rainbow or a unicorn.
+ZAVA partners with logistics companies to route the sneaker boxes from their distribution centres to customers’ addresses when the orders are placed online. ZAVA runs a design and simulation lab in which they design sneakers as per the latest style trends and test the sneakers for durability, duress and performance to ensure that every customer feels that each sneaker is of high quality and can be used for multiple purposes.
+
 
 This workshop will walk you through the process of building an end-to-end [Real-Time Intelligence](https://blog.fabric.microsoft.com/en-us/blog/introducing-real-time-intelligence-in-microsoft-fabric) Solution in MS Fabric, using the medallion architecture, for your e-commerce website.
 
