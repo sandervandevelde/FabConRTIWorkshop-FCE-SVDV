@@ -20,7 +20,7 @@ You will learn how to:
 - Add an Operational Agent to let it monitor your real-time factory data **TBD**.
 
 All the **code** in this tutorial can be found here:
-[Build Microsoft Fabric Real-Time Intelligence solution in a day](https://github.com/sandervandevelde/fabcon-2025-rti-worshop-svdv/)
+[Build Microsoft Fabric Real-Time Intelligence solution in a day](https://github.com/microsoft/fabconrtiworkshop/)
 
 ## Modalities
 
@@ -36,20 +36,20 @@ All the **code** in this tutorial can be found here:
 
 ## Original Creators
 
-This workshop/tutorial was originally written by the following authors and is available at [Fabric-RTI-Workshop](https://github.com/sandervandevelde/fabcon-2025-rti-worshop-svdv/)
+This workshop/tutorial was originally written by the following authors and is available at [Fabric-RTI-Workshop](https://github.com/microsoft/fabconrtiworkshop)
 
-- [Sander van de Velde](https://github.com/sandervandevelde), Microsoft MVP on IoT & RTI
+- [Sander van de Velde](https://github.com/sandervandevelde), Microsoft MVP on Azure IoT & Real-Time Intelligence, Principal Architect, SDG Group
 
 This workshop is inspired by the excellent workshop available at [Fabric-RTI-Workshop](https://aka.ms/fabricrtiworkshop).
 
 ## Authors
 
-- [Sander van de Velde](https://github.com/sandervandevelde), Microsoft MVP on IoT & RTI
+- [Sander van de Velde](https://github.com/sandervandevelde), Microsoft MVP on Azure IoT & Real-Time Intelligence, Principal Architect, SDG Group
 - [Devang Shah](https://www.linkedin.com/in/shahdevang/), Principal Program Manager, Microsoft
 
 ## Contributing
 
-- If you'd like to contribute to this lab, report a bug or issue, please feel free to submit a pull request to the [GitHub repo](https://github.com/sandervandevelde/fabcon-2025-rti-worshop-svdv/) for us to review or [submit any issues](https://github.com/sandervandevelde/fabcon-2025-rti-worshop-svdv/issues) you encounter.
+- If you'd like to contribute to this lab, report a bug or issue, please feel free to submit a pull request to the [GitHub repo](https://github.com/microsoft/fabconrtiworkshop/) for us to review or [submit any issues](https://github.com/microsoft/fabconrtiworkshop/issues) you encounter.
 
 ---
 
@@ -1416,7 +1416,7 @@ Here, factory data from several 'silver' tables will be shared via OneLake so a 
 
    ![alt text](assets/image_task09_step16.png)
 
-14. Get the 'Operator.csv' and 'ProductionLine.csv' from this [GitHub location](https://github.com/sandervandevelde/fabcon-2025-rti-worshop-svdv/tree/main/assets). **Download both files** and store them on your laptop as CSV format. Finally, **Click on the Files folder** bar, **select** the files, and **click** on the Upload button. 
+14. Get the 'Operator.csv' and 'ProductionLine.csv' from this [GitHub location](https://github.com/microsoft/fabconrtiworkshop/tree/main/assets). **Download both files** and store them on your laptop as CSV format. Finally, **Click on the Files folder** bar, **select** the files, and **click** on the Upload button. 
 
    ![alt text](assets/image_task09_step17.png)
 
