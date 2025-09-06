@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLDatabase",
+    "displayName": "EH_ZavaEcommStore",
+    "description": "EH_ZavaEcommStore"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "3f2a58aa-c850-80ab-41f3-4de102507405"
+  }
+}
