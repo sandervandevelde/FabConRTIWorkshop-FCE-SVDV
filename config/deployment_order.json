@@ -1,0 +1,71 @@
+[
+    {
+        "name": "Workspace.src",
+        "id": "75f1967f-cc30-4f1d-8923-d9fdd5a9b4d4",
+        "type": "Core"
+    },
+    {
+        "name": "RacingSim.Eventhouse",
+        "id": "c32798b0-b8ca-be45-40bb-870e44624f52",
+        "kustoQueryUri": "kusto_query_uri",
+        "kustoIngestUri": "kusto_ingest_uri"
+    },
+    {
+        "name": "RacingSim.KQLDatabase",
+        "id": "c32798b0-b8ca-be45-40bb-870e44624f52",
+        "parent": "RacingSim.Eventhouse"
+    },
+    {
+        "name": "RacingSim.Eventstream",
+        "id": "8e08ac2f-66f0-8dd5-4642-902e58c9392f",
+        "destinations": [
+            {
+                "name": "Eventhouse",
+                "itemName": "RacingSim.KQLDatabase",
+                "type": "Eventhouse"
+            }
+        ]
+    },
+    {
+        "name": "RacingSim.KQLDashboard",
+        "id": "9760812b-e9b1-9bca-4a8b-666e05dbfeef",
+        "datasources": [
+            {
+                "name": "RacingSim-EH",
+                "itemName": "RacingSim.KQLDatabase"
+            }
+        ]
+    },
+    {
+        "name": "RacingSim.KQLQueryset",
+        "id": "e75740bc-3d24-b7de-48d6-6c58786871e7",
+        "datasources": [
+            {
+                "itemName": "RacingSim.KQLDatabase"
+            }
+        ]
+    },
+    {
+        "name": "Forza_Session_Report.SemanticModel",
+        "id": "e20d5dc6-ad6c-ab7c-4d8d-720a26f28ace",
+        "datasources": [
+            {
+                "itemName": "RacingSim.KQLDatabase"
+            }
+        ]
+    },
+    {
+        "name": "Forza_Session_Report_Mobile.Report",
+        "id": "b446a65f-b751-b51d-4135-91960f899e26",
+        "datasource": "Forza_Session_Report.SemanticModel"
+    },
+    {
+        "name": "Forza_Session_Report.Report",
+        "id": "65c4c58f-2ca3-9fc6-4e21-2ad942f4aa45",
+        "datasource": "Forza_Session_Report.SemanticModel"
+    },
+    {
+        "name": "RacingSim Generate Config.Notebook",
+        "id": "5ddf2e6a-2a2e-a550-42a8-cef88f6bb773"
+    }
+]
