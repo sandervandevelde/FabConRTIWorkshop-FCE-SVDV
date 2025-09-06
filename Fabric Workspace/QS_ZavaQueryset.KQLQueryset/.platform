@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLQueryset",
+    "displayName": "QS_ZavaQueryset",
+    "description": "QS_ZavaQueryset"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ca87c4ac-66e7-8977-4e48-cbcb3ad9369e"
+  }
+}
