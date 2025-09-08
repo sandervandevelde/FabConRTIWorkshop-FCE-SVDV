@@ -6,7 +6,6 @@ short_title: Fabric RTI Workshop     # Optional. Short title displayed in the he
 description: In this technical workshop, you will build a complete analytics platform with streaming data using Microsoft Fabric Real-Time Intelligence components and other features of Microsoft Fabric. This is a proctor led worksop in which each section is accompanied by a technical overview of Fabric RTI components.  # Required.
 level: Can be 'beginner', 'intermediate' or 'advanced'                         # Required. Can be 'beginner', 'intermediate' or 'advanced'
 authors: Devang Shah, Sander van de Velde                               # Required. You can add as many authors as needed      
-  - Name
 contacts:                               # Required. Must match the number of authors
   - devsha@microsoft.com, sander.vandevelde@alten.nl
 duration_minutes: 360                    # Required. Estimated duration in minutes
