@@ -1,10 +1,48 @@
+---
+published: false                        # Optional. Set to true to publish the workshop (default: false)
+type: workshop                          # Required.
+title: Fabric Real-Time Intelligence Workshop              # Required. Full title of the workshop
+short_title: Fabric RTI Workshop     # Optional. Short title displayed in the header
+description: In this technical workshop, you will build a complete analytics platform with streaming data using Microsoft Fabric Real-Time Intelligence components and other features of Microsoft Fabric. This is a proctor led worksop in which each section is accompanied by a technical overview of Fabric RTI components.  # Required.
+level: Can be 'beginner', 'intermediate' or 'advanced'                         # Required. Can be 'beginner', 'intermediate' or 'advanced'
+authors: Devang Shah, Sander van de Velde                               # Required. You can add as many authors as needed      
+  - Name
+contacts:                               # Required. Must match the number of authors
+  - devsha@microsoft.com, sander.vandevelde@alten.nl
+duration_minutes: 360                    # Required. Estimated duration in minutes
+tags: javascript, api, node.js          # Required. Tags for filtering and searching
+#banner_url: assets/banner.jpg           # Optional. Should be a 1280x640px image
+#video_url: https://youtube.com/link     # Optional. Link to a video of the workshop
+#audience: students                      # Optional. Audience of the workshop (students, pro devs, etc.)
+#wt_id: <cxa_tracking_id>                # Optional. Set advocacy tracking code for supported links
+#oc_id: <marketing_tracking_id>          # Optional. Set marketing tracking code for supported links
+#navigation_levels: 2                    # Optional. Number of levels displayed in the side menu (default: 2)
+#navigation_numbering: true             # Optional. Enable numbering in the side menu (default: true)
+#sections_title:                         # Optional. Override titles for each section to be displayed in the side bar
+#   - Section 1 title
+#   - Section 2 title
+---
+
 # Introduction
 
-Suppose you own a factory producing products that are sensitive to temperature changes during production, like food or rubber. You are producing these products day and night, all year long, and you want to analyze and control the production process in real-time. So, you are interested in both the performance of your machinery and the environmental conditions (like temperature and humidity) inside and outside your factory.
+YourCompany is a Direct-to-Consumer (D2C) European sneaker manufacturer. YourCompany operates 3 manufacturing sites in Germany, Sweden and Estonia with multiple distribution centres, 10 retail brick and mortar stores and an e-commerce store. 
+YourCompany makes sneakers for men, women and kids. For each gender type, YourCompany has 3 different categories: 
+- GenZ Pros: These are sneakers designed for modern professionals that wants to pair sneakers with suits, trousers, office wear or any professional setting to make a lasting impression
+- Altars: These sneakers can be for a coffee date, dinner with your parents, or for just taking your dog for a walk. These sneakers go with your mood in the moment when you want to step out but don’t want to decide what footwear to wear
+- Colours: Who said sneakers had to be white or black and restricted to fixed colours. Find sneakers that match your vibe whether its vibrant, classic, ultra-modern, rainbow or a unicorn.
 
-Collecting real-time data (as observations, immutable events, facts) will add value to every modern enterprise. In this example, we look at a factory, but the same goes for logging, security audits, stock markets, shopping experience, vehicle data, etc.
+YourCompany partners with logistics companies to route the sneaker boxes from their distribution centres to customers’ addresses when the orders are placed online. YourCompany runs a design and simulation lab in which they design sneakers as per the latest style trends and test the sneakers for durability, duress and performance to ensure that every customer feels that each sneaker is of high quality and can be used for multiple purposes.
 
-This workshop will walk you through the process of building an end-to-end [Real-Time Intelligence](https://blog.fabric.microsoft.com/en-us/blog/introducing-real-time-intelligence-in-microsoft-fabric) Solution in Microsoft Fabric, using the latest features like Azure IoT Operations integration, Digital Twins and Agents, for your factory.
+YourCompany also owns a factory producing rubber required for sneakers that is sensitive to temperature changes during production. You are producing these products day and night, all year long, and you want to analyze and control the production process in real-time. So, you are interested in both the performance of your machinery and the environmental conditions (like temperature and humidity) inside and outside your factory.
+
+In this workshop, we will answer questions such as:
+- How are my customers interacting with my e-commerce portal?
+- What are my factory's performance parameters? How can I make it more efficient?
+- What are the shipping delays when sending sneakers to my customers?
+
+Collecting real-time data (as observations, immutable events, facts) will add value to every modern enterprise. In this example, we look at a sneaker maker, but the same goes for logging, security audits, stock markets, shopping experience, vehicle data, etc.
+
+This workshop will walk you through the process of building an end-to-end [Real-Time Intelligence](https://blog.fabric.microsoft.com/en-us/blog/introducing-real-time-intelligence-in-microsoft-fabric) Solution in Microsoft Fabric, using the latest features like Azure IoT Operations integration, Digital Twins and Agents for YourCompany.
 
 You will learn how to:
 
@@ -12,15 +50,17 @@ You will learn how to:
 - Stream telemetry into Microsoft Fabric Eventhouse via Eventstream.
 - Stream LoraWan sensor events into Microsoft Fabric Eventhouse via Eventstream.
 - Stream real-time weather data into Microsoft Fabric Eventhouse via Eventstream.
-- Create real-time data transformations in Microsoft Fabric Eventhouse through the power of Kusto Query Language (KQL), a no-code experience, or Copilot **TBD**.
+- Send clickstream data to a kafka enabled endpoint of Eventstream
+- Auto ingest new XML files coming from the shipping companies 
+- Create real-time data transformations in Microsoft Fabric Eventhouse through the power of Kusto Query Language (KQL).
 - Create real-time visualizations using Real-Time Dashboards.
 - Build Activator actions as alerts on the streaming data.
 - Add a Digital Twin Builder representation.
-- Add a conversational Data Agent to talk to your devices **TBD**.
-- Add an Operational Agent to let it monitor your real-time factory data **TBD**.
+- Add a conversational Data Agent to talk to your data.
+
 
 All the **code** in this tutorial can be found here:
-[Build Microsoft Fabric Real-Time Intelligence solution in a day](https://github.com/microsoft/fabconrtiworkshop/)
+[Fabric Real-Time Intelligence Workshop](https://github.com/microsoft/fabconrtiworkshop/)
 
 ## Modalities
 
@@ -33,14 +73,6 @@ All the **code** in this tutorial can be found here:
 > There are two versions of this lab. One version is dependent on a given Azure Eventhub that streams the Factory and LoraWan data, in the other one, you can use notebooks to create the data streams **TBD**.
 
 </div>
-
-## Original Creators
-
-This workshop/tutorial was originally written by the following authors and is available at [Fabric-RTI-Workshop](https://github.com/microsoft/fabconrtiworkshop)
-
-- [Sander van de Velde](https://github.com/sandervandevelde), Microsoft MVP on Azure IoT & Real-Time Intelligence, Principal Architect, SDG Group
-
-This workshop is inspired by the excellent workshop available at [Fabric-RTI-Workshop](https://aka.ms/fabricrtiworkshop).
 
 ## Authors
 
