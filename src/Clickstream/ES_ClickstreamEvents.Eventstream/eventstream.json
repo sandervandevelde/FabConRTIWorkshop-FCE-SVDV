@@ -1,0 +1,26 @@
+{
+  "sources": [
+    {
+      "id": "020f364c-56f1-48d9-b807-fc8ee3665156",
+      "name": "ClickstreamKafkaSource",
+      "type": "CustomEndpoint",
+      "properties": {}
+    }
+  ],
+  "destinations": [],
+  "streams": [
+    {
+      "id": "f7eae8d2-e6aa-486c-9115-5881db203054",
+      "name": "ES_ClickstreamEvents-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "ClickstreamKafkaSource"
+        }
+      ]
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.0"
+}
