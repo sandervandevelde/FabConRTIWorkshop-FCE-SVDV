@@ -1,12 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Eventhouse",
-    "displayName": "EH_YCSneakerEventStore",
-    "description": "EH_ZavaEcommStore"
+    "type": "DigitalTwinBuilderFlow",
+    "displayName": "DTB_YCFactoryTwinOnDemand"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "d83a6568-50de-901a-4420-b22068407582"
+    "logicalId": "586bc5fe-c55b-8df0-4e8b-15fb2d622757"
   }
 }

@@ -1,12 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Eventhouse",
-    "displayName": "EH_YCSneakerEventStore",
-    "description": "EH_ZavaEcommStore"
+    "type": "Reflex",
+    "displayName": "ACT_FactoryEvents"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "d83a6568-50de-901a-4420-b22068407582"
+    "logicalId": "1dc6ace1-a0be-95bb-41e9-634761eac64c"
   }
 }

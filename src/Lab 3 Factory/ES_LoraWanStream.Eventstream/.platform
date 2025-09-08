@@ -1,12 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Eventhouse",
-    "displayName": "EH_YCSneakerEventStore",
-    "description": "EH_ZavaEcommStore"
+    "type": "Eventstream",
+    "displayName": "ES_LoraWanStream"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "d83a6568-50de-901a-4420-b22068407582"
+    "logicalId": "f25fe04d-d4eb-bfd8-4c4d-0695e15cc44a"
   }
 }

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Eventstream",
+    "displayName": "fabconvienna2025sa_eventstream",
+    "description": "fabconvienna2025sa_eventstream"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8ee41f2a-2ec9-a29d-433d-24cf96c344bd"
+  }
+}
