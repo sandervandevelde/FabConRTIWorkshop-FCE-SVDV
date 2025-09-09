@@ -1,0 +1,35 @@
+{
+  "autoRefresh": {
+    "enabled": false
+  },
+  "baseQueries": [],
+  "tiles": [],
+  "dataSources": [],
+  "pages": [
+    {
+      "name": "Page 1",
+      "id": "5241520b-615e-43e6-a68a-d79efd42c343"
+    }
+  ],
+  "parameters": [
+    {
+      "kind": "duration",
+      "id": "49e2c426-7436-4cfd-a2fe-24888596247b",
+      "displayName": "Time range",
+      "description": "",
+      "beginVariableName": "_startTime",
+      "endVariableName": "_endTime",
+      "defaultValue": {
+        "kind": "dynamic",
+        "count": 1,
+        "unit": "hours"
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    }
+  ],
+  "queries": [],
+  "schema_version": 64,
+  "title": "RTD_ZavaDashboard"
+}

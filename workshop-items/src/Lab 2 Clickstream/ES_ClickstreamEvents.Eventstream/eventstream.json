@@ -1,0 +1,53 @@
+{
+  "sources": [
+    {
+      "id": "020f364c-56f1-48d9-b807-fc8ee3665156",
+      "name": "ClickstreamKafkaSource",
+      "type": "CustomEndpoint",
+      "properties": {}
+    }
+  ],
+  "destinations": [
+    {
+      "id": "0290ca0d-36e1-4abf-a3bb-a8ecc640d047",
+      "name": "Eventhouse",
+      "type": "Eventhouse",
+      "properties": {
+        "dataIngestionMode": "DirectIngestion",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "3f2a58aa-c850-80ab-41f3-4de102507405",
+        "tableName": "",
+        "connectionName": null,
+        "mappingRuleName": null
+      },
+      "inputNodes": [
+        {
+          "name": "ES_ClickstreamEvents-stream"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "ES_ClickstreamEvents-stream",
+          "schema": {
+            "columns": []
+          }
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "f7eae8d2-e6aa-486c-9115-5881db203054",
+      "name": "ES_ClickstreamEvents-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "ClickstreamKafkaSource"
+        }
+      ]
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.0"
+}

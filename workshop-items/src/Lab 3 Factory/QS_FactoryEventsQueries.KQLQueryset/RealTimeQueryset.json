@@ -1,0 +1,22 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "2326dce9-363c-4e46-bddd-963d2c33161c",
+        "clusterUri": "",
+        "type": "Fabric",
+        "databaseItemId": "3f2a58aa-c850-80ab-41f3-4de102507405",
+        "databaseItemName": "KQLDB_YCSneakerKQLDatabase"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "94d225ce-56fc-4dcd-840f-90aa6a055ca3",
+        "content": ".execute database script <|\n.create table BronzeEnergyMeter (UNS:string, deviceId:string, key:string, timestamp:string, value:string, EventProcessedUtcTime:datetime, PartitionId:long, EventEnqueuedUtcTime:datetime) with (folder = \"Bronze Layer\")\n.create table BronzeLoraWan (Data:dynamic, deviceId:string, applicationId:string, timestamp:datetime) with (folder = \"Bronze Layer\")\n.create table BronzeWeather (dateTime:datetime, description:string, iconCode:dynamic, hasPrecipitation:bool, temperature:dynamic, realFeelTemperature:dynamic, realFeelTemperatureShade:dynamic, relativeHumidity:int, dewPoint:dynamic, wind:dynamic, windGust:dynamic, uvIndex:int, uvIndexDescription:string, visibility:dynamic, obstructionsToVisibility:string, cloudCover:int, cloudCeiling:dynamic, pressure:dynamic, pressureTendency:dynamic, pastTwentyFourHourTemperatureDeparture:string, apparentTemperature:dynamic, windChillTemperature:dynamic, wetBulbTemperature:dynamic, precipitationSummary:dynamic, temperatureSummary:dynamic, daytime:bool, location:dynamic) with (folder = \"Bronze Layer\")\n// query 1/3 - Create a table\n.create table SilverEnergyMeterVoltage (voltageValue : double, timestamp : datetime, deviceId : string, company: string , country:string, city:string, building: string, line: string, unit: string) with (folder = \"Silver Layer\")\n// query 2/3 - Create function\n.create function\nwith (docstring = 'Ingest bronze energy meter data and project to silver voltage table', folder='ingestprojection')\nParseVoltageTelemetry ()\n{\n  BronzeEnergyMeter\n    | where key has \"voltage\"\n    | extend splitUNS=split(UNS, '/')\n    | project \n        voltageValue = todouble(value),\n        timestamp = todatetime(timestamp),\n        deviceId = deviceId,\n        company = tostring(splitUNS[0]),\n        country = tostring(splitUNS[1]),\n        city = tostring(splitUNS[2]),\n        building = tostring(splitUNS[3]),\n        line = tostring(splitUNS[4]),\n        unit = tostring(splitUNS[5])\n}\n// query 3/3 - Add the table update policy\n.alter table\nSilverEnergyMeterVoltage \npolicy update @'[{\"Source\": \"BronzeEnergyMeter\", \"Query\": \"ParseVoltageTelemetry\", \"IsEnabled\" : true, \"IsTransactional\": true }]'\n// query 1/3 - Create a table\n.create table SilverEnergyMeterCurrent (currentValue : double, timestamp : datetime, deviceId : string, company: string , country:string, city:string, building: string, line: string, unit: string) with (folder = \"Silver Layer\")\n// query 2/3 - Create function\n.create function\nwith (docstring = 'Ingest bronze energy meter data and project to silver current table', folder='ingestprojection')\nParseCurrentTelemetry ()\n{\n  BronzeEnergyMeter\n    | where key has \"current\"\n    | extend splitUNS=split(UNS, '/')\n    | project \n        currentValue = todouble(value),\n        timestamp = todatetime(timestamp),\n        deviceId = deviceId,\n        company = tostring(splitUNS[0]),\n        country = tostring(splitUNS[1]),\n        city = tostring(splitUNS[2]),\n        building = tostring(splitUNS[3]),\n        line = tostring(splitUNS[4]),\n        unit = tostring(splitUNS[5])\n}\n// query 3/3 - Add the table update policy\n.alter table\nSilverEnergyMeterCurrent \npolicy update @'[{\"Source\": \"BronzeEnergyMeter\", \"Query\": \"ParseCurrentTelemetry\", \"IsEnabled\" : true, \"IsTransactional\": true }]'",
+        "title": "",
+        "dataSourceId": "2326dce9-363c-4e46-bddd-963d2c33161c"
+      }
+    ]
+  }
+}

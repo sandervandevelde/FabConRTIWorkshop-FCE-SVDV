@@ -1,0 +1,35 @@
+{
+  "autoRefresh": {
+    "enabled": false
+  },
+  "baseQueries": [],
+  "tiles": [],
+  "dataSources": [],
+  "pages": [
+    {
+      "name": "Page 1",
+      "id": "1d25681a-5bee-4751-b91b-e65d536fe715"
+    }
+  ],
+  "parameters": [
+    {
+      "kind": "duration",
+      "id": "3ea92480-7115-40a9-a3f8-d17a9958f8c4",
+      "displayName": "Time range",
+      "description": "",
+      "beginVariableName": "_startTime",
+      "endVariableName": "_endTime",
+      "defaultValue": {
+        "kind": "dynamic",
+        "count": 1,
+        "unit": "hours"
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    }
+  ],
+  "queries": [],
+  "schema_version": 64,
+  "title": "RTD_FactoryEvents"
+}

@@ -1,0 +1,22 @@
+[
+    {
+        "folder_name": "Workspace.src",
+        "id": "75f1967f-cc30-4f1d-8923-d9fdd5a9b4d4",
+        "type": "Core"
+    },
+    {
+        "name": "EH_ZavaEcommStore.Eventhouse",
+        "id": "68407582-b220-4420-901a-50ded83a6568",
+        "kustoQueryUri": "kusto_query_uri",
+        "kustoIngestUri": "kusto_ingest_uri"
+    },
+    {
+        "name": "EH_ZavaEcommStore.KQLDatabase",
+        "id": "02507405-4de1-41f3-80ab-c8503f2a58aa",
+        "parent": "RacingSim.Eventhouse"
+    },
+    {
+        "name": "ES_ClickstreamEvents.Eventstream",
+        "id": "0b4435ae-7458-4c11-9c31-d4abd0ceb4db"
+    }
+]
