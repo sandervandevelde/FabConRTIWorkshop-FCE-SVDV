@@ -1,7 +1,32 @@
 [
     {
-        "folder_name": "Lab 01 Clickstream",
+        "folder_name": "Lab 02 Clickstream Events",
         "itemname": "ES_ClickstreamEvents",
         "itemtype": "Eventstream"
+    },
+    {
+        "folder_name": "Lab 03 Factory Events",
+        "itemname": "ES_EnergyMeter",
+        "itemtype": "Eventstream"
+    },
+    {
+        "folder_name": "Lab 03 Factory Events",
+        "itemname": "ES_LoraWanStream",
+        "itemtype": "Eventstream"
+    },
+    {
+        "folder_name": "Lab 03 Factory Events",
+        "itemname": "ES_WeatherData",
+        "itemtype": "Eventstream"
+    },
+    {
+        "folder_name": "Lab 03 Factory Events",
+        "itemname": "DTB_YCFactoryTwin",
+        "itemtype": "DigitalTwinBuilder"
+    },
+    {
+        "folder_name": "Lab 03 Factory Events",
+        "itemname": "ACT_YCFactoryEvents",
+        "itemtype": "Reflex"
     }
 ]
