@@ -148,6 +148,26 @@ We work mainly with the Microsoft Fabric Eventhouse where data from three stream
 
 These are the tables and materialized views you will encounter today.
 
+##### Lab 1
+
+| Name | Origin | Description |
+| - | - | - |
+| **RawShippingsMsgs** | Eventhouse table | Raw XML shipment notifications from the shipping companies |
+| **ShippingNotifications** | Eventhouse table | Strongly typed tabl schema of raw XML shipping notifications|
+
+##### Lab 2
+
+| Name | Origin | Description |
+| - | - | - |
+| **RawClickstreamData** | Eventhouse table | Raw JSON clickstream data from the e-commerce website |
+| **Clickstream_AddToCart** | Eventhouse table | Filtered data for Add To Cart event types|
+| **Clickstream_BrowseCategory** | Eventhouse table | Filtered data for Browse Category event types |
+| **Clickstream_CreateAccount** | Eventhouse table | Filtered data for Create Account event types |
+| **Clickstream_Newsletter** | Eventhouse table | Filtered data for Newsletter event types |
+| **Clickstream_ViewProduct** | Eventhouse Materialized view | Filtered data for View Product event types |
+
+##### Lab 3
+
 | Name | Origin | Description |
 | - | - | - |
 | **BronzeEnergyMeter** | Eventhouse table | Raw untyped energy meter data (current, voltage, reactive) |
@@ -171,7 +191,7 @@ Let's cover the key features of Real-Time Intelligence in more detail and see ho
 
 - Eventstreams allow us to bring real-time events (including Kafka endpoints) into Fabric, optionally transform them, and then route them to various destinations without writing any code (no-code).
 
-- In this solution, events from the electromotor energy meter, LoraWan sensors, and Real-Time weather data are ingested from multiple Eventstreams into the respective 'BronzeEnergyMeter', 'BronzeLoraWan', and 'BronzeWeather' tables.
+- In this solution, for example, events from the electromotor energy meter, LoraWan sensors, and Real-Time weather data are ingested from multiple Eventstreams into the respective 'BronzeEnergyMeter', 'BronzeLoraWan', and 'BronzeWeather' tables.
 
 - Enhanced capabilities allows us to source data into Eventstreams from Azure Event Hubs, IoT Hubs, Azure SQL Database (CDC), PostgreSQL Database (CDC), MySQL Database (CDC), Azure Cosmos Database (CDC), Google Cloud Pub/Sub, Amazon Kinesis Data Streams, Confluent Cloud Kafka, Azure Blog Storage events, Fabric Workspace Item events, Sample data or Custom endpoint (Custom App).
 
@@ -181,7 +201,7 @@ Let's cover the key features of Real-Time Intelligence in more detail and see ho
 
 - An Eventhouse can host multiple KQL Databases for easier management. It will store event data from the Eventstreams and automate transformations in real-time. Eventhouses are **specifically tailored** to time-based streaming, or batch events with structured, semi-structured, and unstructured data.
 
-- In this solution, raw events captured in the `BronzeEnergyMeter`, `BronzeLoraWan`, and `BronzeWeather` are forwarded to eg. `SilverEnergyMeterCurrent` data table, `SilverEnergyMeterVoltage` data table, `SilverLoraWanTemperature` data table, and a 'SilverWeather' materialized view. The Silver layer offers typed and de-duplicated data based on the raw data for easier querying. A `GoldLoraWanTemperature` materialized view is added too, providing 10-minute averages to demonstrate how reports can benefit from specialized 'gold' materialized views.
+- In this solution, for example, raw events captured in the `BronzeEnergyMeter`, `BronzeLoraWan`, and `BronzeWeather` are forwarded to eg. `SilverEnergyMeterCurrent` data table, `SilverEnergyMeterVoltage` data table, `SilverLoraWanTemperature` data table, and a 'SilverWeather' materialized view. The Silver layer offers typed and de-duplicated data based on the raw data for easier querying. A `GoldLoraWanTemperature` materialized view is added too, providing 10-minute averages to demonstrate how reports can benefit from specialized 'gold' materialized views.
 
 - An Eventhouse is the best place to store streaming data in Fabric. It provides a highly scalable analytics system with built-in Machine Learning capabilities for discrete analytics over highly granular data. It's useful for any scenario that includes event-based data, for example, telemetry and log data, time series and IoT data, security and compliance logs, or financial records.
 
@@ -274,11 +294,10 @@ It's key capabilities are ontology modeling (Define a shared vocabulary and stru
 
 #### Data Agent
 
-**TBD**
+Data agent in Microsoft Fabric is a new Microsoft Fabric feature that allows you to build your own conversational Q&A systems using generative AI. A Fabric data agent makes data insights more accessible and actionable for everyone in your organization. With a Fabric data agent, your team can have conversations, with plain English-language questions, about the data that your organization stored in Fabric OneLake and then receive relevant answers. This way, even people without technical expertise in AI or a deep understanding of the data structure can receive precise and context-rich answers.
 
-#### Conversational agent
+You can also add organization-specific instructions, examples, and guidance to fine-tune the Fabric data agent. This ensures that responses align with your organization's needs and goals, allowing everyone to engage with data more effectively. Fabric data agent fosters a culture of data-driven decision-making because it lowers barriers to insight accessibility, it facilitates collaboration, and it helps your organization extract more value from its data.
 
-**TBD**
 
 ## Pre-requisites
 
@@ -296,6 +315,7 @@ To complete the lab, you **must** have access to a [Microsoft Fabric](https://ww
 
 </div>
 
+<!-->
 ### Trial Tenant for the Lab
 
 If you need a new Trial Tenant to complete the lab, we suggest registering a new Outlook.com email and follow these steps:
@@ -314,6 +334,7 @@ If you need a new Trial Tenant to complete the lab, we suggest registering a new
 
    ![WorkspaceManageAccess](assets/WorkspaceManageAccess.png "Workspace Manage Access")
 
+--->
 ---
 
 ## Building the platform - Azure Eventhub
@@ -365,40 +386,13 @@ If you need a new Trial Tenant to complete the lab, we suggest registering a new
 
 We now have a working workspace to host our Real-Time Intelligence solution.
 
-Let's add our first Fabric item, a timeseries database.
+For this workshop, Fabric items relevant for this workshop have been pre-created for you. Your workspace should look as shown in the image.
 
-### 3. Create a new Eventhouse
+![alt text](assets/image_task02_step03.png)
 
-In this section, we will build the storage foundation of our solution. Because we work with Real-Time data, we go for a timeseries database, Eventhouse.
 
-   ![alt text](assets/rtiLabArchitecture_workshop_3.png)
 
-1. To create an Eventhouse, **click** on the button `+ New Item` in the workspace.
-
-   ![alt text](assets/image_task03_step01.png)
-
-2. In the pop-up window 'New item', filter and select `Eventhouse` while 'All items' is selected. Here we **filter** for items with `Event` in the name. **Select** the Eventhouse.
-
-   ![alt text](assets/image_task03_step02.png)
-
-3. In the dialog 'New Eventhouse' **insert** `FactoryEvents_EH` as the name and **click** on `Create`.
-
-   ![alt text](assets/image_task03_step03.png)
-
-4. After the Eventhouse has been created, it will be automatically opened. There will be some information Windows on how to proceed. Please **close the window** 'You've just created your first Eventhouse' by **clicking** on the button `Get started`.
-
-   ![alt text](assets/image_task03_step04.png)
-
-5. **Close the window** 'Start by adding data' too.
-
-   ![alt text](assets/image_task03_step05.png)
-
-<div class="info" data-title="Note">
-
-> The [Eventhouse](https://learn.microsoft.com/en-us/fabric/real-time-intelligence/eventhouse) is designed to handle real-time data streams efficiently, which lets organizations ingest, process, and analyze huge amounts of data in near real-time. Eventhouses are particularly useful for scenarios where **timely insights are crucial**. Eventhouses are **specifically tailored** to time-based, streaming events with multiple data formats. This data is automatically indexed and partitioned based on ingestion time.
-</div>
-
-6. Notice the `FactoryEvents_EH` Eventhouse comes automatically with a KQL database with the same name `FactoryEvents_EH`.
+Notice the `FactoryEvents_EH` Eventhouse comes automatically with a KQL database with the same name `FactoryEvents_EH`.
 
 We created an Eventhouse with just an empty KQL database. How about adding some data?
 

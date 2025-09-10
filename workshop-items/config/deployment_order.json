@@ -1,32 +1,32 @@
 [
     {
         "folder_name": "Lab 02 Clickstream Events",
-        "itemname": "ES_ClickstreamEvents",
-        "itemtype": "Eventstream"
+        "item_name": "ES_ClickstreamEvents",
+        "item_type": "Eventstream"
     },
     {
         "folder_name": "Lab 03 Factory Events",
-        "itemname": "ES_EnergyMeter",
-        "itemtype": "Eventstream"
+        "item_name": "ES_EnergyMeter",
+        "item_type": "Eventstream"
     },
     {
         "folder_name": "Lab 03 Factory Events",
-        "itemname": "ES_LoraWanStream",
-        "itemtype": "Eventstream"
+        "item_name": "ES_LoraWanStream",
+        "item_type": "Eventstream"
     },
     {
         "folder_name": "Lab 03 Factory Events",
-        "itemname": "ES_WeatherData",
-        "itemtype": "Eventstream"
+        "item_name": "ES_WeatherData",
+        "item_type": "Eventstream"
     },
     {
         "folder_name": "Lab 03 Factory Events",
-        "itemname": "DTB_YCFactoryTwin",
-        "itemtype": "DigitalTwinBuilder"
+        "item_name": "DTB_YCFactoryTwin",
+        "item_type": "DigitalTwinBuilder"
     },
     {
         "folder_name": "Lab 03 Factory Events",
-        "itemname": "ACT_YCFactoryEvents",
-        "itemtype": "Reflex"
+        "item_name": "ACT_YCFactoryEvents",
+        "item_type": "Reflex"
     }
 ]
