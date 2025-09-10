@@ -1,32 +1,56 @@
 [
     {
+        "action": "Create",
         "folder_name": "Lab 02 Clickstream Events",
         "item_name": "ES_ClickstreamEvents",
         "item_type": "Eventstream"
     },
     {
+        "action": "Create",
         "folder_name": "Lab 03 Factory Events",
         "item_name": "ES_EnergyMeter",
         "item_type": "Eventstream"
     },
     {
+        "action": "Create",
         "folder_name": "Lab 03 Factory Events",
         "item_name": "ES_LoraWanStream",
         "item_type": "Eventstream"
     },
     {
+        "action": "Create",
         "folder_name": "Lab 03 Factory Events",
         "item_name": "ES_WeatherData",
         "item_type": "Eventstream"
     },
     {
+        "action": "Create",
         "folder_name": "Lab 03 Factory Events",
         "item_name": "DTB_YCFactoryTwin",
         "item_type": "DigitalTwinBuilder"
     },
     {
+        "action": "Create",
         "folder_name": "Lab 03 Factory Events",
         "item_name": "ACT_YCFactoryEvents",
         "item_type": "Reflex"
+    },
+    {
+        "action": "Copy",
+        "folder_name": "Lab 02 Clickstream Events",
+        "item_name": "NB_YCClickstreamGenerator",
+        "item_type": "Notebook"
+    },
+    {
+        "action": "Copy",
+        "folder_name": "Lab 02 Clickstream Events",
+        "item_name": "QS_ZavaClickstreamDDLScript",
+        "item_type": "Queryset"
+    },
+    {
+        "action": "Copy",
+        "folder_name": "Lab 03 Factory Events",
+        "item_name": "QS_FactoryEventsQueries",
+        "item_type": "Queryset"
     }
 ]
