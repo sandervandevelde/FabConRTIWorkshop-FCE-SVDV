@@ -44,7 +44,7 @@
     {
         "action": "Copy",
         "folder_name": "Lab 02 Clickstream Events",
-        "item_name": "QS_ZavaClickstreamDDLScript",
+        "item_name": "QS_YCClickstreamDDLScript",
         "item_type": "KQLQueryset"
     },
     {
