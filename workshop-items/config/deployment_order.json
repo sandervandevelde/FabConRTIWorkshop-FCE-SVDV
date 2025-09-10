@@ -52,5 +52,23 @@
         "folder_name": "Lab 03 Factory Events",
         "item_name": "QS_FactoryEventsQueries",
         "item_type": "KQLQueryset"
+    },
+    {
+        "action": "Create",
+        "folder_name": "",
+        "item_name": "EH_YCSneakerEventStore",
+        "item_type": "Eventhouse"
+    },
+    {
+        "action": "Create",
+        "folder_name": "",
+        "item_name": "LH_YCEcommLakehouse",
+        "item_type": "Lakehouse"
+    },
+    {
+        "action": "Create",
+        "folder_name": "",
+        "item_name": "RTD_YCDashboard",
+        "item_type": "KQLDashboard"
     }
 ]
