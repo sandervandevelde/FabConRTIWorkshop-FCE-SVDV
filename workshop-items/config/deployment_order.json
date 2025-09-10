@@ -45,12 +45,12 @@
         "action": "Copy",
         "folder_name": "Lab 02 Clickstream Events",
         "item_name": "QS_ZavaClickstreamDDLScript",
-        "item_type": "Queryset"
+        "item_type": "KQLQueryset"
     },
     {
         "action": "Copy",
         "folder_name": "Lab 03 Factory Events",
         "item_name": "QS_FactoryEventsQueries",
-        "item_type": "Queryset"
+        "item_type": "KQLQueryset"
     }
 ]
