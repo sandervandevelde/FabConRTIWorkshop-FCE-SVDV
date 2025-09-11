@@ -70,5 +70,17 @@
         "folder_name": "",
         "item_name": "RTD_YCDashboard",
         "item_type": "KQLDashboard"
+    },
+    {
+        "action": "Copy",
+        "folder_name": "Lab 01 Shipping Events",
+        "item_name": "QS_YCShippingDDLScript",
+        "item_type": "KQLQueryset"
+    },
+    {
+        "action": "Create",
+        "folder_name": "Lab 04 OneLake Events",
+        "item_name": "NB_DummyNotebook",
+        "item_type": "Notebook"
     }
 ]
