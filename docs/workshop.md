@@ -360,7 +360,7 @@ If you need a new Trial Tenant to complete the lab, we suggest registering a new
 2. **Log in** with the provided credentials, if a trial fabric tenant was previously set up (reference Prerequisites). You may also choose to run the lab in your own Fabric Tenant if you already have one.
 
 ### 2. Fabric Workspace
-
+<!---
 1. If a Microsoft Fabric Workspace is 'designated' to your login by the Fabric Trial Tenant, **click** `Workspaces` in the menu on the left of the portal and open your designated workspace.
 
 2. Optionally, if using your own Fabric Tenant, **create a new workspace** for this lab.
@@ -369,7 +369,7 @@ If you need a new Trial Tenant to complete the lab, we suggest registering a new
 
    ![alt text](assets/image_task02_step01.png)
 
-4. **Enter** `RTI Tutorial` as the name for the new Workspace. Then **extend** `Advanced`.
+4. **Enter** `RTI Workshop` as the name for the new Workspace. Then **extend** `Advanced`.
 
    ![alt text](assets/image_task02_step02.png)
 
@@ -385,16 +385,61 @@ If you need a new Trial Tenant to complete the lab, we suggest registering a new
 6. After you click on `Apply`, the workspace will be created. This can take up to a minute. The workspace will be opened automatically.
 
 We now have a working workspace to host our Real-Time Intelligence solution.
+--->
 
 For this workshop, Fabric items relevant for this workshop have been pre-created for you. Your workspace should look as shown in the image.
 
 ![alt text](assets/image_task02_step03.png)
 
+### 3. Lab 01 - Shipping Events
+
+Steps to execute
+
+1. In your workspace, navigate to 'EH_YCSneakerEventStore' Eventhouse.
+
+2. In the eventhouse main page, click on KQL Database of the same name 'EH_YCSneakerEventStore'.
+
+3. Click 'Get Data'
+
+4. Choose 'Azure Storage' as the data source
+
+5. Create a new table 'RawShippingMsgs'. Pay attention to the table name. Copy the table name as-is else the subsequent scripts will fail to execute.
+
+6. Click on the tick mark next to the table name to save the table name.
+
+7. Choose 'Connect to a storage account'.
+
+8. Choose 'FabConVienna 2025 Azure Subscription' from the Subscription drop down.
+
+9. Choose 'fabconvienna2025sa' as the Blob storage account.
+
+10. Choose 'rawshippingmsgs' as the container
+
+11. Rename the Eventstream Name to 'ES_ShippingEvents'
+
+12. Click 'Next'
+
+13. Notice the preview of a single XML message retrieved from the storage account.
+
+14. Click 'Finish'
+
+After clicking 'Finish', Eventhouse will establish a connection with the storage account and will read XML files as soon as they are created in the storage account. Let the processing continue as it completes the required background processes. You can click 'Close' and it will still continue background processing.
+
+15. In KQL Database tree, you will notice the table 'RawShippingMsgs'.
+
+16. Click on the table to see the preview of the messages
+
+17. Navigate back to your workspace
+
+18. Go to 'Lab 01 Shipping Events'
+
+19. Open 'QS_YCShippingDDLScript'
+
+20. Select the entire script and click 'Run'. Check the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
+
+### 4. Lab 02 - Clickstream Events
 
 
-Notice the `FactoryEvents_EH` Eventhouse comes automatically with a KQL database with the same name `FactoryEvents_EH`.
-
-We created an Eventhouse with just an empty KQL database. How about adding some data?
 
 Let's ingest energy meter events with power consumption telemetry measured on the Edge. coming from the electromotor available in our demo factory.
 
