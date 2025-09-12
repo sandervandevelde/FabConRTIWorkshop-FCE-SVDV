@@ -395,19 +395,27 @@ For this workshop, Fabric items relevant for this workshop have been pre-created
 
 Steps to execute
 
-1. In your workspace, navigate to the existing 'EH_YCSneakerEventStore' Eventhouse.
+1. In your workspace, **navigate** to the existing `EH_YCSneakerEventStore` Eventhouse.
 
-2. In the eventhouse main page, click on KQL Database of the same name 'EH_YCSneakerEventStore'.
+   ![alt text](assets/image_lab01_step01.png)
 
-3. Click 'Get Data'
+2. In the eventhouse main page, **click** on KQL Database of the same name `EH_YCSneakerEventStore`.
 
-4. Choose 'Azure Storage' as the data source
+   ![alt text](assets/image_lab01_step02.png)
 
-5. Create a new table 'RawShippingMsgs'. Pay attention to the table name. Copy the table name as-is else the subsequent scripts will fail to execute.
+3. **Click** `Get Data` (via the three dots) and **choose** `Azure Storage` as the data source for ingesting data.
 
-6. Click on the tick mark next to the table name to save the table name.
+   ![alt text](assets/image_lab01_step03.png)
 
-7. Choose 'Connect to a storage account'.
+5. A dialog is shown. **Create** a new table `RawShippingMsgs`. Pay attention to this table name, it is reused later on (Copy the table name as-is else the subsequent scripts will fail to execute).
+
+   ![alt text](assets/image_lab01_step04.png)
+
+6. **Click** on the `tick mark` next to the table name to save the table name.
+
+   ![alt text](assets/image_lab01_step05.png)
+
+7. **Choose** `Connect to a storage account` if not selected already.
 
 8. Choose 'FabConVienna 2025 Azure Subscription' from the Subscription drop down.
 
@@ -438,8 +446,6 @@ After clicking 'Finish', Eventhouse will establish a connection with the storage
 20. Select the entire script and click 'Run'. Check the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
 
 ### 4. Lab 02 - Clickstream Events
-
-
 
 Let's ingest energy meter events with power consumption telemetry measured on the Edge. coming from the electromotor available in our demo factory.
 
