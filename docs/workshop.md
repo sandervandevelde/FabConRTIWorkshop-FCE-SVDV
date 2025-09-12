@@ -441,13 +441,15 @@ After clicking 'Finish', Eventhouse will establish a connection with the storage
 
 22. Click on 'EH_YCSneakerEventStore_queryset', which is the default query editor of the Eventhouse.
 
-23. Go to https://aka.ms/fabconrtiworkshopgithub/asssets/kqlcode/
+23. Go to [Shipping Events KQL](https://github.com/microsoft/FabConRTIWorkshop/blob/main/assets/kqlcode/Lab1_QS_YCShippingDDLScript.kql)
 
-23. Go to 'Lab 01 Shipping Events'
+24. Copy the KQL code from this file
 
-24. Open 'QS_YCShippingDDLScript'
+25. Paste the copied KQL code in the 'EH_YCSneakerEventStore_queryset'
 
-25. Select the entire script and click 'Run'. Check the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
+26. Rename the tab as 'Shipping Events'. You will be creating more tabs so naming them will be helpful.
+
+27. Select the entire script and click 'Run'. Check the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
 
 ### 4. Lab 02 - Clickstream Events
 
