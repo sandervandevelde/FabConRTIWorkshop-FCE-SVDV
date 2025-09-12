@@ -389,61 +389,87 @@ We now have a working workspace to host our Real-Time Intelligence solution.
 
 For this workshop, Fabric items relevant for this workshop have been pre-created for you. Your workspace should look as shown in the image.
 
-![alt text](assets/image_task02_step03.png)
+![alt text](assets/image_task02_step03a.png)
 
 ### 3. Lab 01 - Shipping Events
 
-Steps to execute
+Our company receives Shipping events as batches in an Azure storage account, from a third party supplier.
 
-1. In your workspace, navigate to 'EH_YCSneakerEventStore' Eventhouse.
+We start with ingesting these shipping events into our already existing Fabric Eventhouse. 
 
-2. In the eventhouse main page, click on KQL Database of the same name 'EH_YCSneakerEventStore'.
+There is no need for eg. a Data Factory. We can ingest directly using the Eventhouse.
 
-3. Click 'Get Data'
+1. In your workspace, **navigate** to the existing `EH_YCSneakerEventStore` Eventhouse.
 
-4. Choose 'Azure Storage' as the data source
+   ![alt text](assets/image_lab01_step01.png)
 
-5. Create a new table 'RawShippingMsgs'. Pay attention to the table name. Copy the table name as-is else the subsequent scripts will fail to execute.
+2. In the eventhouse main page, **click** on KQL Database of the same name `EH_YCSneakerEventStore`.
 
-6. Click on the tick mark next to the table name to save the table name.
+   ![alt text](assets/image_lab01_step02.png)
 
-7. Choose 'Connect to a storage account'.
+3. **Click** `Get Data` (via the three dots) and **choose** `Azure Storage` as the data source for ingesting data.
 
-8. Choose 'FabConVienna 2025 Azure Subscription' from the Subscription drop down.
+   ![alt text](assets/image_lab01_step03.png)
 
-9. Choose 'fabconvienna2025sa' as the Blob storage account.
+5. A dialog is shown. **Create** a new table `RawShippingMsgs`. Pay attention to this table name, it is reused later on (Copy the table name as-is else the subsequent scripts will fail to execute).
 
-10. Choose 'rawshippingmsgs' as the container
+   ![alt text](assets/image_lab01_step04.png)
 
-11. Rename the Eventstream Name to 'ES_ShippingEvents'
+6. **Click** on the `tick mark` next to the table name to save the table name.
 
-12. Click 'Next'
+   ![alt text](assets/image_lab01_step05.png)
 
-13. Notice the preview of a single XML message retrieved from the storage account.
+7. **Choose** `Connect to a storage account` if not selected already.
 
-14. Click 'Finish'
+8. **Choose** `FabConVienna 2025 Azure Subscription` from the Subscription drop down.
 
-After clicking 'Finish', Eventhouse will establish a connection with the storage account and will read XML files as soon as they are created in the storage account. Let the processing continue as it completes the required background processes. You can click 'Close' and it will still continue background processing.
+9. **Choose** `fabconvienna2025sa` as the Blob storage account.
 
-15. In KQL Database tree, you will notice the table 'RawShippingMsgs'.
+10. **Choose** `rawshippingmsgs` as the container.
 
-16. Click on the table to see the preview of the messages
+   ![alt text](assets/image_lab01_step06.png)
 
-17. Navigate back to your workspace
+11. **Rename** the Eventstream Name to `ES_ShippingEvents`.
 
-18. Go to 'Lab 01 Shipping Events'
+   ![alt text](assets/image_lab01_step07.png)
 
-19. Open 'QS_YCShippingDDLScript'
+12. **Click** `Next`.
 
-20. Select the entire script and click 'Run'. Check the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
+13. **Notice** the `preview of a single XML message` retrieved from the storage account.
+
+   ![alt text](assets/image_lab01_step08.png)
+
+14. **Click** `Finish`.
+
+15. After clicking 'Finish', the Eventhouse will establish a connection with the storage account and will read XML files as soon as they are created in the storage account, continuously! Let the processing continue as it completes the required background processes. You can click 'Close' and it will still continue the background processing. In the KQL Database tree, **notice** the `existence of table` 'RawShippingMsgs'.
+
+   ![alt text](assets/image_lab01_step09.png)
+
+16. **Click** on the table to see the `preview of the messages` ingested already.
+
+17. **Navigate** back to your workspace and **go to** the `Lab 01 Shipping Events` folder.
+
+18. **Open** KQL Query set `QS_YCShippingDDLScript`.
+
+   ![alt text](assets/image_lab01_step10.png)
+
+19. **Select** the `entire script` by putting the cursor in one of the lines (the entire script background color changes) and **click** `Run`. 
+
+20. **Check** the `output as shown` in the image below. A new function, table and an update policy must have been created in your workspace.
+
+   ![alt text](assets/image_lab01_step11.png)
+
+21. **Check** the new table `ShippingEvents` where processed,typed versions of the raw shipping events arrive.
+
+   ![alt text](assets/image_lab01_step12.png)
+
+At this moment, the Eventhouse ingests files from a storage account in a 'bronze' medallion architecture and automatically the 'silver' layer is filled to using additional Table Update Policy logic.
 
 ### 4. Lab 02 - Clickstream Events
 
-
-
 Let's ingest energy meter events with power consumption telemetry measured on the Edge. coming from the electromotor available in our demo factory.
 
-### 4. Create a new Energy Meter Telemetry Eventstream
+### 4. Lab 03.1 - Create a new Energy Meter Telemetry Eventstream
 
 In this section, we will be streaming Energy meter telemetry events (eg. current and voltage events from an electric motor). The events will be streamed into an Eventstream and be written into our Eventhouse KQL Database.
 
@@ -459,147 +485,139 @@ Notice that the electric motor starts and stops every 15 minutes so you will see
 
    ![alt text](assets/rtiLabArchitecture_workshop_4.png)
 
-1. **Select your Workspace** in the left pane. In our example, it is `RTI Tutorial`. If you have been assigned a Workspace at the start of this lab, **choose the workspace name** that was provided to you. Then **click** on `+ New Item`. In the pop-out window, scroll a little bit down (or use the filter) and **select** `Eventstream`.
-
-   ![alt text](assets/image_task04_step01.png)
-
-2. Give the Eventstream the name `EnergyMeterStream_ES` and **click** on `Create`.
-
-   ![alt text](assets/image_task04_step02.png)
-
-3. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
+1. **Open** the Eventstream named `ES_EnergyMeter`, already provided in the 'Factory events folder'. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
 
    ![alt text](assets/image_task04_step03.png)
 
-4. In the dialog 'Select a data source', **click** on the button `Connect`.
+2. **Click** `Select a data source`. In the dialog **click** on the button `Connect`.
 
    ![alt text](assets/image_task04_step04.png)
 
-5. In the dialog 'Configure connection settings', **choose** `factorytelemetryeventhub` for the combobox 'Connection' and **insert** the name of the consumer group into the field 'Consumer group' that aligns with the username that was provided to you. In this case, this is `workshopuser49`. **Ensure** that the 'Data format' is `Json` and **click on the pencil** icon next to `Source name`.
+3. In the dialog 'Configure connection settings', **choose** `factorytelemetryeventhub` for the combobox 'Connection' and **insert** the name of the consumer group into the field 'Consumer group' that aligns with the username that was provided to you. In this case, this is `workshopuser49`. **Ensure** that the 'Data format' is `Json` and **click on the pencil** icon next to `Source name`.
 
    ![alt text](assets/image_task04_step05.png)
 
-6. **Enter** `EnergyMeterEventsSource` as 'Source name' and then **click** on the button `Next`.
+4. **Enter** `EnergyMeterEventsSource` as 'Source name' and then **click** on the button `Next`.
 
    ![alt text](assets/image_task04_step06.png)
 
-7. On the screen 'Review + Connect' **review** all of the information and then **click** on the button `Add`.
+5. On the screen 'Review + Connect' **review** all of the information and then **click** on the button `Add`.
 
    ![alt text](assets/image_task04_step07.png)
 
-8. The source is added. **Notice** that data from several types of energy meter messages is received. We see the arrival of both 'current', 'voltage' and 'reactive' messages in the Test result. The related telemetry arrives every few seconds, with little pauses between them. Notice that the local time is provided in UTC.
+6. The source is added. **Notice** that data from several types of energy meter messages is received. We see the arrival of both 'current', 'voltage' and 'reactive' messages in the Test result. The related telemetry arrives every few seconds, with little pauses between them. Notice that the local time is provided in UTC.
 
    ![alt text](assets/image_task04_step08.png)
 
-9. Eventstream offers multiple ways to transform incoming data, including a filter, perfect for making the Eventstream ignore the 'reactive' data. **Add a filter** by using the `drop-down option` in the 'Transform events or add destination' step (for now, ignore the 'Transform events' menu item).
+7. Eventstream offers multiple ways to transform incoming data, including a filter, perfect for making the Eventstream ignore the 'reactive' data. **Add a filter** by using the `drop-down option` in the 'Transform events or add destination' step (for now, ignore the 'Transform events' menu item).
 
    ![alt text](assets/image_task04_step09.png)
 
-10. The step now turns into a Filter aggregation, but we need to set it up first. **Use the pencil** to set up the filter settings.
+8. The step now turns into a Filter aggregation, but we need to set it up first. **Use the pencil** to set up the filter settings.
 
    ![alt text](assets/image_task04_step10.png)
 
-11. **Give the filter** a 'Operation name' like `ReactiveFilter`. We only want to keep messages when the `key does not equal reactive` by **selecting the 'key' column and adding the filter values**. **Save** the filter.
+9. **Give the filter** a 'Operation name' like `ReactiveFilter`. We only want to keep messages when the `key does not equal reactive` by **selecting the 'key' column and adding the filter values**. **Save** the filter.
 
    ![alt text](assets/image_task04_step11.png)
 
-12. Although the filter is now set, it still shows 'error' because no Destination is set as next step.
+10. Although the filter is now set, it still shows 'error' because no Destination is set as next step.
 
    ![alt text](assets/image_task04_step12.png)
 
-13. **Click on the plus sign** to the right of this Filter step and **select the Stream** (also known as Derived Stream). 
+11. **Click on the plus sign** to the right of this Filter step and **select the Stream** (also known as Derived Stream). 
 
    ![alt text](assets/image_task04_step13.png)
 
-14. Notice that the 'error' message disappears when a Destination is added. **Use the pencil** to edit the Derived stream.
+12. Notice that the 'error' message disappears when a Destination is added. **Use the pencil** to edit the Derived stream.
 
    ![alt text](assets/image_task04_step14.png)
 
-15. **Provide a Stream name** like `EnergyMeterDerivedStream`. **Save** the change.
+13. **Provide a Stream name** like `EnergyMeterDerivedStream`. **Save** the change.
 
    ![alt text](assets/image_task04_step15.png)
 
-16. When you **select** the Derived stream and **Refresh** the test result, it shows only the 'current' and 'voltage' messages. The 'reactive' messages are now filtered.
+14. When you **select** the Derived stream and **Refresh** the test result, it shows only the 'current' and 'voltage' messages. The 'reactive' messages are now filtered.
 
    ![alt text](assets/image_task04_step16.png)
 
-17. The Derived stream is added, so these messages are potentially shared with other users accessing the same workspace you are working on. Notice that the Derived stream can have other steps added to the right, it is not the end of the flow. **Add a destination** for an Eventhouse, behind the Derived stream.
+15. The Derived stream is added, so these messages are potentially shared with other users accessing the same workspace you are working on. Notice that the Derived stream can have other steps added to the right, it is not the end of the flow. **Add a destination** for an Eventhouse, behind the Derived stream.
 
    ![alt text](assets/image_task04_step17.png)
 
-18. The Eventhouse destination needs a setup. **Click on the pencil** to set it up.
+16. The Eventhouse destination needs a setup. **Click on the pencil** to set it up.
 
    ![alt text](assets/image_task04_step18.png)
 
-19. We **keep** the `Event processing before ingestion`. **Give the Destination a name** like `Eventhouse`. **Select your own workspace** and **Select your own Eventhouse** and **Select your own KQL Database**. Regarding the table, **Create a new table** and name it `BronzeEnergyMeter`. Keep the input data format to Json.
+17. We **keep** the `Event processing before ingestion`. **Give the Destination a name** like `Eventhouse`. **Select your own workspace** and **Select your own Eventhouse** and **Select your own KQL Database**. Regarding the table, **Create a new table** and name it `BronzeEnergyMeter`. Keep the input data format to Json.
 
    ![alt text](assets/image_task04_step19.png)
 
-20. **Save** the Eventhouse Destination set-up.
+18. **Save** the Eventhouse Destination set-up.
 
    ![alt text](assets/image_task04_step20.png)
 
-21. Once the destination dialog is saved, notice the Eventhouse destination will also receive only 'current' and 'voltage' messages by **Refreshing** the test result so Fabric knows what the format of the incoming messages looks like.
+19. Once the destination dialog is saved, notice the Eventhouse destination will also receive only 'current' and 'voltage' messages by **Refreshing** the test result so Fabric knows what the format of the incoming messages looks like.
 
    ![alt text](assets/image_task04_step21.png)
 
-22. **Publish** the Eventstream.
+20. **Publish** the Eventstream.
 
    ![alt text](assets/image_task04_step22.png)
 
-23. In the background, the table is created in the KQL Database of the Eventhouse, and the infrastructure is set up. This will take a moment or so.
+21. In the background, the table is created in the KQL Database of the Eventhouse, and the infrastructure is set up. This will take a moment or so.
 
    ![alt text](assets/image_task04_step23.png)
 
-24. Finally, the Eventhouse destination is active.
+22. Finally, the Eventhouse destination is active.
 
    ![alt text](assets/image_task04_step24.png)
 
-25. **Leave the Eventstream and navigate to** the `FactoryEvents_EH` Eventhouse and clicking on the `FactoryEvents_EH` KQL Database name. This will show all content in the KQL Database. Notice that the `BronzeEnergyMeter` table is added, now. Check the columns of that table, including the Universal Namespace (UNS) of the Compact Controller PLC.
+23. **Leave the Eventstream and navigate to** the `FactoryEvents_EH` Eventhouse and clicking on the `FactoryEvents_EH` KQL Database name. This will show all content in the KQL Database. Notice that the `BronzeEnergyMeter` table is added, now. Check the columns of that table, including the Universal Namespace (UNS) of the Compact Controller PLC.
 
    ![alt text](assets/image_task04_step25.png)
 
-26. If you **select** the table `Data preview`, a preview of the current ingested data is shown.
+24. If you **select** the table `Data preview`, a preview of the current ingested data is shown.
 
    ![alt text](assets/image_task04_step26.png)
 
-27. If you **select** the table `Schema insights`, a preview of the schema and some statistics are shown. Here, we see that multiple columns are of type 'string', including the 'value' column. Because this column represents decimal values in a string format, doing mathematical calculations will be hard. So, we need to fix that.
+25. If you **select** the table `Schema insights`, a preview of the schema and some statistics are shown. Here, we see that multiple columns are of type 'string', including the 'value' column. Because this column represents decimal values in a string format, doing mathematical calculations will be hard. So, we need to fix that.
 
    ![alt text](assets/image_task04_step27.png)
 
-28. If you follow the three dots next to the `BronzeEnergyMeter` table name, you get a sub-menu with extra options. **Select Visual exploration** for a no-code experience.
+26. If you follow the three dots next to the `BronzeEnergyMeter` table name, you get a sub-menu with extra options. **Select Visual exploration** for a no-code experience.
 
    ![alt text](assets/image_task04_step28.png)
 
-29. A new dialog is shown with a preview of incoming messages. Some visual statistics are shown to the right, like the distribution of keys. **Change the visualization** at the top.
+27. A new dialog is shown with a preview of incoming messages. Some visual statistics are shown to the right, like the distribution of keys. **Change the visualization** at the top.
 
    ![alt text](assets/image_task04_step29.png)
 
-30. We want to see the same messages now visualized as a `Line chart`.
+28. We want to see the same messages now visualized as a `Line chart`.
 
    ![alt text](assets/image_task04_step30.png)
 
-31. The visualization is not smart enough to understand the actual meaning of the value column at this moment. This is both because we are mixing two types of messages (`current` and `voltage`) and because the values are of type 'string', not decimal values. We will fix this later on.
+29. The visualization is not smart enough to understand the actual meaning of the value column at this moment. This is both because we are mixing two types of messages (`current` and `voltage`) and because the values are of type 'string', not decimal values. We will fix this later on.
 
    ![alt text](assets/image_task04_step31.png)
 
-32. The visual exploration also offers extra filters and aggregations.
+30. The visual exploration also offers extra filters and aggregations.
 
    ![alt text](assets/image_task04_step32.png)
 
-33. Just as a demonstration of how this dialog works, add an aggregation (Notice that this step will not produce any useful results due to the string values!). So, we are interested in the `Average operator` based on the `value column`. We **add two** `group by` rows. We **group by key** (so we potentially split 'current' messages from 'voltage' messages), and we **group by deviceId** so we split up messages coming from different devices. **Apply** the aggregation.
+31. Just as a demonstration of how this dialog works, add an aggregation (Notice that this step will not produce any useful results due to the string values!). So, we are interested in the `Average operator` based on the `value column`. We **add two** `group by` rows. We **group by key** (so we potentially split 'current' messages from 'voltage' messages), and we **group by deviceId** so we split up messages coming from different devices. **Apply** the aggregation.
  
    ![alt text](assets/image_task04_step33.png)
 
-34. Because of the current limitation of the incoming data (the `value column` is still of type 'string'), so the aggregation will fail. But the intent of this dialog is still understood, the KQL query language shows a summary by key and deviceId.
+32. Because of the current limitation of the incoming data (the `value column` is still of type 'string'), so the aggregation will fail. But the intent of this dialog is still understood, the KQL query language shows a summary by key and deviceId.
 
    ![alt text](assets/image_task04_step34.png)
 
-35. We will use the KQL query language to turn the bronze table into two separate silver tables. **Navigate to the KQL Queryset** named `FactoryEvents_EH_queryset`.
+33. We will use the KQL query language to turn the bronze table into two separate silver tables. **Navigate to the KQL Queryset** named `FactoryEvents_EH_queryset`.
 
    ![alt text](assets/image_task04_step35.png)
 
-36. Each KQL Database comes with a KQL Queryset already. **See** the KQL Queryset of the 'FactoryEvents_EH' KQL Database in the 'FactoryEvents_EH' Eventhouse has opened. A KQL Queryset offers a sandbox for querying the data using the Kusto Query Language (KQL). We will also create extra logic using KQL commands. We will create a silver voltage table `SilverEnergyMeterVoltage` and fill it with typed voltage rows by creating a Table update policy based on the `BronzeEnergyMeter`. The typed silver table data is copied from the bronze table every time new bronze table rows arrive. The conversion part is done via the function `ParseVoltageTelemetry`. **Execute these three KQL commands separately**. Do this by placing them all in the KQL Queryset, putting the cursor in each command, and running it. Do this for **one after another**.
+34. Each KQL Database comes with a KQL Queryset already. **See** the KQL Queryset of the 'FactoryEvents_EH' KQL Database in the 'FactoryEvents_EH' Eventhouse has opened. A KQL Queryset offers a sandbox for querying the data using the Kusto Query Language (KQL). We will also create extra logic using KQL commands. We will create a silver voltage table `SilverEnergyMeterVoltage` and fill it with typed voltage rows by creating a Table update policy based on the `BronzeEnergyMeter`. The typed silver table data is copied from the bronze table every time new bronze table rows arrive. The conversion part is done via the function `ParseVoltageTelemetry`. **Execute these three KQL commands separately**. Do this by placing them all in the KQL Queryset, putting the cursor in each command, and running it. Do this for **one after another**.
 
 ```
 // query 1/3 - Create a table
@@ -631,18 +649,18 @@ SilverEnergyMeterVoltage
 policy update @'[{"Source": "BronzeEnergyMeter", "Query": "ParseVoltageTelemetry", "IsEnabled" : true, "IsTransactional": true }]'
 ```
 
-37. If no errors are shown, test the Table update policy. **Execute this query** (Notice that it can take a moment before the update policy is up and running and new rows start to occure in the 'SilverEnergyMeterVoltage' table).
+35. If no errors are shown, test the Table update policy. **Execute this query** (Notice that it can take a moment before the update policy is up and running and new rows start to occure in the 'SilverEnergyMeterVoltage' table).
 
 ```
 SilverEnergyMeterVoltage
 | take 10
 ```
 
-38. The result will **show** a list of ten random rows from the `SilverEnergyMeterVoltage` table via the 'take' statement.
+36. The result will **show** a list of ten random rows from the `SilverEnergyMeterVoltage` table via the 'take' statement.
 
    ![alt text](assets/image_task04_step36.png)
 
-39. **Repeat** this also for the other new silver table `SilverEnergyMeterCurrent`. Again, **execute these three KQL commands separately**, again one after another.
+37. **Repeat** this also for the other new silver table `SilverEnergyMeterCurrent`. Again, **execute these three KQL commands separately**, again one after another.
 
 ```
 // query 1/3 - Create a table
@@ -674,18 +692,18 @@ SilverEnergyMeterCurrent
 policy update @'[{"Source": "BronzeEnergyMeter", "Query": "ParseCurrentTelemetry", "IsEnabled" : true, "IsTransactional": true }]'
 ```
 
-40. If no errors are shown, test the Table update policy. **Execute this query** (Notice that it can take a moment before the update policy is up and running and table rows arrive in the 'SilverEnergyMeterCurrent' table).
+38. If no errors are shown, test the Table update policy. **Execute this query** (Notice that it can take a moment before the update policy is up and running and table rows arrive in the 'SilverEnergyMeterCurrent' table).
 
 ```
 SilverEnergyMeterCurrent
 | take 10
 ```
 
-41. The result will show a list of ten random rows from the `SilverEnergyMeterCurrent` table via the 'take' statement.
+39. The result will show a list of ten random rows from the `SilverEnergyMeterCurrent` table via the 'take' statement.
 
    ![alt text](assets/image_task04_step37.png)
 
-42. Now, we have typed columns in both tables, we can do some calculations. Did you notice we split the Universal Namespace (UNS) column and turned the values into doubles? **Execute the following query**. It will join the tables with typed voltage values and typed current values based on a time difference of less than a few seconds (because the telemetry arrives every few seconds). So the right combination is used to calculate the wattage used by the electromotor (when running). We only look at the latest ten entries.
+40. Now, we have typed columns in both tables, we can do some calculations. Did you notice we split the Universal Namespace (UNS) column and turned the values into doubles? **Execute the following query**. It will join the tables with typed voltage values and typed current values based on a time difference of less than a few seconds (because the telemetry arrives every few seconds). So the right combination is used to calculate the wattage used by the electromotor (when running). We only look at the latest ten entries.
 
 ```
 SilverEnergyMeterCurrent
@@ -701,11 +719,11 @@ SilverEnergyMeterCurrent
 | order by timestamp desc
 ```
 
-43. The result will be a table with a `wattage` calculated from the current and voltage.
+41. The result will be a table with a `wattage` calculated from the current and voltage.
 
    ![alt text](assets/image_task04_step38.png)
 
-44. How about rendering the values? **Execute this query** with a 'render' statement.
+42. How about rendering the values? **Execute this query** with a 'render' statement.
 
 ```
 SilverEnergyMeterCurrent
@@ -721,39 +739,39 @@ SilverEnergyMeterCurrent
 | render timechart 
 ```
 
-45. The result will be a chart with a `wattage` calculated from the current and voltage.
+43. The result will be a chart with a `wattage` calculated from the current and voltage.
 
    ![alt text](assets/image_task04_step39.png)
 
-46. Here, the electric motor just started, resulting in a large spike due to the huge amount of current needed to get it running. The measurement was taken just at the right moment.
+44. Here, the electric motor just started, resulting in a large spike due to the huge amount of current needed to get it running. The measurement was taken just at the right moment.
 
    ![alt text](assets/image_task04_step40.png)
 
-47. It must be clear that all new BronzeEnergyMeter rows are duplicated and distributed over the two Silver tables. If you are confident this works as expected, the retention time of the bronze table can be reduced so the database stores less data. **Change the retention time** to one hour. This is not a soft deletion.
+45. It must be clear that all new BronzeEnergyMeter rows are duplicated and distributed over the two Silver tables. If you are confident this works as expected, the retention time of the bronze table can be reduced so the database stores less data. **Change the retention time** to one hour. This is not a soft deletion.
 
 ```
 .alter-merge table BronzeEnergyMeter policy retention softdelete = 1h recoverability = disabled
 ```
 
-48. If you **count the number of rows** in both bronze table with eg. `BronzeEnergyMeter | count` and silver tables at the end of this workshop, you will notice that the oldest rows in the bronze table will span one hour. This is not an exact life span; the process behind removing outdated rows has a very low priority, but it will be executed for sure.
+46. If you **count the number of rows** in both bronze table with eg. `BronzeEnergyMeter | count` and silver tables at the end of this workshop, you will notice that the oldest rows in the bronze table will span one hour. This is not an exact life span; the process behind removing outdated rows has a very low priority, but it will be executed for sure.
 
-49. One more thing. Do you remember that Derived stream in the Eventstream? Let's **visit** the `Real-Time Hub` to check out what this looks like for other users. On the portal menu at the left side of your Fabric portal, **select** `Real-Time`.
+47. One more thing. Do you remember that Derived stream in the Eventstream? Let's **visit** the `Real-Time Hub` to check out what this looks like for other users. On the portal menu at the left side of your Fabric portal, **select** `Real-Time`.
 
    ![alt text](assets/image_task04_step41.png)
 
-50. If a Welcome dialog is shown, **press** `Get started` (leave the checkbox unchecked to take the tour later on).
+48. If a Welcome dialog is shown, **press** `Get started` (leave the checkbox unchecked to take the tour later on).
 
    ![alt text](assets/image_task04_step42.png)
 
-51. The Real-Time Hub shows all data streams accessible to you. It even offers a starting point for creating new ones. Our derived stream `EnergyMeterDeriveStream` is listed here too.
+49. The Real-Time Hub shows all data streams accessible to you. It even offers a starting point for creating new ones. Our derived stream `EnergyMeterDeriveStream` is listed here too.
 
    ![alt text](assets/image_task04_step43.png)
 
-52. The `EnergyMeterDeriveStream` offers a 'Preview data' option. **Click on the eye** next to it.
+50. The `EnergyMeterDeriveStream` offers a 'Preview data' option. **Click on the eye** next to it.
 
    ![alt text](assets/image_task04_step44.png)
 
-53. A new dialog shows both a chart with the number of ingested rows over the last six hours at the top and a preview of rows at the bottom.
+51. A new dialog shows both a chart with the number of ingested rows over the last six hours at the top and a preview of rows at the bottom.
 
    ![alt text](assets/image_task04_step45.png)
 
@@ -761,7 +779,7 @@ We now have a solid stream of Energy meter data, ingested from the Edge to the c
 
 Let's ingest LoraWan telemetry from all kinds of LoraWan sensors, implemented in a demo factory (like temperature sensors, vibration sensors, and even location trackers). We are especially interested in the telemetry sensors.
 
-### 5. Create a new LoraWan Telemetry Eventstream
+### 4. Lab 03.2 - Create a new LoraWan Telemetry Eventstream
 
 In this section, we will be streaming LoraWan telemetry events (temperature events). The events will be streamed into an Eventstream and written into our Eventhouse KQL Database.
 
@@ -775,103 +793,95 @@ You will ingest the LoraWan data from an Azure Event Hub.
 
    ![alt text](assets/rtiLabArchitecture_workshop_5.png)
 
-1. **Select your Workspace** in the left pane. In our example, it is `RTI Tutorial`. If you have been assigned a Workspace at the start of this lab, **choose the workspace name** that was provided to you. Then **click** on `+ New Item`. In the pop-out window, **scroll** a little bit down (or use the filter) and select `Eventstream`.
-
-   ![alt text](assets/image_task05_step01.png)
-
-2. **Give** the Eventstream the 'name' `LoraWanStream_ES` and **click** on `Create`.
-
-   ![alt text](assets/image_task05_step02.png)
-
-3. On the Screen 'Design a flow to ingest, transform, and route streaming events', **click** on `Connect data sources`.
+1. **Open** the Eventstream named `ES_LoraWanStream`, already provided in the 'Factory events folder'. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
 
    ![alt text](assets/image_task05_step03.png)
 
-4. In the dialog 'Select a data source', **click** on the button `Connect`.
+2. **Click** `Select a data source`. In the dialog **click** on the button `Connect`.
 
    ![alt text](assets/image_task05_step04.png)
 
-5. In the dialog 'Configure connection settings' **choose** `loratelemetryeventhub` for the combobox 'Connection' and **insert** the name of the consumer group into the field 'Consumer group' that aligns with the username that was provided to you. In my case, this is `workshopuser49`. **Ensure** that the 'Data format' is `Json` and **click on the pencil** icon next to 'Source name'.
+3. In the dialog 'Configure connection settings' **choose** `loratelemetryeventhub` for the combobox 'Connection' and **insert** the name of the consumer group into the field 'Consumer group' that aligns with the username that was provided to you. In my case, this is `workshopuser49`. **Ensure** that the 'Data format' is `Json` and **click on the pencil** icon next to 'Source name'.
 
    ![alt text](assets/image_task05_step05.png)
 
-6. **Enter** `LoraWanEventsSource` as 'Source name' and then **click** on the button 'Next'.
+4. **Enter** `LoraWanEventsSource` as 'Source name' and then **click** on the button 'Next'.
 
    ![alt text](assets/image_task05_step06.png)
 
-7. On the screen 'Review + Connect', **review** all of the information and then **click** on the button `Add`.
+5. On the screen 'Review + Connect', **review** all of the information and then **click** on the button `Add`.
 
    ![alt text](assets/image_task05_step07.png)
 
-8. The source is added. **Notice** that raw data from several (types of) devices is received.
+6. The source is added. **Notice** that raw data from several (types of) devices is received.
 
    ![alt text](assets/image_task05_step08.png)
 
-9. Do not worry about the complex data in the columns, we will fix that. In the 'Destination' section of the 'Transform events or add destination' dropdown of the green item at the right side of the flow, **Select** Fabric `Eventhouse`.
+7. Do not worry about the complex data in the columns, we will fix that. In the 'Destination' section of the 'Transform events or add destination' dropdown of the green item at the right side of the flow, **Select** Fabric `Eventhouse`.
 
    ![alt text](assets/image_task05_step10.png)
 
-10. We **select** `Direct Ingestion`, not 'Event processing before ingestion'! So, we need to add a table mapping later on. Also, **provide** the 'Eventhouse' named `FactoryEvents_EH` and 'KQL Database' named `FactoryEvents_EH` as seen in the previous paragraph. **Save** the settings (this can take a moment to set up the connection, please be patient).
+8. We **select** `Direct Ingestion`, not 'Event processing before ingestion'! So, we need to add a table mapping later on. Also, **provide** the 'Eventhouse' named `FactoryEvents_EH` and 'KQL Database' named `FactoryEvents_EH` as seen in the previous paragraph. **Save** the settings (this can take a moment to set up the connection, please be patient).
 
    ![alt text](assets/image_task05_step11.png)
 
-11. Before we **publish** the Eventstream, **make sure** we see the test results when the `middle step` is active. **Refresh** these results to be sure the mapping is providing sample telemetry, before continuing.
+9. Before we **publish** the Eventstream, **make sure** we see the test results when the `middle step` is active. **Refresh** these results to be sure the mapping is providing sample telemetry, before continuing.
 
    ![alt text](assets/image_task05_step12.png)
 
-12. Once the Eventstream is published, the Eventhouse destination needs extra configuration for the table mapping. **Configure** the mapping.
+10. Once the Eventstream is published, the Eventhouse destination needs extra configuration for the table mapping. **Configure** the mapping.
 
    ![alt text](assets/image_task05_step13.png)
 
-13. In the new 'Get data' dialog, we create a new table in the `FactoryEvents_EH` KQL Database. **Click** `New Table`.
+11. In the new 'Get data' dialog, we create a new table in the `FactoryEvents_EH` KQL Database. **Click** `New Table`.
 
    ![alt text](assets/image_task05_step14.png)
 
-14. **Fill in** `BronzeLoraWan` as the 'Table name'. **Accept** the data source connection name. **Go to** the `next` page to create a mapping.
+12. **Fill in** `BronzeLoraWan` as the 'Table name'. **Accept** the data source connection name. **Go to** the `next` page to create a mapping.
 
    ![alt text](assets/image_task05_step15.png)
 
-15. The incoming LoraWan messages are available in the JSON format. Here, we demonstrate how we can use the KQL table mapping to shape the message to columns in the table. First, we **start** by `changing the Nested levels to 0 (zero)`. This results in one column of the 'dynamic' type containing the complete message. Use the `pencil` to **change the mapping**, adding extra columns.
+13. The incoming LoraWan messages are available in the JSON format. Here, we demonstrate how we can use the KQL table mapping to shape the message to columns in the table. First, we **start** by `changing the Nested levels to 0 (zero)`. This results in one column of the 'dynamic' type containing the complete message. Use the `pencil` to **change the mapping**, adding extra columns.
 
    ![alt text](assets/image_task05_step16.png)
 
-16. In the new dialog, we see that one column is named 'Data'. Notice that the type is 'dynamic'. **Add a second column**.
+14. In the new dialog, we see that one column is named 'Data'. Notice that the type is 'dynamic'. **Add a second column**.
 
    ![alt text](assets/image_task05_step17.png)
 
-17. **Name** the second column `deviceId`. The type is 'string'. Add a source by opening the drop-down list.
+15. **Name** the second column `deviceId`. The type is 'string'. Add a source by opening the drop-down list.
 
    ![alt text](assets/image_task05_step18.png)
 
-18. Select **Create new source** for deviceId.
+16. Select **Create new source** for deviceId.
 
    ![alt text](assets/image_task05_step19.png)
 
-19. **Set the source** to `.end_device_ids.device_id` (The dollar sign represents the 'root' of the full JSON message. Together with that dollar sign and a dot, this makes the JSON path '$.end_device_ids.device_id').
+17. **Set the source** to `.end_device_ids.device_id` (The dollar sign represents the 'root' of the full JSON message. Together with that dollar sign and a dot, this makes the JSON path '$.end_device_ids.device_id').
 
    ![alt text](assets/image_task05_step20.png)
 
-21. The second column looks like this. Notice the sample.
+18. The second column looks like this. Notice the sample.
 
    ![alt text](assets/image_task05_step21.png)
 
-21. **Add a third column** named `applicationId` of type 'string' with 'create new source' `.end_device_ids.application_ids.application_id` (so the JSON path is '$.end_device_ids.application_ids.application_id').
+19. **Add a third column** named `applicationId` of type 'string' with 'create new source' `.end_device_ids.application_ids.application_id` (so the JSON path is '$.end_device_ids.application_ids.application_id').
 
    ![alt text](assets/image_task05_step22.png)
 
-22. This third column looks like this. Notice the sample.
+20. This third column looks like this. Notice the sample.
 
    ![alt text](assets/image_task05_step23.png)
 
-23. **Add a fourth column** named `timestamp` of type 'datetime' with 'create new source' `.received_at` (so the JSON path is '$.received_at'). Make sure you change the type to `datetime` (instead of 'string').
+21. **Add a fourth column** named `timestamp` of type 'datetime' with 'create new source' `.received_at` (so the JSON path is '$.received_at'). Make sure you change the type to `datetime` (instead of 'string').
 
    ![alt text](assets/image_task05_step24.png)
 
-24. This fourth column looks like this (notice the 'datetime' type). Notice the sample.
+22. This fourth column looks like this (notice the 'datetime' type). Notice the sample.
 
    ![alt text](assets/image_task05_step25.png)
 
-25. We have all the columns we need at this moment. This should look like this.
+23. We have all the columns we need at this moment. This should look like this.
 
 | Column | Name | type | New source |
 | - | - | - | - |
@@ -880,45 +890,44 @@ You will ingest the LoraWan data from an Azure Event Hub.
 | 3 | applicationId | string | $.end_device_ids.application_ids.application_id |
 | 4 | timestamp | datetime | $.received_at |
 
-
-26. **Apply** the mapping.
+24. **Apply** the mapping.
 
    ![alt text](assets/image_task05_step26.png)
 
-27. In the overview of the mapping, all four rows are now showing the new mapping. **Finish** the mapping.
+25. In the overview of the mapping, all four rows are now showing the new mapping. **Finish** the mapping.
 
    ![alt text](assets/image_task05_step27.png)
 
-28. In the summary, we see the creation of the table, the JSON mapping, and the data connection. **Close** the dialog afterwards.
+26. In the summary, we see the creation of the table, the JSON mapping, and the data connection. **Close** the dialog afterwards.
 
    ![alt text](assets/image_task05_step28.png)
 
-29. In the Fabric portal, **navigate** to the `BronzeLoraWan` table, part of the 'FactoryEvents_EH' KQL Database in the 'FactoryEvents_EH' Eventhouse. This table shows four columns.
+27. In the Fabric portal, **navigate** to the `BronzeLoraWan` table, part of the 'FactoryEvents_EH' KQL Database in the 'FactoryEvents_EH' Eventhouse. This table shows four columns.
 
    ![alt text](assets/image_task05_step29.png)
 
-30. In the Eventhouse KQL Database 'FactoryEvents_EH' KQL Queryset `FactoryEvents_EH_queryset`, check the JSON table mapping by **running this command**.
+28. In the Eventhouse KQL Database 'FactoryEvents_EH' KQL Queryset `FactoryEvents_EH_queryset`, check the JSON table mapping by **running this command**.
 
 ```
 .show table BronzeLoraWan ingestion json mappings
 ```
 
-31. This results in this mapping, complete with all JSON paths.
+29. This results in this mapping, complete with all JSON paths.
 
    ![alt text](assets/image_task05_step30.png)
 
-32. The LoraWan table is filled with messages from all kinds of devices. We are especially interested in the environmental values (temperature, humidity) of the Elsys ERS Eco sensors. **Run this KQL query** to see if these are already arriving in our Eventhouse (notice this can take a few minutes because the LoraWan sensors only provide telemetry every five minutes, due to preserving energy as a low-powered device).
+30. The LoraWan table is filled with messages from all kinds of devices. We are especially interested in the environmental values (temperature, humidity) of the Elsys ERS Eco sensors. **Run this KQL query** to see if these are already arriving in our Eventhouse (notice this can take a few minutes because the LoraWan sensors only provide telemetry every five minutes, due to preserving energy as a low-powered device).
 
 ```
 BronzeLoraWan
 | where applicationId == 'svelde-elsys-ers'
 ```
 
-33. Here, two different sensors (if available, check the `deviceId`) are providing temperature-related telemetry rows. Notice that the `Data` column is written in JSON and is hard to read.
+31. Here, two different sensors (if available, check the `deviceId`) are providing temperature-related telemetry rows. Notice that the `Data` column is written in JSON and is hard to read.
 
    ![alt text](assets/image_task05_step31.png)
 
-34. **Run this KQL query** to get all details from all available sensors in the 'svelde-elsys-ers' application.
+32. **Run this KQL query** to get all details from all available sensors in the 'svelde-elsys-ers' application.
 
 ```
 BronzeLoraWan
@@ -929,25 +938,25 @@ BronzeLoraWan
 | order by timestamp desc
 ```
 
-35. The KQL Query Language (KQL) makes it very easy to get nested values from a JSON-formatted dynamic. The values returned are of type 'dynamic' too. To actually calculate with these values, we also need to convert the type (eg. `todouble()`) too.
+33. The KQL Query Language (KQL) makes it very easy to get nested values from a JSON-formatted dynamic. The values returned are of type 'dynamic' too. To actually calculate with these values, we also need to convert the type (eg. `todouble()`) too.
 
    ![alt text](assets/image_task05_step32.png)
 
-36. To prevent having to filter the temperature values constantly, including getting the nested values and formatting, we **create** a `SilverLoraWanTemperature` table first.
+34. To prevent having to filter the temperature values constantly, including getting the nested values and formatting, we **create** a `SilverLoraWanTemperature` table first.
 
 ```
 .create table SilverLoraWanTemperature (applicationId : string, deviceId : string, timestamp : datetime, humidity: int, temperature: double, light: int, battery: int) 
 ```
 
-37. **Run** that table creation command.
+35. **Run** that table creation command.
 
    ![alt text](assets/image_task05_step33.png)
 
-38. In the KQL database `FactoryEvents_EH`, **notice** that the table is created.
+36. In the KQL database `FactoryEvents_EH`, **notice** that the table is created.
 
    ![alt text](assets/image_task05_step34.png)
 
-39. To have it filled automatically when new rows arrive at the `BronzeLoraWan` table, we make use of a 'table update policy'. For each new row in `BronzeLoraWan` table, a KQL function will be executed, doing all the conversions towards the `SilverLoraWanTemperature` table. To keep the mapping simple, we only look at devices in the 'svelde-elsys-ers' application. **Run this KQL command**.
+37. To have it filled automatically when new rows arrive at the `BronzeLoraWan` table, we make use of a 'table update policy'. For each new row in `BronzeLoraWan` table, a KQL function will be executed, doing all the conversions towards the `SilverLoraWanTemperature` table. To keep the mapping simple, we only look at devices in the 'svelde-elsys-ers' application. **Run this KQL command**.
 
 ```
 .create function
@@ -964,11 +973,11 @@ BronzeLoraWan
 }
 ```
 
-40. The KQL function is created.
+38. The KQL function is created.
 
    ![alt text](assets/image_task05_step35.png)
 
-41. Alter the `SilverLoraWanTemperature` table by adding this 'table update policy' so the `ParseTemperatureLoraWanData` function is executed each time the BronzeLoraWan table gets new rows. **Run this KQL command**.
+39. Alter the `SilverLoraWanTemperature` table by adding this 'table update policy' so the `ParseTemperatureLoraWanData` function is executed each time the BronzeLoraWan table gets new rows. **Run this KQL command**.
 
 ```
 .alter table
@@ -976,37 +985,37 @@ SilverLoraWanTemperature
 policy update @'[{"Source": "BronzeLoraWan", "Query": "ParseTemperatureLoraWanData", "IsEnabled" : true, "IsTransactional": true }]'
 ```
 
-42. The table update policy is added.
+40. The table update policy is added.
 
    ![alt text](assets/image_task05_step36.png)
 
-43. **Wait** a few minutes **and see** if the temperature sensor data is forwarded to the `SilverLoraWanTemperature` table, containing typed data (refresh a few times).
+41. **Wait** a few minutes **and see** if the temperature sensor data is forwarded to the `SilverLoraWanTemperature` table, containing typed data (refresh a few times).
 
-44. **Execute this KQL Query**, reading all rows in the table.
+42. **Execute this KQL Query**, reading all rows in the table.
 
 ```
 SilverLoraWanTemperature
 ```
 
-45. The output should look like this.
+43. The output should look like this.
 
    ![alt text](assets/image_task05_step37.png)
 
-46. In the KQL Database, the `SilverLoraWanTemperature` provides several options to work with the data by **clicking the 'three dots'** so this menu pops up. **Select Visual Exploration**.
+44. In the KQL Database, the `SilverLoraWanTemperature` provides several options to work with the data by **clicking the 'three dots'** so this menu pops up. **Select Visual Exploration**.
 
    ![alt text](assets/image_task05_step38.png)
 
-47. A new dialog is shown with table column details (like minimum and maximum values) to the right and rows in the Results pane. **Play around** with the Columns pane by providing 'deviceId' as column name.
+45. A new dialog is shown with table column details (like minimum and maximum values) to the right and rows in the Results pane. **Play around** with the Columns pane by providing 'deviceId' as column name.
 
    ![alt text](assets/image_task05_step39.png)
 
-48. **Change the visualization** to 'Line chart' or any other applicable visualization.
+46. **Change the visualization** to 'Line chart' or any other applicable visualization.
 
    ![alt text](assets/image_task05_step40.png)
 
 We have seen how we can ingest LoraWan telemetry from multiple devices via one Eventstream. The telemetry is ingested into a Bronze LoraWan table in the KQL Database via an elaborate table mapping. The Eventhouse supports the Medallion Architecture via table Update policies. Here, a Silver LoraWan table with temperature sensor telemetry is filled, complete with the correct column types. We have also seen how we can use the no-code Visual Exploration to check the data in more detail. In the next paragraph, we will complete the temperature sensor data with data from a real-time weather data service.
 
-### 6 Activator alerts based on high temperatures 
+### 4. Lab 03.3 - Activator alerts based on high temperatures 
 
 In this section, we will extend the LoraWan solution with an Activator, sending alerts under certain conditions. In our demo factory, the production output will have lower quality when the temperature in the factory is higher than 30 degrees Celsius. The Activator will send alert messages based on temperatures higher than 30 degrees Celsius within the factory, measured by our LoraWan temperature sensors. 
 
@@ -1077,7 +1086,7 @@ We have experienced how we can use an Activator to turn events and KQL queries u
 
 Here, we used the KQL Queryset to trigger events. Within Microsoft Fabric, Activator integration is available at more places such as an Eventstream destination or PowerBI report integration.
 
-### 7. Create a new Weather data Eventstream
+### 4. Lab 03.4 - Create a new Weather data Eventstream
 
 At this moment, we get energy meter telemetry from an electric motor within our demo factory and from several temperature sensors placed within the factory.
 
@@ -1085,109 +1094,101 @@ In this section, we will add real-time weather data events. These events are str
 
    ![alt text](assets/rtiLabArchitecture_workshop_7.png)
 
-1. Select your Workspace in the left pane. In our example, it is `RTI Tutorial`. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you. Then **click** on `+ New Item`. In the pop-out window, **scroll** a little bit down (or use the filters) and **select** `Eventstream`.
-
-   ![alt text](assets/image_task07_step01.png)
-
-2. **Give** the Eventstream the 'name' `WeatherStream_ES` and **click** on `Create`.
-
-   ![alt text](assets/image_task07_step02.png)
-
-3. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
+1. **Open** the Eventstream named `ES_WeatherData`, already provided in the 'Factory events folder'. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
 
    ![alt text](assets/image_task07_step03.png)
 
-4. In the dialog 'Select a data source', **click** on the menu item `New`.
+2. **Click** `Select a data source`. In the dialog **click** on the menu item `New`.
 
    ![alt text](assets/image_task07_step04.png)
 
-5. On the next page, **filter** the list of data sources for 'weather' and **connect** the `Real-time weather data` source.
+3. On the next page, **filter** the list of data sources for 'weather' and **connect** the `Real-time weather data` source.
 
    ![alt text](assets/image_task07_step05.png)
 
-6. In the dialog 'Configure connection settings', **select** a location to ingest real-time weather data. Either **put a pin** somewhere on the map (use the zoom buttons to get a better view) or **type in a location name** like `Helmond-West, Helmond NL` and use the drop-down to get the specific location.
+4. In the dialog 'Configure connection settings', **select** a location to ingest real-time weather data. Either **put a pin** somewhere on the map (use the zoom buttons to get a better view) or **type in a location name** like `Helmond-West, Helmond NL` and use the drop-down to get the specific location.
 
    ![alt text](assets/image_task07_step06.png)
 
-7. **Enter** `WeatherEventsSource` as 'Source name' (using the pencil) and then **click** on the button `Next`.
+5. **Enter** `WeatherEventsSource` as 'Source name' (using the pencil) and then **click** on the button `Next`.
 
    ![alt text](assets/image_task07_step07.png)
 
-8. On the screen 'Review + Connect', **review** all of the information and then **click** on the button `Add`.
+6. On the screen 'Review + Connect', **review** all of the information and then **click** on the button `Add`.
 
    ![alt text](assets/image_task07_step08.png)
 
-9. The source is added to the flow. **Check** for the arrival sample weather data on the Data preview tab.
+7. The source is added to the flow. **Check** for the arrival sample weather data on the Data preview tab.
 
    ![alt text](assets/image_task07_step09.png)
 
-10. The arriving weather data should be sent to the Eventhouse we just created. **Add** an `Eventhouse destination` from the top menu bar 'Add destination' drop down list.
+8. The arriving weather data should be sent to the Eventhouse we just created. **Add** an `Eventhouse destination` from the top menu bar 'Add destination' drop down list.
 
    ![alt text](assets/image_task07_step10.png)
 
-11. First, **select** `Direct ingestion`, not 'Event processing before ingestion'! So, we need to add a table mapping later on as seen in the information box. Second, **Give** this destination a proper 'name' like `EventhouseDestination`. Last, **Select** the Eventhouse and KQL Database we just created as the destination.
+9. First, **select** `Direct ingestion`, not 'Event processing before ingestion'! So, we need to add a table mapping later on as seen in the information box. Second, **Give** this destination a proper 'name' like `EventhouseDestination`. Last, **Select** the Eventhouse and KQL Database we just created as the destination.
 
    ![alt text](assets/image_task07_step11.png)
 
-12. **Save** the destination settings.
+10. **Save** the destination settings.
 
-13. If the Destination is not yet connected to the source, you see this error sign. In that case, just **connect** the `output point` of the 'WeatherStream_ES' to the `input point` of the EventhouseDestination.
+11. If the Destination is not yet connected to the source, you see this error sign. In that case, just **connect** the `output point` of the 'WeatherStream_ES' to the `input point` of the EventhouseDestination.
 
    ![alt text](assets/image_task07_step12.png)
 
-14. Make sure you first **hit** the `refresh` button while the `middle flow item` is selected, before publishing this Eventstream. The next steps rely on sample data for the Eventhouse direct ingestion.
+12. Make sure you first **hit** the `refresh` button while the `middle flow item` is selected, before publishing this Eventstream. The next steps rely on sample data for the Eventhouse direct ingestion.
 
    ![alt text](assets/image_task07_step13.png)
 
-15. Once the destination is connected, **Publish** the Eventstream. This will show the `live` version. **Wait** until all resources are created, this can take a moment until 'loading' has finished.
+13. Once the destination is connected, **Publish** the Eventstream. This will show the `live` version. **Wait** until all resources are created, this can take a moment until 'loading' has finished.
 
    ![alt text](assets/image_task07_step14.png)
 
-16. **Hit** the `Configure` button on the 'Destination', picking a 'destination' table and 'configure' the source. This is the first step of the Get Data wizard.
+14. **Hit** the `Configure` button on the 'Destination', picking a 'destination' table and 'configure' the source. This is the first step of the Get Data wizard.
 
    ![alt text](assets/image_task07_step15.png)
 
-17. We **create a new table** in the KQL Database for the weather data. Name it `BronzeWeather`. Once the table name is accepted, and a data connection is created. Go to the **Next** page.
+15. We **create a new table** in the KQL Database for the weather data. Name it `BronzeWeather`. Once the table name is accepted, and a data connection is created. Go to the **Next** page.
 
    ![alt text](assets/image_task07_step16.png)
 
-18. The table mapping is suggested based on incoming sample data. Notice the 'Waiting for data from the event stream. This could take a few moments' message. **Notice** that one or more rows should be found to support the mapping. The wizard gives us the option to add, remove, and change column values. Here, although not the most perfect mapping (some columns still contain 'Json' values), we **keep this proposed JSON mapping** and, **Finish** the wizard.
+16. The table mapping is suggested based on incoming sample data. Notice the 'Waiting for data from the event stream. This could take a few moments' message. **Notice** that one or more rows should be found to support the mapping. The wizard gives us the option to add, remove, and change column values. Here, although not the most perfect mapping (some columns still contain 'Json' values), we **keep this proposed JSON mapping** and, **Finish** the wizard.
 
    ![alt text](assets/image_task07_step18.png)
 
-19. A summary is shown. We see the table is created, together with the mapping and data connection. **Explore the results** by hitting `Explore` instead of 'close'.
+17. A summary is shown. We see the table is created, together with the mapping and data connection. **Explore the results** by hitting `Explore` instead of 'close'.
 
    ![alt text](assets/image_task07_step19.png)
 
-20. Exploring time series data is done using the KQL Queryset. The predefined query '['BronzeWeather'] | take 10' makes use of the KQL `take` statement, showing a number of random rows in a table if available. **Hit the Run button** while the cursor is placed in the query to execute it. Walk through the different columns of the real-time weather data to get a better understanding of the data arriving. Notice that the original location of the weather data is provided. You will notice two more things:
+18. Exploring time series data is done using the KQL Queryset. The predefined query '['BronzeWeather'] | take 10' makes use of the KQL `take` statement, showing a number of random rows in a table if available. **Hit the Run button** while the cursor is placed in the query to execute it. Walk through the different columns of the real-time weather data to get a better understanding of the data arriving. Notice that the original location of the weather data is provided. You will notice two more things:
 
 * Duplicate rows for the same location and timestamp (see column dateTime) are generated by the real-time weather data service. 
 * Almost all columns have 'dynamic' values with sub-values in them.
 
    ![alt text](assets/image_task07_step20.png)
 
-21. We have fixed the dynamic columns yet in the table mapping. Run this KQL command to show the table mapping as it is now in the bronze table.
+19. We have fixed the dynamic columns yet in the table mapping. Run this KQL command to show the table mapping as it is now in the bronze table.
 
 ```
 .show table BronzeWeather ingestion json mappings 
 ```
 
-22. This results in this simple mapping.
+20. This results in this simple mapping.
 
    ![alt text](assets/image_task07_step21.png)
 
-23. Now, let's check the content of the `BronzeWeather`. **Run** this query.
+21. Now, let's check the content of the `BronzeWeather`. **Run** this query.
 
 ```
 BronzeWeather
 | order by dateTime asc
 ```
 
-24. We see both duplicate rows in the table and most columns work with dynamic field having dynamic 'json' values.
+22. We see both duplicate rows in the table and most columns work with dynamic field having dynamic 'json' values.
 
    ![alt text](assets/image_task07_step22.png)
 
-25. Let's fix both 'flaws' by creating a 'silver' layer using a Materialized View. Unlike a view in eg. SQL Server, each row in this view is actually persisted after creation, so it's very fast when used for querying. **Add and run this materialized view** first: 
+23. Let's fix both 'flaws' by creating a 'silver' layer using a Materialized View. Unlike a view in eg. SQL Server, each row in this view is actually persisted after creation, so it's very fast when used for querying. **Add and run this materialized view** first: 
 
 ```
 .create materialized-view with(lookback=20m, lookback_column = "dateTime", backfill=true, docString="Unique Real-Time Weather Service data entries", folder="MaterializedViews") SilverWeather on table BronzeWeather
@@ -1237,22 +1238,22 @@ longitude = todouble(location.longitude)
 | summarize arg_max(dateTime, *) by dateTime, longitude, latitude
 }
 ```
-26. We now have a materialized view with typed data.
+24. We now have a materialized view with typed data.
 
    ![alt text](assets/image_task07_step23.png)
 
-27. The rows are de-duplicated per location. **Run** this query.
+25. The rows are de-duplicated per location. **Run** this query.
 
 ```
 SilverWeather
 | order by dateTime asc
 ```
 
-28. Notice that we can now work with the right column values and without duplicate rows (per location).
+26. Notice that we can now work with the right column values and without duplicate rows (per location).
 
    ![alt text](assets/image_task07_step24.png)
 
-29. Regarding the bronze table, we do not need to remember all old rows because the materialized view will remember all historical rows. Deleting obsolete 'bronze' rows can be automated. **Run this command** so the BronzeWeather table gets a one-hour retention.
+27. Regarding the bronze table, we do not need to remember all old rows because the materialized view will remember all historical rows. Deleting obsolete 'bronze' rows can be automated. **Run this command** so the BronzeWeather table gets a one-hour retention.
 
 ```
 .alter-merge table BronzeWeather policy retention softdelete = 1h recoverability = disabled
@@ -1264,18 +1265,18 @@ SilverWeather
 
 </div>
 
-30. Let's have some fun with the view. **Run this KQL query** to see the number of rows per location.
+28. Let's have some fun with the view. **Run this KQL query** to see the number of rows per location.
 
 ```
 SilverWeather
 | summarize count() by longitude, latitude
 ```
 
-31. This results in a table like this.
+29. This results in a table like this.
 
    ![alt text](assets/image_task07_step25.png)
 
-32. Let's create a map showing the latest location. **Run this KQL query**.
+30. Let's create a map showing the latest location. **Run this KQL query**.
 
 ```
 SilverWeather
@@ -1287,15 +1288,15 @@ SilverWeather
 )
 ```
 
-33. This results in a map like this.
+31. This results in a map like this.
 
    ![alt text](assets/image_task07_step26.png)
 
-34. In the Visual Formatting, **change the Label column** into 'label'.
+32. In the Visual Formatting, **change the Label column** into 'label'.
 
    ![alt text](assets/image_task07_step27.png)
 
-35. If you **hover over the location you selected**, you will see a label pop up.
+33. If you **hover over the location you selected**, you will see a label pop up.
 
    ![alt text](assets/image_task07_step28.png)
 
@@ -1305,7 +1306,7 @@ We also learned how we can query the table using the KQL query language using a 
 
 Finally, we learned about using a materialized view to de-duplicate rows and adding a retention time to limit the data storage.
 
-### 8. Turning a KQL query into a dashboard for sharing
+### 4. Lab 03.5 - Turning a KQL query into a dashboard for sharing
 
 In this section, we mix the environmental data from the LoraWan sensors with the Real-Time weather data. The events will be queried both in a KQL Queryset and a Real-Time dashboard.
 
@@ -1418,7 +1419,7 @@ Finally, we can share these dashboards in several ways and limit the access (eg.
 
 Now, let's investigate how more traditional data lakes can benefit from real-time data.
 
-### 9. Adding Lakehouse shortcuts to real-time data via OneLake
+### 4. Lab 03.6 - Adding Lakehouse shortcuts to real-time data via OneLake
 
 A Microsoft Fabric Lakehouse is a unified platform for storing, managing, and analyzing both structured and unstructured data, turing eg. CSV files into tables. Using more traditional SQL, these tables can be queried.
 
@@ -1534,7 +1535,7 @@ Let's dive into that data via a Digital Twin, available in Microsoft Fabric.
 
 </div>
 
-### 10. Adding a Digital Twin Builder
+### 4. Lab 03.7 - Adding a Digital Twin Builder
 
 A Digital Twin is a simplified representation, a model, based on real-life 'things' like devices, locations, buildings, vehicles, or even persons.
 
