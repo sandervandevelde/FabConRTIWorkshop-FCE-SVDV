@@ -417,33 +417,49 @@ Steps to execute
 
 7. **Choose** `Connect to a storage account` if not selected already.
 
-8. Choose 'FabConVienna 2025 Azure Subscription' from the Subscription drop down.
+8. **Choose** `FabConVienna 2025 Azure Subscription` from the Subscription drop down.
 
-9. Choose 'fabconvienna2025sa' as the Blob storage account.
+9. **Choose** `fabconvienna2025sa` as the Blob storage account.
 
-10. Choose 'rawshippingmsgs' as the container
+10. **Choose** `rawshippingmsgs` as the container.
 
-11. Rename the Eventstream Name to 'ES_ShippingEvents'
+   ![alt text](assets/image_lab01_step06.png)
 
-12. Click 'Next'
+11. **Rename** the Eventstream Name to `ES_ShippingEvents`.
 
-13. Notice the preview of a single XML message retrieved from the storage account.
+   ![alt text](assets/image_lab01_step07.png)
 
-14. Click 'Finish'
+12. **Click** `Next`.
 
-After clicking 'Finish', Eventhouse will establish a connection with the storage account and will read XML files as soon as they are created in the storage account. Let the processing continue as it completes the required background processes. You can click 'Close' and it will still continue background processing.
+13. **Notice** the `preview of a single XML message` retrieved from the storage account.
 
-15. In KQL Database tree, you will notice the table 'RawShippingMsgs'.
+   ![alt text](assets/image_lab01_step08.png)
 
-16. Click on the table to see the preview of the messages
+14. **Click** `Finish`.
 
-17. Navigate back to your workspace
+15. After clicking 'Finish', the Eventhouse will establish a connection with the storage account and will read XML files as soon as they are created in the storage account, continuously! Let the processing continue as it completes the required background processes. You can click 'Close' and it will still continue the background processing. In the KQL Database tree, **notice** the `existence of table` 'RawShippingMsgs'.
 
-18. Go to 'Lab 01 Shipping Events'
+   ![alt text](assets/image_lab01_step09.png)
 
-19. Open 'QS_YCShippingDDLScript'
+16. **Click** on the table to see the `preview of the messages` ingested already.
 
-20. Select the entire script and click 'Run'. Check the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
+17. **Navigate** back to your workspace and **go to** the `Lab 01 Shipping Events` folder.
+
+18. **Open** KQL Query set `QS_YCShippingDDLScript`.
+
+   ![alt text](assets/image_lab01_step10.png)
+
+19. **Select** the `entire script` by putting the cursor in one of the lines (the entire script background color changes) and **click** `Run`. 
+
+20. **Check** the `output as shown` in the image below. A new function, table and an update policy must have been created in your workspace.
+
+   ![alt text](assets/image_lab01_step11.png)
+
+21. **Check** the new table `ShippingEvents` where processed,typed versions of the raw shipping events arrive.
+
+   ![alt text](assets/image_lab01_step12.png)
+
+At this moment, the Eventhouse ingests files from a storage account in a 'bronze' medallion architecture and automatically the 'silver' layer is filled to using additional Table Update Policy logic.
 
 ### 4. Lab 02 - Clickstream Events
 
