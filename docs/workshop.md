@@ -389,7 +389,7 @@ We now have a working workspace to host our Real-Time Intelligence solution.
 
 For this workshop, Fabric items relevant for this workshop have been pre-created for you. Your workspace should look as shown in the image.
 
-![alt text](assets/image_task02_step03.png)
+![alt text](assets/image_task02_step03a.png)
 
 ### 3. Lab 01 - Shipping Events
 
