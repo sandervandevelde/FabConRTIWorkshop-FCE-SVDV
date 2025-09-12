@@ -393,7 +393,11 @@ For this workshop, Fabric items relevant for this workshop have been pre-created
 
 ### 3. Lab 01 - Shipping Events
 
-Steps to execute
+Our company receives Shipping events as batches in an Azure storage account, from a third party supplier.
+
+We start with ingesting these shipping events into our already existing Fabric Eventhouse. 
+
+There is no need for eg. a Data Factory. We can ingest directly using the Eventhouse.
 
 1. In your workspace, **navigate** to the existing `EH_YCSneakerEventStore` Eventhouse.
 
