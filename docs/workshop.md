@@ -395,7 +395,7 @@ For this workshop, Fabric items relevant for this workshop have been pre-created
 
 Steps to execute
 
-1. In your workspace, navigate to 'EH_YCSneakerEventStore' Eventhouse.
+1. In your workspace, navigate to the existing 'EH_YCSneakerEventStore' Eventhouse.
 
 2. In the eventhouse main page, click on KQL Database of the same name 'EH_YCSneakerEventStore'.
 
@@ -459,7 +459,7 @@ Notice that the electric motor starts and stops every 15 minutes so you will see
 
    ![alt text](assets/rtiLabArchitecture_workshop_4.png)
 
-1. **Select your Workspace** in the left pane. In our example, it is `RTI Tutorial`. If you have been assigned a Workspace at the start of this lab, **choose the workspace name** that was provided to you. **Open** the Eventstream named `ES_EnergyMeter` already provided. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
+1. **Open** the Eventstream named `ES_EnergyMeter`, already provided in the 'Factory events folder'. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
 
    ![alt text](assets/image_task04_step03.png)
 
@@ -767,7 +767,7 @@ You will ingest the LoraWan data from an Azure Event Hub.
 
    ![alt text](assets/rtiLabArchitecture_workshop_5.png)
 
-1. **Select your Workspace** in the left pane. In our example, it is `RTI Tutorial`. If you have been assigned a Workspace at the start of this lab, **choose the workspace name** that was provided to you. **Open** the Eventstream named `ES_LoraWanStream` already provided. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
+1. **Open** the Eventstream named `ES_LoraWanStream`, already provided in the 'Factory events folder'. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
 
    ![alt text](assets/image_task05_step03.png)
 
@@ -863,7 +863,6 @@ You will ingest the LoraWan data from an Azure Event Hub.
 | 2 | deviceId | string | $.end_device_ids.device_id |
 | 3 | applicationId | string | $.end_device_ids.application_ids.application_id |
 | 4 | timestamp | datetime | $.received_at |
-
 
 24. **Apply** the mapping.
 
@@ -1069,109 +1068,101 @@ In this section, we will add real-time weather data events. These events are str
 
    ![alt text](assets/rtiLabArchitecture_workshop_7.png)
 
-1. Select your Workspace in the left pane. In our example, it is `RTI Tutorial`. If you have been assigned a Workspace at the start of this lab, choose the workspace name that was provided to you. Then **click** on `+ New Item`. In the pop-out window, **scroll** a little bit down (or use the filters) and **select** `Eventstream`.
-
-   ![alt text](assets/image_task07_step01.png)
-
-2. **Give** the Eventstream the 'name' `WeatherStream_ES` and **click** on `Create`.
-
-   ![alt text](assets/image_task07_step02.png)
-
-3. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
+1. **Open** the Eventstream named `ES_WeatherData`, already provided in the 'Factory events folder'. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
 
    ![alt text](assets/image_task07_step03.png)
 
-4. In the dialog 'Select a data source', **click** on the menu item `New`.
+2. **Click** `Select a data source`. In the dialog **click** on the menu item `New`.
 
    ![alt text](assets/image_task07_step04.png)
 
-5. On the next page, **filter** the list of data sources for 'weather' and **connect** the `Real-time weather data` source.
+3. On the next page, **filter** the list of data sources for 'weather' and **connect** the `Real-time weather data` source.
 
    ![alt text](assets/image_task07_step05.png)
 
-6. In the dialog 'Configure connection settings', **select** a location to ingest real-time weather data. Either **put a pin** somewhere on the map (use the zoom buttons to get a better view) or **type in a location name** like `Helmond-West, Helmond NL` and use the drop-down to get the specific location.
+4. In the dialog 'Configure connection settings', **select** a location to ingest real-time weather data. Either **put a pin** somewhere on the map (use the zoom buttons to get a better view) or **type in a location name** like `Helmond-West, Helmond NL` and use the drop-down to get the specific location.
 
    ![alt text](assets/image_task07_step06.png)
 
-7. **Enter** `WeatherEventsSource` as 'Source name' (using the pencil) and then **click** on the button `Next`.
+5. **Enter** `WeatherEventsSource` as 'Source name' (using the pencil) and then **click** on the button `Next`.
 
    ![alt text](assets/image_task07_step07.png)
 
-8. On the screen 'Review + Connect', **review** all of the information and then **click** on the button `Add`.
+6. On the screen 'Review + Connect', **review** all of the information and then **click** on the button `Add`.
 
    ![alt text](assets/image_task07_step08.png)
 
-9. The source is added to the flow. **Check** for the arrival sample weather data on the Data preview tab.
+7. The source is added to the flow. **Check** for the arrival sample weather data on the Data preview tab.
 
    ![alt text](assets/image_task07_step09.png)
 
-10. The arriving weather data should be sent to the Eventhouse we just created. **Add** an `Eventhouse destination` from the top menu bar 'Add destination' drop down list.
+8. The arriving weather data should be sent to the Eventhouse we just created. **Add** an `Eventhouse destination` from the top menu bar 'Add destination' drop down list.
 
    ![alt text](assets/image_task07_step10.png)
 
-11. First, **select** `Direct ingestion`, not 'Event processing before ingestion'! So, we need to add a table mapping later on as seen in the information box. Second, **Give** this destination a proper 'name' like `EventhouseDestination`. Last, **Select** the Eventhouse and KQL Database we just created as the destination.
+9. First, **select** `Direct ingestion`, not 'Event processing before ingestion'! So, we need to add a table mapping later on as seen in the information box. Second, **Give** this destination a proper 'name' like `EventhouseDestination`. Last, **Select** the Eventhouse and KQL Database we just created as the destination.
 
    ![alt text](assets/image_task07_step11.png)
 
-12. **Save** the destination settings.
+10. **Save** the destination settings.
 
-13. If the Destination is not yet connected to the source, you see this error sign. In that case, just **connect** the `output point` of the 'WeatherStream_ES' to the `input point` of the EventhouseDestination.
+11. If the Destination is not yet connected to the source, you see this error sign. In that case, just **connect** the `output point` of the 'WeatherStream_ES' to the `input point` of the EventhouseDestination.
 
    ![alt text](assets/image_task07_step12.png)
 
-14. Make sure you first **hit** the `refresh` button while the `middle flow item` is selected, before publishing this Eventstream. The next steps rely on sample data for the Eventhouse direct ingestion.
+12. Make sure you first **hit** the `refresh` button while the `middle flow item` is selected, before publishing this Eventstream. The next steps rely on sample data for the Eventhouse direct ingestion.
 
    ![alt text](assets/image_task07_step13.png)
 
-15. Once the destination is connected, **Publish** the Eventstream. This will show the `live` version. **Wait** until all resources are created, this can take a moment until 'loading' has finished.
+13. Once the destination is connected, **Publish** the Eventstream. This will show the `live` version. **Wait** until all resources are created, this can take a moment until 'loading' has finished.
 
    ![alt text](assets/image_task07_step14.png)
 
-16. **Hit** the `Configure` button on the 'Destination', picking a 'destination' table and 'configure' the source. This is the first step of the Get Data wizard.
+14. **Hit** the `Configure` button on the 'Destination', picking a 'destination' table and 'configure' the source. This is the first step of the Get Data wizard.
 
    ![alt text](assets/image_task07_step15.png)
 
-17. We **create a new table** in the KQL Database for the weather data. Name it `BronzeWeather`. Once the table name is accepted, and a data connection is created. Go to the **Next** page.
+15. We **create a new table** in the KQL Database for the weather data. Name it `BronzeWeather`. Once the table name is accepted, and a data connection is created. Go to the **Next** page.
 
    ![alt text](assets/image_task07_step16.png)
 
-18. The table mapping is suggested based on incoming sample data. Notice the 'Waiting for data from the event stream. This could take a few moments' message. **Notice** that one or more rows should be found to support the mapping. The wizard gives us the option to add, remove, and change column values. Here, although not the most perfect mapping (some columns still contain 'Json' values), we **keep this proposed JSON mapping** and, **Finish** the wizard.
+16. The table mapping is suggested based on incoming sample data. Notice the 'Waiting for data from the event stream. This could take a few moments' message. **Notice** that one or more rows should be found to support the mapping. The wizard gives us the option to add, remove, and change column values. Here, although not the most perfect mapping (some columns still contain 'Json' values), we **keep this proposed JSON mapping** and, **Finish** the wizard.
 
    ![alt text](assets/image_task07_step18.png)
 
-19. A summary is shown. We see the table is created, together with the mapping and data connection. **Explore the results** by hitting `Explore` instead of 'close'.
+17. A summary is shown. We see the table is created, together with the mapping and data connection. **Explore the results** by hitting `Explore` instead of 'close'.
 
    ![alt text](assets/image_task07_step19.png)
 
-20. Exploring time series data is done using the KQL Queryset. The predefined query '['BronzeWeather'] | take 10' makes use of the KQL `take` statement, showing a number of random rows in a table if available. **Hit the Run button** while the cursor is placed in the query to execute it. Walk through the different columns of the real-time weather data to get a better understanding of the data arriving. Notice that the original location of the weather data is provided. You will notice two more things:
+18. Exploring time series data is done using the KQL Queryset. The predefined query '['BronzeWeather'] | take 10' makes use of the KQL `take` statement, showing a number of random rows in a table if available. **Hit the Run button** while the cursor is placed in the query to execute it. Walk through the different columns of the real-time weather data to get a better understanding of the data arriving. Notice that the original location of the weather data is provided. You will notice two more things:
 
 * Duplicate rows for the same location and timestamp (see column dateTime) are generated by the real-time weather data service. 
 * Almost all columns have 'dynamic' values with sub-values in them.
 
    ![alt text](assets/image_task07_step20.png)
 
-21. We have fixed the dynamic columns yet in the table mapping. Run this KQL command to show the table mapping as it is now in the bronze table.
+19. We have fixed the dynamic columns yet in the table mapping. Run this KQL command to show the table mapping as it is now in the bronze table.
 
 ```
 .show table BronzeWeather ingestion json mappings 
 ```
 
-22. This results in this simple mapping.
+20. This results in this simple mapping.
 
    ![alt text](assets/image_task07_step21.png)
 
-23. Now, let's check the content of the `BronzeWeather`. **Run** this query.
+21. Now, let's check the content of the `BronzeWeather`. **Run** this query.
 
 ```
 BronzeWeather
 | order by dateTime asc
 ```
 
-24. We see both duplicate rows in the table and most columns work with dynamic field having dynamic 'json' values.
+22. We see both duplicate rows in the table and most columns work with dynamic field having dynamic 'json' values.
 
    ![alt text](assets/image_task07_step22.png)
 
-25. Let's fix both 'flaws' by creating a 'silver' layer using a Materialized View. Unlike a view in eg. SQL Server, each row in this view is actually persisted after creation, so it's very fast when used for querying. **Add and run this materialized view** first: 
+23. Let's fix both 'flaws' by creating a 'silver' layer using a Materialized View. Unlike a view in eg. SQL Server, each row in this view is actually persisted after creation, so it's very fast when used for querying. **Add and run this materialized view** first: 
 
 ```
 .create materialized-view with(lookback=20m, lookback_column = "dateTime", backfill=true, docString="Unique Real-Time Weather Service data entries", folder="MaterializedViews") SilverWeather on table BronzeWeather
@@ -1221,22 +1212,22 @@ longitude = todouble(location.longitude)
 | summarize arg_max(dateTime, *) by dateTime, longitude, latitude
 }
 ```
-26. We now have a materialized view with typed data.
+24. We now have a materialized view with typed data.
 
    ![alt text](assets/image_task07_step23.png)
 
-27. The rows are de-duplicated per location. **Run** this query.
+25. The rows are de-duplicated per location. **Run** this query.
 
 ```
 SilverWeather
 | order by dateTime asc
 ```
 
-28. Notice that we can now work with the right column values and without duplicate rows (per location).
+26. Notice that we can now work with the right column values and without duplicate rows (per location).
 
    ![alt text](assets/image_task07_step24.png)
 
-29. Regarding the bronze table, we do not need to remember all old rows because the materialized view will remember all historical rows. Deleting obsolete 'bronze' rows can be automated. **Run this command** so the BronzeWeather table gets a one-hour retention.
+27. Regarding the bronze table, we do not need to remember all old rows because the materialized view will remember all historical rows. Deleting obsolete 'bronze' rows can be automated. **Run this command** so the BronzeWeather table gets a one-hour retention.
 
 ```
 .alter-merge table BronzeWeather policy retention softdelete = 1h recoverability = disabled
@@ -1248,18 +1239,18 @@ SilverWeather
 
 </div>
 
-30. Let's have some fun with the view. **Run this KQL query** to see the number of rows per location.
+28. Let's have some fun with the view. **Run this KQL query** to see the number of rows per location.
 
 ```
 SilverWeather
 | summarize count() by longitude, latitude
 ```
 
-31. This results in a table like this.
+29. This results in a table like this.
 
    ![alt text](assets/image_task07_step25.png)
 
-32. Let's create a map showing the latest location. **Run this KQL query**.
+30. Let's create a map showing the latest location. **Run this KQL query**.
 
 ```
 SilverWeather
@@ -1271,15 +1262,15 @@ SilverWeather
 )
 ```
 
-33. This results in a map like this.
+31. This results in a map like this.
 
    ![alt text](assets/image_task07_step26.png)
 
-34. In the Visual Formatting, **change the Label column** into 'label'.
+32. In the Visual Formatting, **change the Label column** into 'label'.
 
    ![alt text](assets/image_task07_step27.png)
 
-35. If you **hover over the location you selected**, you will see a label pop up.
+33. If you **hover over the location you selected**, you will see a label pop up.
 
    ![alt text](assets/image_task07_step28.png)
 
