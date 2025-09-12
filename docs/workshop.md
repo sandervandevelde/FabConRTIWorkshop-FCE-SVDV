@@ -415,27 +415,39 @@ Steps to execute
 
 10. Choose 'rawshippingmsgs' as the container
 
-11. Rename the Eventstream Name to 'ES_ShippingEvents'
+11. Choose 'New connection' in the connection.
 
-12. Click 'Next'
+12. In the New connection pop up, paste the Connection name as your user account. For example, if you are FabCon User 002, paste that as the connection name.
 
-13. Notice the preview of a single XML message retrieved from the storage account.
+13. Click 'Save'
 
-14. Click 'Finish'
+14. Click 'Close'
+
+15. In the Connection drop down, choose the connection that you just created.
+
+16. Rename the Eventstream Name to 'ES_ShippingEvents'
+
+17. Click 'Next'
+
+18. Notice the preview of a single XML message retrieved from the storage account.
+
+19. Click 'Finish'.
 
 After clicking 'Finish', Eventhouse will establish a connection with the storage account and will read XML files as soon as they are created in the storage account. Let the processing continue as it completes the required background processes. You can click 'Close' and it will still continue background processing.
 
-15. In KQL Database tree, you will notice the table 'RawShippingMsgs'.
+20. In KQL Database tree, you will notice the table 'RawShippingMsgs'.
 
-16. Click on the table to see the preview of the messages
+21. Click on the table to see the preview of the messages
 
-17. Navigate back to your workspace
+22. Click on 'EH_YCSneakerEventStore_queryset', which is the default query editor of the Eventhouse.
 
-18. Go to 'Lab 01 Shipping Events'
+23. Go to https://aka.ms/fabconrtiworkshopgithub/asssets/kqlcode/
 
-19. Open 'QS_YCShippingDDLScript'
+23. Go to 'Lab 01 Shipping Events'
 
-20. Select the entire script and click 'Run'. Check the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
+24. Open 'QS_YCShippingDDLScript'
+
+25. Select the entire script and click 'Run'. Check the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
 
 ### 4. Lab 02 - Clickstream Events
 
