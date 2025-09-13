@@ -1976,6 +1976,8 @@ YourCompany receives from its shipping partners files containing all the shipmen
 
 50. **Notice** there is a table `shippingevents` in the Tables section
 
+---
+
 ## Continue your learning journey
 
 ### 1. Real-Time Intelligence Customer Stories
