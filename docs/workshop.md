@@ -1792,4 +1792,59 @@ YourCompany receives from its shipping partners files containing all the shipmen
 
 1. Naviagate to `Real-Time hub`
 
-2. 
+2. Click on `Subscribe to OneLake events`
+
+3. Select `Add a OneLake source`
+
+4. Select `LH_YCEcommLakehouse`
+
+5. Click `Next`
+
+6. Check the box next to `Files`
+
+7. Click `Add`
+
+8. Rename the eventstream to `ES_OneLakeEvents`
+
+9. Click `Next`
+
+10. Review the selected parameters and name. Then click `Connect`.
+
+11. Wait for the Eventstream to establish connection to OneLake events.
+
+12. Click `Open Eventstream`
+
+13. In the Eventstream canvas, click `Switch to edit mode to transform events or add destination`
+
+14. Click dropdown of `Transform events or add destination` node
+
+15. Select `Activator`from the list
+
+16. In the side pane, keep the defaults and select `ACT_TriggerNotebook` as the Activator and click `Save`
+
+17. Click `Publish`. 18. Eventstream will commit the topology and begin routing events to the Activator. 
+
+18. Let's upload sample data to test OneLake to Eventstream to Activator flow. Navigate to 
+
+
+Navigate to your workspace.
+
+19. Navigate to `LH_YCEcommLakehouse`
+
+20. In the `Files` section of the lakehouse, click on `...` when hovering to the `Files` folder
+
+21. Select `New subfolder`
+
+22. Enter `shipping-history` as the folder name
+
+23. Click `Create`
+
+24. Hover on `shipping-history` folder and click on `...`
+
+25. Choose `upload` from the list and then select `Upload files`
+
+26. 
+
+18. Click `Activator` node and select `Details`
+
+19. Click `Open item`. Activator canvas will open as a new item
