@@ -417,11 +417,11 @@ To achieve this, we start with ingesting these shipping events into Real-Time In
 
    ![alt text](assets/image_lab01_step09.png)
 
-10. **Click** `Save`
+10. **Click** `Save`.
 
    ![alt text](assets/image_lab01_step10.png)
 
-11. **Click** `Close`
+11. **Click** `Close`.
 
    ![alt text](assets/image_lab01_step11.png)
 
@@ -429,11 +429,11 @@ To achieve this, we start with ingesting these shipping events into Real-Time In
 
    ![alt text](assets/image_lab01_step12.png)
 
-13. **Rename** the Eventstream Name to `ES_ShippingEvents`
+13. **Rename** the Eventstream Name to `ES_ShippingEvents`.
 
    ![alt text](assets/image_lab01_step13.png)
 
-14. **Click** `Next`
+14. **Click** `Next`.
 
    ![alt text](assets/image_lab01_step14.png)
 
@@ -453,7 +453,7 @@ To achieve this, we start with ingesting these shipping events into Real-Time In
 
    ![alt text](assets/image_lab01_step18.png)
 
-19. **Click** on the table to see the preview of the messages
+19. **Click** on the table to see the preview of the messages.
 
    ![alt text](assets/image_lab01_step19.png)
 
@@ -461,15 +461,15 @@ To achieve this, we start with ingesting these shipping events into Real-Time In
 
    ![alt text](assets/image_lab01_step20.png)
 
-21. **Navigate** to the github repo of this workshop [Shipping Events KQL](https://github.com/microsoft/FabConRTIWorkshop/blob/main/assets/kqlcode/Lab1_QS_YCShippingDDLScript.kql)
+21. **Navigate** to the github repo of this workshop [Shipping Events KQL](https://github.com/microsoft/FabConRTIWorkshop/blob/main/assets/kqlcode/Lab1_QS_YCShippingDDLScript.kql).
 
    ![alt text](assets/image_lab01_step21.png)
 
-22. **Copy** the KQL code from this file
+22. **Copy** the KQL code from this file in the repo.
 
    ![alt text](assets/image_lab01_step22.png)
 
-23. **Paste** the copied KQL code in the `EH_YCSneakerEventStore_queryset`
+23. **Paste** the copied KQL code in the `EH_YCSneakerEventStore_queryset`.
 
    ![alt text](assets/image_lab01_step23.png)
 
@@ -479,7 +479,7 @@ To achieve this, we start with ingesting these shipping events into Real-Time In
    
    ![alt text](assets/image_lab01_step24_2.png)
 
-25. **Select** the entire script and click `Run`. 
+25. **Select** the entire script in the tab page and click `Run`. 
 
    ![alt text](assets/image_lab01_step25.png)
 
