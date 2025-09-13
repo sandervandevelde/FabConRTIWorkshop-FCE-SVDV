@@ -375,13 +375,11 @@ For this workshop, Fabric items relevant for this workshop have been pre-created
 
 ![alt text](assets/image_task02_step03a.png)
 
-### 3. Lab 01 - Shipping Events
+### 2. Lab 01 - Shipping Events
 
-Our company receives Shipping events as batches in an Azure storage account, from a third party supplier.
+YourCompany receives shipping events as XML files in an Azure storage account, from third party suppliers. It is imperative to capture and track these shipping events to ensure that any delays can be proactively be detected and the customers can be notified instead of waiting to get the signal a few minutes/hours/days later. 
 
-We start with ingesting these shipping events into our already existing Fabric Eventhouse. 
-
-There is no need for eg. a Data Factory. We can ingest directly using the Eventhouse.
+To achieve this, we start with ingesting these shipping events into Real-Time Intelligence components continuously as soon as they arrive in the storage account. We will setup an architecture to continuosuly listen to the shipping events.
 
 1. In your workspace, **navigate** to the existing `EH_YCSneakerEventStore` Eventhouse.
 
@@ -391,7 +389,7 @@ There is no need for eg. a Data Factory. We can ingest directly using the Eventh
 
    ![alt text](assets/image_lab01_step02.png)
 
-3. **Click** `Get Data` (via the three dots) and **choose** `Azure Storage` as the data source for ingesting data.
+3. **Click** `Get Data` (via the three dots) and **Select** `Azure Storage` as the data source for ingesting data.
 
    ![alt text](assets/image_lab01_step03.png)
 
@@ -399,19 +397,19 @@ There is no need for eg. a Data Factory. We can ingest directly using the Eventh
 
    ![alt text](assets/image_lab01_step04.png)
 
-5. Keep the defaults of Continuous Ingestion as On and 'Connect to a storage account'. **Choose** `FabConVienna 2025 Azure Subscription` as the Subscription.
+5. Keep the defaults of Continuous Ingestion as On and 'Connect to a storage account'. **Select** `FabConVienna 2025 Azure Subscription` as the Subscription.
 
    ![alt text](assets/image_lab01_step05.png)
 
-6. **Choose** `fabconvienna2025sa` as the Blob storage account.
+6. **Select** `fabconvienna2025sa` as the Blob storage account.
 
    ![alt text](assets/image_lab01_step06.png)
 
-7. **Choose** `rawshippingmsgs` as the container.
+7. **Select** `rawshippingmsgs` as the container.
 
    ![alt text](assets/image_lab01_step07.png)
 
-8. **Choose** `New connection` in the connection.
+8. **Select** `New connection` in the connection.
 
    ![alt text](assets/image_lab01_step08.png)
 
@@ -427,7 +425,7 @@ There is no need for eg. a Data Factory. We can ingest directly using the Eventh
 
    ![alt text](assets/image_lab01_step11.png)
 
-12. In the Connection drop down, **choose** the connection that you just created.
+12. In the Connection drop down, **Select** the connection that you just created.
 
    ![alt text](assets/image_lab01_step12.png)
 
@@ -489,11 +487,74 @@ There is no need for eg. a Data Factory. We can ingest directly using the Eventh
 
    ![alt text](assets/image_lab01_step26.png)
 
-### 4. Lab 02 - Clickstream Events
+### 3. Lab 02 - Clickstream Events
+
+YourCompany's website is the primary channel for customers to discover and buy its sneakers. Capturing, analysing and learning customer's behaviour from its website is very critical to contiuously improve the customer engagement, adapt and improve social media marketing strategies as well as plan marketing events in commensuration with the Return-on-Investment offered by the different digital channels.
+
+1. Navigate to the root level of your workspace.
+
+2. Navigate to the folder `Lab 02 Clickstream Events`
+
+3. Open the eventstream `ES_ClickstreamEvents`
+
+4. Select 'Use custome endpoint' tile
+
+5. Enter the source name as `ClickstreamNBSource`
+
+6. Click on `Publish`
+
+7. Click on the `ClickstreamNBSource` node
+
+8. Select `Kafka` as the protocol
+
+9. Select `SAS Key Authentication`
+
+10. Copy `Bootstrap server` value and paste it in a Notepad. You will need this in the subsequent steps.
+
+11. Similarly, copy `Topic name`. And then copy `Connection string-primary key` by click on the eye on the right of that field. Paste these values in a notepad.
+
+12. Navigate back to your workspace and go to the folder `Lab 02 Clickstream Events`
+
+13. Open the notebook `NB_YCClickstreamGenerator`
+
+14. In the cell with the title `# Kafka Endpoint configuration parameters`, paste the bootstrap server value as the values for the field 'KAFKA_BROKER'.
+
+15. Similarly paste the topic name as the value for KAFKA_TOPIC and connection string as the  sas_password 
+
+16. Click on `Run all` to start generating clickstream events
+
+17. Navigate back to the Eventstream from the side ribbon.
+
+18. Click `Edit` from the ribbon
+
+19. Select `Add destination`
+
+20. Select `Eventhouse` from the menu
+
+21. Connect the `ES_ClickstreamEvents` and the Eventhouse node by connecting the green dot with the reddote.
+
+22. Select `Direct Ingestion` mode
+
+23. Enter the destination name as `ClickstreamEventhouseDestination`
+
+24. Select your workspace
+
+25. Select the eventhouse `EH_YCSneakerEventStore`
+
+26. Select the KQL Database `EH_YCSneakerEventStore`
+
+27. Click `Save`
+
+28. Click `Publish`
+
+29. Wait for Eventhouse to load till the `Configure button` becomes available
+
+30. 
+
+
+### 4. Lab 03 - Factory Events
 
 Let's ingest energy meter events with power consumption telemetry measured on the Edge. coming from the electromotor available in our demo factory.
-
-### 5. Lab 03 - Factory Events
 
 #### Lab 03.1 - Create a new Energy Meter Telemetry Eventstream
 
@@ -519,7 +580,7 @@ Notice that the electric motor starts and stops every 15 minutes so you will see
 
    ![alt text](assets/image_task04_step04.png)
 
-3. In the dialog 'Configure connection settings', **choose** `factorytelemetryeventhub` for the combobox 'Connection' and **insert** the name of the consumer group into the field 'Consumer group' that aligns with the username that was provided to you. In this case, this is `workshopuser49`. **Ensure** that the 'Data format' is `Json` and **click on the pencil** icon next to `Source name`.
+3. In the dialog 'Configure connection settings', **Select** `factorytelemetryeventhub` for the combobox 'Connection' and **insert** the name of the consumer group into the field 'Consumer group' that aligns with the username that was provided to you. In this case, this is `workshopuser49`. **Ensure** that the 'Data format' is `Json` and **click on the pencil** icon next to `Source name`.
 
    ![alt text](assets/image_task04_step05.png)
 
@@ -827,7 +888,7 @@ You will ingest the LoraWan data from an Azure Event Hub.
 
    ![alt text](assets/image_task05_step04.png)
 
-3. In the dialog 'Configure connection settings' **choose** `loratelemetryeventhub` for the combobox 'Connection' and **insert** the name of the consumer group into the field 'Consumer group' that aligns with the username that was provided to you. In my case, this is `workshopuser49`. **Ensure** that the 'Data format' is `Json` and **click on the pencil** icon next to 'Source name'.
+3. In the dialog 'Configure connection settings' **Select** `loratelemetryeventhub` for the combobox 'Connection' and **insert** the name of the consumer group into the field 'Consumer group' that aligns with the username that was provided to you. In my case, this is `workshopuser49`. **Ensure** that the 'Data format' is `Json` and **click on the pencil** icon next to 'Source name'.
 
    ![alt text](assets/image_task05_step05.png)
 
@@ -1597,7 +1658,7 @@ Here, we are building a Digital Twin where our production line is operated by se
 
    ![alt text](assets/image_task10_step07.png)
 
-8. Once selected, **choose** this datasource.
+8. Once selected, **Select** this datasource.
 
    ![alt text](assets/image_task10_step08.png)
 
@@ -1665,7 +1726,7 @@ Here, we are building a Digital Twin where our production line is operated by se
 
    ![alt text](assets/image_task10_step24.png)
 
-24. In the new dialog, select the data source. As Lakehouse, **select** `FactoryEvents_LH` and as table, **select** `SilverLoraWanTemperature`. **Choose** this data source.
+24. In the new dialog, select the data source. As Lakehouse, **select** `FactoryEvents_LH` and as table, **select** `SilverLoraWanTemperature`. **Select** this data source.
 
    ![alt text](assets/image_task10_step25.png)
 
@@ -1727,4 +1788,4 @@ Here, we are building a Digital Twin where our production line is operated by se
 
 This concludes our Digital Twin Builder experience. Notice that this Fabric item is still in preview. Still, we are already able to capture multiple data sources, both real-time data and contextual data, and related them into this 'ontology' model. This was all done without a single line of code. So users can get a good understanding of what the situation of each Twin is and how real-time data from multiple sources works together.
 
-### 6. Lab 04 - OneLake Events
+### 5. Lab 04 - OneLake Events
