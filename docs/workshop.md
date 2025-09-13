@@ -1919,7 +1919,7 @@ YourCompany receives from its shipping partners files containing all the shipmen
 
 35. **Click** `Select Fabric item to run`
 
-36. In `Select Fabric item to run` window, **select** `YC_LoadCSVtoDelta` notebook. We are going to trigger this notebook every time a new file is uploaded to the shipment-history folder.
+36. In `Select Fabric item to run` window, **select** `NB_YCLoadCSVtoDelta` notebook. We are going to trigger this notebook every time a new file is uploaded to the shipment-history folder.
 
 37. **Click** `Edit action` to define the parameters to be passed to the notebook.
 
