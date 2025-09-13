@@ -315,7 +315,7 @@ To complete the lab, you **must** have access to a [Microsoft Fabric](https://ww
 
 </div>
 
-<!-->
+<!---
 ### Trial Tenant for the Lab
 
 If you need a new Trial Tenant to complete the lab, we suggest registering a new Outlook.com email and follow these steps:
@@ -337,15 +337,17 @@ If you need a new Trial Tenant to complete the lab, we suggest registering a new
 --->
 ---
 
-## Building the platform - Azure Eventhub
+## Building the platform
 
 <div class="info" data-title="Note">
 
-> Use this section if you're participating in the guided lab with an environment provided by the lab instructors. If you're doing lab independently in your own environment, skip this section and proceed to Section DTB.
+> Use this section if you're participating in the guided lab with an environment provided by the lab instructors.
 
 </div>
 
-### 1. Log in to the Lab Environment
+### 1. Getting started
+
+#### 1. Log in to the Lab Environment
 
 <div class="info" data-title="Note">
 
@@ -359,7 +361,7 @@ If you need a new Trial Tenant to complete the lab, we suggest registering a new
 
 2. **Log in** with the provided credentials, if a trial fabric tenant was previously set up (reference Prerequisites). You may also choose to run the lab in your own Fabric Tenant if you already have one.
 
-### 2. Fabric Workspace
+#### 2. Fabric Workspace
 <!---
 1. If a Microsoft Fabric Workspace is 'designated' to your login by the Fabric Trial Tenant, **click** `Workspaces` in the menu on the left of the portal and open your designated workspace.
 
@@ -415,93 +417,93 @@ There is no need for eg. a Data Factory. We can ingest directly using the Eventh
 
    ![alt text](assets/image_lab01_step04.png)
 
-5. Keep the defaults of Continuous Ingestion as On and 'Connect to a storage account'. Choose 'FabConVienna 2025 Azure Subscription' as the Subscription.
+5. Keep the defaults of Continuous Ingestion as On and 'Connect to a storage account'. **Choose** `FabConVienna 2025 Azure Subscription` as the Subscription.
 
    ![alt text](assets/image_lab01_step05.png)
 
-6. Choose 'fabconvienna2025sa' as the Blob storage account.
+6. **Choose** `fabconvienna2025sa` as the Blob storage account.
 
    ![alt text](assets/image_lab01_step06.png)
 
-7. Choose 'rawshippingmsgs' as the container.
+7. **Choose** `rawshippingmsgs` as the container.
 
    ![alt text](assets/image_lab01_step07.png)
 
-8. Choose 'New connection' in the connection.
+8. **Choose** `New connection` in the connection.
 
    ![alt text](assets/image_lab01_step08.png)
 
-9. In the New connection pop up, keep the other defaults. Paste the Connection name as your user account. For example, if you are FabCon User 002, paste that as the connection name.
+9. In the New connection pop up, keep the other defaults. **Paste** the Connection name as your user account. For example, if you are FabCon User 002, paste that as the connection name.
 
    ![alt text](assets/image_lab01_step09.png)
 
-10. Click 'Save'
+10. **Click** `Save`
 
    ![alt text](assets/image_lab01_step10.png)
 
-11. Click 'Close'
+11. **Click** `Close`
 
    ![alt text](assets/image_lab01_step11.png)
 
-12. In the Connection drop down, choose the connection that you just created.
+12. In the Connection drop down, **choose** the connection that you just created.
 
    ![alt text](assets/image_lab01_step12.png)
 
-13. Rename the Eventstream Name to 'ES_ShippingEvents'
+13. **Rename** the Eventstream Name to `ES_ShippingEvents`
 
    ![alt text](assets/image_lab01_step13.png)
 
-14. Click 'Next'
+14. **Click** `Next`
 
    ![alt text](assets/image_lab01_step14.png)
 
-15. Notice the preview of a single XML message retrieved from the storage account.
+15. **Notice** the preview of a single XML message retrieved from the storage account.
 
    ![alt text](assets/image_lab01_step15.png)
 
-16. Click 'Finish'.
+16. **Click** `Finish`.
 
    ![alt text](assets/image_lab01_step16.png)
 
-17. After clicking 'Finish', Eventhouse will establish a connection with the storage account and will read XML files as soon as they are created in the storage account. Let the processing continue as it completes the required background processes. You can click 'Close' and it will still continue background processing.
+17. After clicking 'Finish', Eventhouse will establish a connection with the storage account and will read XML files as soon as they are created in the storage account. Let the processing continue as it completes the required background processes. You can **click** `Close` and it will still continue background processing.
 
    ![alt text](assets/image_lab01_step17.png)
 
-18. In KQL Database tree, you will notice the table 'RawShippingMsgs'.
+18. In KQL Database tree, you will notice the table `RawShippingMsgs`.
 
    ![alt text](assets/image_lab01_step18.png)
 
-19. Click on the table to see the preview of the messages
+19. **Click** on the table to see the preview of the messages
 
    ![alt text](assets/image_lab01_step19.png)
 
-20. Click on 'EH_YCSneakerEventStore_queryset', which is the default query editor of the Eventhouse.
+20. **Click** on 'EH_YCSneakerEventStore_queryset', which is the default query editor of the Eventhouse.
 
    ![alt text](assets/image_lab01_step20.png)
 
-21. Go to the github repo of this workshop [Shipping Events KQL](https://github.com/microsoft/FabConRTIWorkshop/blob/main/assets/kqlcode/Lab1_QS_YCShippingDDLScript.kql)
+21. **Navigate** to the github repo of this workshop [Shipping Events KQL](https://github.com/microsoft/FabConRTIWorkshop/blob/main/assets/kqlcode/Lab1_QS_YCShippingDDLScript.kql)
 
    ![alt text](assets/image_lab01_step21.png)
 
-22. Copy the KQL code from this file
+22. **Copy** the KQL code from this file
 
    ![alt text](assets/image_lab01_step22.png)
 
-23. Paste the copied KQL code in the 'EH_YCSneakerEventStore_queryset'
+23. **Paste** the copied KQL code in the `EH_YCSneakerEventStore_queryset`
 
    ![alt text](assets/image_lab01_step23.png)
 
-24. Rename the tab as 'Shipping Events'. You will be creating more tabs so naming them will be helpful.
+24. **Rename** the tab as `Shipping Events`. You will be creating more tabs so naming them will be helpful.
 
    ![alt text](assets/image_lab01_step24_1.png)
    
    ![alt text](assets/image_lab01_step24_2.png)
 
-25. Select the entire script and click 'Run'. 
+25. **Select** the entire script and click `Run`. 
 
    ![alt text](assets/image_lab01_step25.png)
 
-26. Check the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
+26. **Check** the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
 
    ![alt text](assets/image_lab01_step26.png)
 
@@ -509,7 +511,9 @@ There is no need for eg. a Data Factory. We can ingest directly using the Eventh
 
 Let's ingest energy meter events with power consumption telemetry measured on the Edge. coming from the electromotor available in our demo factory.
 
-### 4. Lab 03.1 - Create a new Energy Meter Telemetry Eventstream
+### 5. Lab 03 - Factory Events
+
+#### Lab 03.1 - Create a new Energy Meter Telemetry Eventstream
 
 In this section, we will be streaming Energy meter telemetry events (eg. current and voltage events from an electric motor). The events will be streamed into an Eventstream and be written into our Eventhouse KQL Database.
 
@@ -819,7 +823,7 @@ We now have a solid stream of Energy meter data, ingested from the Edge to the c
 
 Let's ingest LoraWan telemetry from all kinds of LoraWan sensors, implemented in a demo factory (like temperature sensors, vibration sensors, and even location trackers). We are especially interested in the telemetry sensors.
 
-### 4. Lab 03.2 - Create a new LoraWan Telemetry Eventstream
+#### Lab 03.2 - Create a new LoraWan Telemetry Eventstream
 
 In this section, we will be streaming LoraWan telemetry events (temperature events). The events will be streamed into an Eventstream and written into our Eventhouse KQL Database.
 
@@ -1055,7 +1059,7 @@ SilverLoraWanTemperature
 
 We have seen how we can ingest LoraWan telemetry from multiple devices via one Eventstream. The telemetry is ingested into a Bronze LoraWan table in the KQL Database via an elaborate table mapping. The Eventhouse supports the Medallion Architecture via table Update policies. Here, a Silver LoraWan table with temperature sensor telemetry is filled, complete with the correct column types. We have also seen how we can use the no-code Visual Exploration to check the data in more detail. In the next paragraph, we will complete the temperature sensor data with data from a real-time weather data service.
 
-### 4. Lab 03.3 - Activator alerts based on high temperatures 
+#### Lab 03.3 - Activator alerts based on high temperatures 
 
 In this section, we will extend the LoraWan solution with an Activator, sending alerts under certain conditions. In our demo factory, the production output will have lower quality when the temperature in the factory is higher than 30 degrees Celsius. The Activator will send alert messages based on temperatures higher than 30 degrees Celsius within the factory, measured by our LoraWan temperature sensors. 
 
@@ -1126,7 +1130,7 @@ We have experienced how we can use an Activator to turn events and KQL queries u
 
 Here, we used the KQL Queryset to trigger events. Within Microsoft Fabric, Activator integration is available at more places such as an Eventstream destination or PowerBI report integration.
 
-### 4. Lab 03.4 - Create a new Weather data Eventstream
+#### Lab 03.4 - Create a new Weather data Eventstream
 
 At this moment, we get energy meter telemetry from an electric motor within our demo factory and from several temperature sensors placed within the factory.
 
@@ -1346,7 +1350,7 @@ We also learned how we can query the table using the KQL query language using a 
 
 Finally, we learned about using a materialized view to de-duplicate rows and adding a retention time to limit the data storage.
 
-### 4. Lab 03.5 - Turning a KQL query into a dashboard for sharing
+#### Lab 03.5 - Turning a KQL query into a dashboard for sharing
 
 In this section, we mix the environmental data from the LoraWan sensors with the Real-Time weather data. The events will be queried both in a KQL Queryset and a Real-Time dashboard.
 
@@ -1459,7 +1463,7 @@ Finally, we can share these dashboards in several ways and limit the access (eg.
 
 Now, let's investigate how more traditional data lakes can benefit from real-time data.
 
-### 4. Lab 03.6 - Adding Lakehouse shortcuts to real-time data via OneLake
+#### Lab 03.6 - Adding Lakehouse shortcuts to real-time data via OneLake
 
 A Microsoft Fabric Lakehouse is a unified platform for storing, managing, and analyzing both structured and unstructured data, turing eg. CSV files into tables. Using more traditional SQL, these tables can be queried.
 
@@ -1575,7 +1579,7 @@ Let's dive into that data via a Digital Twin, available in Microsoft Fabric.
 
 </div>
 
-### 4. Lab 03.7 - Adding a Digital Twin Builder
+#### Lab 03.7 - Adding a Digital Twin Builder
 
 A Digital Twin is a simplified representation, a model, based on real-life 'things' like devices, locations, buildings, vehicles, or even persons.
 
@@ -1740,3 +1744,5 @@ Here, we are building a Digital Twin where our production line is operated by se
    ![alt text](assets/image_task10_step39.png)
 
 This concludes our Digital Twin Builder experience. Notice that this Fabric item is still in preview. Still, we are already able to capture multiple data sources, both real-time data and contextual data, and related them into this 'ontology' model. This was all done without a single line of code. So users can get a good understanding of what the situation of each Twin is and how real-time data from multiple sources works together.
+
+### 6. Lab 04 - OneLake Events
