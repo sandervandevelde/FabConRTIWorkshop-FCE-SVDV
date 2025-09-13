@@ -610,7 +610,7 @@ YourCompany's website is the primary channel for customers to discover and buy i
 
    ![alt text](assets/image_lab01_step20.png)
 
-28. **Navigate** to the github repo of this workshop [Clickstream Events KQL](https://github.com/microsoft/FabConRTIWorkshop/blob/main/assets/kqlcode/Lab2_QS_YCClickstreamDDLScript.kql)
+28. **Navigate** to the github repo of this workshop [Clickstream Events KQL](https://github.com/microsoft/FabConRTIWorkshop/blob/main/assets/kqlcode/Lab1_QS_YCShippingDDLScript.kql)
 
 
    ![alt text](assets/image_lab02_step28.png)
