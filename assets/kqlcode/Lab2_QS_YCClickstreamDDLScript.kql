@@ -1,5 +1,5 @@
 .execute database script <|
-.create table RawClickstreamData (event_id:guid, event_type:string, user_id:guid, session_id:guid, timestamp:datetime, country:string, country_code:string, referral_source:string, click_path:dynamic, payload:dynamic, client_info:dynamic, EventProcessedUtcTime:datetime, PartitionId:string, EventEnqueuedUtcTime:datetime) with (folder = "Bronze Layer")
+.alter table RawClickstreamData folder 'Bronze Layer'
 .create-or-alter function extractAddToCartPayload ()
 {
     RawClickstreamData
