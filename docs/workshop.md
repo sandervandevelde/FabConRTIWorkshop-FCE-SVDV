@@ -487,6 +487,8 @@ To achieve this, we start with ingesting these shipping events into Real-Time In
 
    ![alt text](assets/image_lab01_step26.png)
 
+The incoming XML messages with shipping events are now made available in typed columns and available for querying.
+
 ### 3. Lab 02 - Clickstream Events
 
 YourCompany's website is the primary channel for customers to discover and buy its sneakers. Capturing, analysing and learning customer's behaviour from its website is very critical to contiuously improve the customer engagement, adapt and improve social media marketing strategies as well as plan marketing events in commensuration with the Return-on-Investment offered by the different digital channels.
