@@ -411,45 +411,99 @@ There is no need for eg. a Data Factory. We can ingest directly using the Eventh
 
    ![alt text](assets/image_lab01_step03.png)
 
-5. A dialog is shown. **Create** a new table `RawShippingMsgs`. Pay attention to this table name, it is reused later on (Copy the table name as-is else the subsequent scripts will fail to execute).
+4. A dialog is shown. **Create** a new table `RawShippingMsgs`. Pay attention to this table name, it is reused later on (Copy the table name as-is else the subsequent scripts will fail to execute).
 
    ![alt text](assets/image_lab01_step04.png)
 
-11. Choose 'New connection' in the connection.
+5. Keep the defaults of Continuous Ingestion as On and 'Connect to a storage account'. Choose 'FabConVienna 2025 Azure Subscription' as the Subscription.
 
-12. In the New connection pop up, paste the Connection name as your user account. For example, if you are FabCon User 002, paste that as the connection name.
+   ![alt text](assets/image_lab01_step05.png)
 
-13. Click 'Save'
+6. Choose 'fabconvienna2025sa' as the Blob storage account.
 
-14. Click 'Close'
+   ![alt text](assets/image_lab01_step06.png)
 
-15. In the Connection drop down, choose the connection that you just created.
+7. Choose 'rawshippingmsgs' as the container.
 
-16. Rename the Eventstream Name to 'ES_ShippingEvents'
+   ![alt text](assets/image_lab01_step07.png)
 
-17. Click 'Next'
+8. Choose 'New connection' in the connection.
 
-18. Notice the preview of a single XML message retrieved from the storage account.
+   ![alt text](assets/image_lab01_step08.png)
 
-19. Click 'Finish'.
+9. In the New connection pop up, keep the other defaults. Paste the Connection name as your user account. For example, if you are FabCon User 002, paste that as the connection name.
 
-After clicking 'Finish', Eventhouse will establish a connection with the storage account and will read XML files as soon as they are created in the storage account. Let the processing continue as it completes the required background processes. You can click 'Close' and it will still continue background processing.
+   ![alt text](assets/image_lab01_step09.png)
 
-20. In KQL Database tree, you will notice the table 'RawShippingMsgs'.
+10. Click 'Save'
 
-21. Click on the table to see the preview of the messages
+   ![alt text](assets/image_lab01_step10.png)
 
-22. Click on 'EH_YCSneakerEventStore_queryset', which is the default query editor of the Eventhouse.
+11. Click 'Close'
 
-23. Go to [Shipping Events KQL](https://github.com/microsoft/FabConRTIWorkshop/blob/main/assets/kqlcode/Lab1_QS_YCShippingDDLScript.kql)
+   ![alt text](assets/image_lab01_step11.png)
 
-24. Copy the KQL code from this file
+12. In the Connection drop down, choose the connection that you just created.
 
-25. Paste the copied KQL code in the 'EH_YCSneakerEventStore_queryset'
+   ![alt text](assets/image_lab01_step12.png)
 
-26. Rename the tab as 'Shipping Events'. You will be creating more tabs so naming them will be helpful.
+13. Rename the Eventstream Name to 'ES_ShippingEvents'
 
-27. Select the entire script and click 'Run'. Check the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
+   ![alt text](assets/image_lab01_step13.png)
+
+14. Click 'Next'
+
+   ![alt text](assets/image_lab01_step14.png)
+
+15. Notice the preview of a single XML message retrieved from the storage account.
+
+   ![alt text](assets/image_lab01_step15.png)
+
+16. Click 'Finish'.
+
+   ![alt text](assets/image_lab01_step16.png)
+
+17. After clicking 'Finish', Eventhouse will establish a connection with the storage account and will read XML files as soon as they are created in the storage account. Let the processing continue as it completes the required background processes. You can click 'Close' and it will still continue background processing.
+
+   ![alt text](assets/image_lab01_step17.png)
+
+18. In KQL Database tree, you will notice the table 'RawShippingMsgs'.
+
+   ![alt text](assets/image_lab01_step18.png)
+
+19. Click on the table to see the preview of the messages
+
+   ![alt text](assets/image_lab01_step19.png)
+
+20. Click on 'EH_YCSneakerEventStore_queryset', which is the default query editor of the Eventhouse.
+
+   ![alt text](assets/image_lab01_step20.png)
+
+21. Go to the github repo of this workshop [Shipping Events KQL](https://github.com/microsoft/FabConRTIWorkshop/blob/main/assets/kqlcode/Lab1_QS_YCShippingDDLScript.kql)
+
+   ![alt text](assets/image_lab01_step21.png)
+
+22. Copy the KQL code from this file
+
+   ![alt text](assets/image_lab01_step22.png)
+
+23. Paste the copied KQL code in the 'EH_YCSneakerEventStore_queryset'
+
+   ![alt text](assets/image_lab01_step23.png)
+
+24. Rename the tab as 'Shipping Events'. You will be creating more tabs so naming them will be helpful.
+
+   ![alt text](assets/image_lab01_step24_1.png)
+   
+   ![alt text](assets/image_lab01_step24_2.png)
+
+25. Select the entire script and click 'Run'. 
+
+   ![alt text](assets/image_lab01_step25.png)
+
+26. Check the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
+
+   ![alt text](assets/image_lab01_step26.png)
 
 ### 4. Lab 02 - Clickstream Events
 

@@ -60,22 +60,10 @@
         "item_type": "Notebook"
     },
     {
-        "action": "Copy",
-        "folder_name": "Lab 02 Clickstream Events",
-        "item_name": "QS_YCClickstreamDDLScript",
-        "item_type": "KQLQueryset"
-    },
-    {
-        "action": "Copy",
-        "folder_name": "Lab 03 Factory Events",
-        "item_name": "QS_FactoryEventsQueries",
-        "item_type": "KQLQueryset"
-    },
-    {
-        "action": "Copy",
+        "action": "Create",
         "folder_name": "Lab 01 Shipping Events",
-        "item_name": "QS_YCShippingDDLScript",
-        "item_type": "KQLQueryset"
+        "item_name": "NB_DummyNotebook",
+        "item_type": "Notebook"
     },
     {
         "action": "Create",
