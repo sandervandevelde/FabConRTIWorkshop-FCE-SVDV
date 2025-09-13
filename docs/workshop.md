@@ -612,6 +612,7 @@ YourCompany's website is the primary channel for customers to discover and buy i
 
 28. **Navigate** to the github repo of this workshop [Clickstream Events KQL](https://github.com/microsoft/FabConRTIWorkshop/blob/main/assets/kqlcode/Lab2_QS_YCClickstreamDDLScript.kql)
 
+
    ![alt text](assets/image_lab02_step28.png)
 
 29. **Copy** the KQL code from this file
