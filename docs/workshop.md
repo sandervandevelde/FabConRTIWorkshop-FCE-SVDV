@@ -602,7 +602,7 @@ YourCompany's website is the primary channel for customers to discover and buy i
 
 26. **Open** the `EH_YCSneakerEventStore`
 
-   ![alt text](assets/image_lab01_step26.png)
+   ![alt text](assets/image_lab02_step26.png)
 
 27. **Click** on 'EH_YCSneakerEventStore_queryset', which is the default query editor of the Eventhouse.
 
