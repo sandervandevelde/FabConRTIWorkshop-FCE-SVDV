@@ -1975,3 +1975,42 @@ YourCompany receives from its shipping partners files containing all the shipmen
 49. **Navigate** to `LH_YCEcommLakehouse` and go to Tables section
 
 50. **Notice** there is a table `shippingevents` in the Tables section
+
+## Continue your learning journey
+
+### 1. Real-Time Intelligence Customer Stories
+
+- [Valamar Riviera drives call center sales up by €20 million with Fabric](https://www.microsoft.com/en/customers/story/25237-valamar-riviera-microsoft-fabric)
+- [Iceland Foods makes decisions at the speed of business with Microsoft Fabric and Real-Time Intelligence](https://www.microsoft.com/en/customers/story/23073-iceland-foods-microsoft-fabric)
+- [IWG gains real-time insights and boosts fraud detection with Microsoft Fabric](https://www.microsoft.com/en/customers/story/23070-international-workplace-group-iwg-microsoft-fabric)
+- [Mitie transforms data management and enables AI-driven insights with Microsoft Fabric](https://www.microsoft.com/en/customers/story/22354-mitie-azure)
+- [Viscofan transforms manufacturing operations with Fabric Real-Time intelligence](https://www.youtube.com/watch?v=bHjdNK6fIes)
+- [Dener Motorsport gains real-time race insights with Microsoft Fabric](https://www.youtube.com/watch?v=aMtZQQ11ZYc)
+- [Elcome delivers fast, reliable broadband at sea with Microsoft Fabric and Copilot](https://www.youtube.com/watch?v=pUuL6CKD19I)
+
+### 2. Engage with Real-Time Intelligence Product Team
+
+- [Ask questions on the forum](aka.ms/realtimeforum)
+- [Submit ideas and vote](aka.ms/fabric-ideas)
+
+### 3. Get hands on with Real-Time Intelligence
+
+- [Complete the tutorial](aka.ms/realtimetutorial)
+- [Sign up for one-day training](aka.ms/nextRTIAD)
+- [Try an extensive tutorial](aka.ms/fabconrtitutorial)
+- [Play the Kusto Detective Agency Fabric edition](aka.ms/realtimedetective)
+
+### 4. Learn more
+
+- [Use the docs](aka.ms/realtimedocs)
+- [Complete the learning path](aka.ms/realtimelearningpath)
+- [Get certified](aka.ms/realtimeskill)
+- [Read the free ebook](aka.ms/realtimebook)
+- [Find customer success stories](aka.ms/fabric-customer-success)
+
+### 5. Stay updated
+
+- [Read the blog](aka.ms/realtimeblogs)
+- [Follow on LinkedIn](aka.ms/realtimelinkedin)
+- [Watch on YouTube](aka.ms/fabricyoutube)
+- [Check the release plan](aka.ms/realtimereleaseplan)
