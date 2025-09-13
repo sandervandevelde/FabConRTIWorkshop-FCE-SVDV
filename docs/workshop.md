@@ -491,79 +491,79 @@ To achieve this, we start with ingesting these shipping events into Real-Time In
 
 YourCompany's website is the primary channel for customers to discover and buy its sneakers. Capturing, analysing and learning customer's behaviour from its website is very critical to contiuously improve the customer engagement, adapt and improve social media marketing strategies as well as plan marketing events in commensuration with the Return-on-Investment offered by the different digital channels.
 
-1. Navigate to the root level of your workspace.
+1. **Navigate** to the root level of your workspace.
 
 ![alt text](assets/image_lab02_step01.png)
 
-2. Navigate to the folder `Lab 02 Clickstream Events`
+2. **Navigate** to the folder `Lab 02 Clickstream Events`
 
 ![alt text](assets/image_lab02_step02.png)
 
-3. Open the eventstream `ES_ClickstreamEvents`
+3. **Open** the eventstream `ES_ClickstreamEvents`
 
 ![alt text](assets/image_lab02_step03.png)
 
-4. Select `Use custom endpoint` tile
+4. **Select** `Use custom endpoint` tile
 
 ![alt text](assets/image_lab02_step04.png)
 
-5. Enter the source name as `ClickstreamNBSource` and click `Add`
+5. **Enter** the source name as `ClickstreamNBSource` and **click** `Add`
 
 ![alt text](assets/image_lab02_step05.png)
 
-6. Click `Publish`
+6. **Click** `Publish`
 
 ![alt text](assets/image_lab02_step06.png)
 
-7. Click `ClickstreamNBSource` node
+7. **Click** `ClickstreamNBSource` node
 
 ![alt text](assets/image_lab02_step07.png)
 
-8. Select `Kafka` as the protocol
+8. **Select** `Kafka` as the protocol
 
 ![alt text](assets/image_lab02_step08.png)
 
-9. Select `SAS Key Authentication`
+9. **Select** `SAS Key Authentication`
 
 ![alt text](assets/image_lab02_step09.png)
 
-10. Copy `Bootstrap server` value and paste it in a Notepad. You will need this in the subsequent steps.
+10. **Copy** `Bootstrap server` value and ****paste** it in a Notepad. You will need this in the subsequent steps.
 
 ![alt text](assets/image_lab02_step10.png)
 
-11. Similarly, copy `Topic name`. And then copy `Connection string-primary key` by click on the eye on the right of that field. Paste these values in a notepad.
+11. Similarly, **copy** `Topic name`. And then **copy** `Connection string-primary key` by clicking on the eye on the right of that field. **Paste** these values in a notepad.
 
 ![alt text](assets/image_lab02_step11.png)
 
-12. Navigate back to your workspace and go to the folder `Lab 02 Clickstream Events`
+12. **Navigate** back to your workspace and go to the folder `Lab 02 Clickstream Events`
 
 ![alt text](assets/image_lab02_step12.png)
 
-13. Open the notebook `NB_YCClickstreamGenerator`
+13. **Open** the notebook `NB_YCClickstreamGenerator`
 
 ![alt text](assets/image_lab02_step13.png)
 
-14. In the cell with the title `# Kafka Endpoint configuration parameters`, paste the bootstrap server value as the values for the field `KAFKA_BROKER`, the topic name as the value for `KAFKA_TOPIC` and connection string as the `sas_password`
+14. In the cell with the title `# Kafka Endpoint configuration parameters`, **paste** the bootstrap server value as the values for the field `KAFKA_BROKER`, the topic name as the value for `KAFKA_TOPIC` and connection string as the `sas_password`
 
 ![alt text](assets/image_lab02_step14.png)
 
-15. Click on `Run all` to start generating clickstream events
+15. **Click** on `Run all` to start generating clickstream events
 
 ![alt text](assets/image_lab02_step15.png)
 
-16. Navigate back to the Eventstream from the side ribbon.
+16. **Navigate** back to the Eventstream from the side ribbon.
 
 ![alt text](assets/image_lab02_step16.png)
 
-17. Click `Edit` from the ribbon
+17. **Click** `Edit` from the ribbon
 
 ![alt text](assets/image_lab02_step17.png)
 
-18. Select `Trasnform events or add destination` node and select `Eventhouse` from the dropdown
+18. **Select** `Trasnform events or add destination` node and **select** `Eventhouse` from the dropdown
 
 ![alt text](assets/image_lab02_step18.png)
 
-19. Select the following in the Eventhouse pane
+19. **Select** the following in the Eventhouse pane
 
 | Field | Value | 
 | - | - |
@@ -574,11 +574,11 @@ YourCompany's website is the primary channel for customers to discover and buy i
 | KQL Database | `EH_YCSneakerEventStore` |
 |
 
-and click `Save`
+   and **click** `Save`
 
 ![alt text](assets/image_lab02_step19.png)
 
-20. Click `Publish`
+20. **Click** `Publish`
 
 ![alt text](assets/image_lab02_step20.png)
 
@@ -586,21 +586,23 @@ and click `Save`
 
 ![alt text](assets/image_lab02_step21.png)
 
-22. Enter the table name `RawClickstreamData`, click on the tick mark, click `Next`
+22. **Enter** the table name `RawClickstreamData`, **click** on the tick mark, **click** `Next`
 
 ![alt text](assets/image_lab02_step22.png)
 
-23. Preview the messages fetched from Eventstream and click `Finish`
+23. **Preview** the messages fetched from Eventstream and click `Finish`
 
 ![alt text](assets/image_lab02_step23.png)
 
-24. Check if all the steps are successfully completed and then click `Close`
+24. **Check** if all the steps are successfully completed and then **click** `Close`
 
-![alt text](assets/image_lab02_step23.png)
+![alt text](assets/image_lab02_step24.png)
 
-25. Navigate back to your workspace
+25. **Navigate** back to your workspace
 
-26. Open the `EH_YCSneakerEventStore`
+26. **Open** the `EH_YCSneakerEventStore`
+
+   ![alt text](assets/image_lab01_step26.png)
 
 27. **Click** on 'EH_YCSneakerEventStore_queryset', which is the default query editor of the Eventhouse.
 
