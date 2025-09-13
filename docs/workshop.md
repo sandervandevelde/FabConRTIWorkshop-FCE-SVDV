@@ -85,16 +85,17 @@ All the **code** in this tutorial can be found here:
 - If you'd like to contribute to this lab, report a bug or issue, please feel free to submit a pull request to the [GitHub repo](https://github.com/microsoft/fabconrtiworkshop/) for us to review or [submit any issues](https://github.com/microsoft/fabconrtiworkshop/issues) you encounter.
 
 ---
+## Workshop Structure
 
-## Lab 1: Tracking and monitoring shipments 
+### Lab 1: Tracking and monitoring shipments 
 
 Monitoring shipments across multiple shipping partners is essential for YourCompany as it provides comprehensive visibility throughout the supply chain, minimizing the risk of delays or disruptions. It allows for the early detection of potential issues such as lost, delayed, or damaged packages, thereby safeguarding patient trust and satisfaction. Consistent tracking also enables performance benchmarking across carriers, ensuring cost efficiency and reliability. Moreover, real-time monitoring supports adherence to delivery SLAs and regulatory requirements, which are particularly critical in healthcare logistics. In addition, the data collected offers valuable insights to drive continuous improvement and informed decision-making in operations.
 
-## Lab 2: Real-time view into customer interactions 
+### Lab 2: Real-time view into customer interactions 
 
 Clickstream monitoring is vital for YourCompany as it provides detailed insights into how users interact with digital platforms, enabling a deeper understanding of customer behavior and preferences. By tracking user journeys in real time, it becomes possible to identify pain points, optimize website performance, and improve the overall user experience. This monitoring also highlights trends that inform data-driven decisions in marketing, product design, and service delivery. Furthermore, it supports the detection of unusual activity, strengthening security and compliance. Ultimately, the business value lies in driving higher engagement, improving conversion rates, and ensuring that digital services meet both customer needs and regulatory standards.
 
-## Lab 3: Connected Factory 
+### Lab 3: Connected Factory 
 
 In today's data-driven world, understanding factory behavior is essential for optimizing the production process for better Overall Equipment Effectiveness (OEE). This lab focuses on a simplified connected factory scenario that demonstrates how telemetry can be captured and analyzed using key data entities.
 
@@ -110,7 +111,7 @@ In the factory, several low-powered sensors are collecting environmental data li
 
 Next to the local environmental sensors, weather service information is collected for a specific location, available in Microsoft Fabric. This way, an even better understanding of the environment outside the factory is available, and a comparison with the sensors inside the factory can be made.
 
-## Lab 4: Event-driven actions to load and transform historical data
+### Lab 4: Event-driven actions to load and transform historical data
 
 There are scenarios where YourCompany may receive batch loads of historical transactions from shipping providers, typically delivered as CSV files, to support reconciliation and audit processes. Such files are often provided when there are system downtime incidents, delayed data transfers, or at agreed monthly or quarterly intervals for financial settlement. Processing these files is highly relevant, as it ensures that all shipments, costs, and delivery statuses align with internal records and customer commitments. This reconciliation helps identify discrepancies such as billing errors, unreported deliveries, or missing data, thereby avoiding financial leakage and strengthening vendor accountability. Additionally, maintaining an accurate historical record is essential for compliance, audit readiness, and for deriving insights that improve carrier performance, cost management, and overall supply chain integrity.
 
@@ -315,26 +316,7 @@ To complete the lab, you **must** have access to a [Microsoft Fabric](https://ww
 
 </div>
 
-<!---
-### Trial Tenant for the Lab
 
-If you need a new Trial Tenant to complete the lab, we suggest registering a new Outlook.com email and follow these steps:
-
-1. [Provision Fabric Trial Tenant](https://github.com/microsoft/FabricRTIWorkshop/tree/main/trialtenant) - see document and PowerShell script to set up a lab admin.
-
-   - 25 workspaces with access to 25 logins will be created automatically (one workspace per user).
-   - Participants should create items in the workspace designated for their own login.
-   - If more than 25 accounts are necessary, additional Trial Tenants can be provisioned by repeating this process. Also, participants can share the lab credentials and use folders in their workspaces.
-
-2. [Office 365 E5 Trial](https://blog.fabric.microsoft.com/blog/accessing-microsoft-fabric-for-developers-startups-and-enterprises). ⚠️ Make sure to disable recurring billing; otherwise your credit card will be charged for Office E5.
-
-3. The "LabAdmin" credential should be used by the lab proctor.
-
-4. The "LabAdmin" can have the pre-built lab items for Lab Users 01-24 to reference as a cheat sheet. To do so, grant Users 01-24 viewer permission to the "LabAdmin" workspace.
-
-   ![WorkspaceManageAccess](assets/WorkspaceManageAccess.png "Workspace Manage Access")
-
---->
 ---
 
 ## Building the platform
