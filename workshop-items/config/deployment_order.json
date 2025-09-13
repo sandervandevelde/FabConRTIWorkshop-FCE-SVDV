@@ -54,12 +54,6 @@
         "item_type": "Reflex"
     },
     {
-        "action": "Copy",
-        "folder_name": "Lab 02 Clickstream Events",
-        "item_name": "NB_YCClickstreamGenerator",
-        "item_type": "Notebook"
-    },
-    {
         "action": "Create",
         "folder_name": "Lab 01 Shipping Events",
         "item_name": "NB_DummyNotebook",
@@ -68,7 +62,19 @@
     {
         "action": "Create",
         "folder_name": "Lab 04 OneLake Events",
-        "item_name": "NB_DummyNotebook",
+        "item_name": "ACT_TriggerNotebook",
+        "item_type": "Reflex"
+    },
+    {
+        "action": "Copy",
+        "folder_name": "Lab 02 Clickstream Events",
+        "item_name": "NB_YCClickstreamGenerator",
         "item_type": "Notebook"
+    },
+    {
+        "action": "Copy",
+        "folder_name": "Lab 04 OneLake Events",
+        "item_name": "ENV_YCSparkEnvironment",
+        "item_type": "Environment"
     }
 ]

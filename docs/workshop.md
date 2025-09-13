@@ -497,13 +497,13 @@ YourCompany's website is the primary channel for customers to discover and buy i
 
 3. Open the eventstream `ES_ClickstreamEvents`
 
-4. Select 'Use custome endpoint' tile
+4. Select `Use custom endpoint` tile
 
 5. Enter the source name as `ClickstreamNBSource`
 
-6. Click on `Publish`
+6. Click `Publish`
 
-7. Click on the `ClickstreamNBSource` node
+7. Click `ClickstreamNBSource` node
 
 8. Select `Kafka` as the protocol
 
@@ -548,8 +548,6 @@ YourCompany's website is the primary channel for customers to discover and buy i
 28. Click `Publish`
 
 29. Wait for Eventhouse to load till the `Configure button` becomes available
-
-30. 
 
 
 ### 4. Lab 03 - Factory Events
@@ -1789,3 +1787,9 @@ Here, we are building a Digital Twin where our production line is operated by se
 This concludes our Digital Twin Builder experience. Notice that this Fabric item is still in preview. Still, we are already able to capture multiple data sources, both real-time data and contextual data, and related them into this 'ontology' model. This was all done without a single line of code. So users can get a good understanding of what the situation of each Twin is and how real-time data from multiple sources works together.
 
 ### 5. Lab 04 - OneLake Events
+
+YourCompany receives from its shipping partners files containing all the shipments that have occured in that month. Since these files can come at any time and from many different providers, we will create an event driven workflow so that the files are processed and can be queried as soon as they arrive.
+
+1. Naviagate to `Real-Time hub`
+
+2. 
