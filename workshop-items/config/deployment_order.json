@@ -76,5 +76,11 @@
         "folder_name": "Lab 04 OneLake Events",
         "item_name": "ENV_YCSparkEnvironment",
         "item_type": "Environment"
+    },
+    {
+        "action": "Copy",
+        "folder_name": "Lab 04 OneLake Events",
+        "item_name": "NB_YCLoadCSVtoDelta",
+        "item_type": "Notebook"
     }
 ]

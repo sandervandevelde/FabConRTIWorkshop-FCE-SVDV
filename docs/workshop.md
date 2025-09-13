@@ -493,61 +493,119 @@ YourCompany's website is the primary channel for customers to discover and buy i
 
 1. Navigate to the root level of your workspace.
 
+![alt text](assets/image_lab02_step01.png)
+
 2. Navigate to the folder `Lab 02 Clickstream Events`
+
+![alt text](assets/image_lab02_step02.png)
 
 3. Open the eventstream `ES_ClickstreamEvents`
 
+![alt text](assets/image_lab02_step03.png)
+
 4. Select `Use custom endpoint` tile
+
+![alt text](assets/image_lab02_step04.png)
 
 5. Enter the source name as `ClickstreamNBSource`
 
+![alt text](assets/image_lab02_step05.png)
+
 6. Click `Publish`
+
+![alt text](assets/image_lab02_step01.png)
 
 7. Click `ClickstreamNBSource` node
 
+![alt text](assets/image_lab02_step01.png)
+
 8. Select `Kafka` as the protocol
+
+![alt text](assets/image_lab02_step01.png)
 
 9. Select `SAS Key Authentication`
 
+![alt text](assets/image_lab02_step01.png)
+
 10. Copy `Bootstrap server` value and paste it in a Notepad. You will need this in the subsequent steps.
+
+![alt text](assets/image_lab02_step01.png)
 
 11. Similarly, copy `Topic name`. And then copy `Connection string-primary key` by click on the eye on the right of that field. Paste these values in a notepad.
 
+![alt text](assets/image_lab02_step01.png)
+
 12. Navigate back to your workspace and go to the folder `Lab 02 Clickstream Events`
+
+![alt text](assets/image_lab02_step01.png)
 
 13. Open the notebook `NB_YCClickstreamGenerator`
 
+![alt text](assets/image_lab02_step01.png)
+
 14. In the cell with the title `# Kafka Endpoint configuration parameters`, paste the bootstrap server value as the values for the field 'KAFKA_BROKER'.
 
-15. Similarly paste the topic name as the value for KAFKA_TOPIC and connection string as the  sas_password 
+![alt text](assets/image_lab02_step01.png)
+
+15. Similarly paste the topic name as the value for KAFKA_TOPIC and connection string as the `sas_password`
+
+![alt text](assets/image_lab02_step01.png)
 
 16. Click on `Run all` to start generating clickstream events
 
+![alt text](assets/image_lab02_step01.png)
+
 17. Navigate back to the Eventstream from the side ribbon.
+
+![alt text](assets/image_lab02_step01.png)
 
 18. Click `Edit` from the ribbon
 
+![alt text](assets/image_lab02_step01.png)
+
 19. Select `Add destination`
+
+![alt text](assets/image_lab02_step01.png)
 
 20. Select `Eventhouse` from the menu
 
-21. Connect the `ES_ClickstreamEvents` and the Eventhouse node by connecting the green dot with the reddote.
+![alt text](assets/image_lab02_step01.png)
+
+21. Connect the `ES_ClickstreamEvents` and the Eventhouse node by connecting the green dot with the red dot.
+
+![alt text](assets/image_lab02_step01.png)
 
 22. Select `Direct Ingestion` mode
 
+![alt text](assets/image_lab02_step01.png)
+
 23. Enter the destination name as `ClickstreamEventhouseDestination`
+
+![alt text](assets/image_lab02_step01.png)
 
 24. Select your workspace
 
+![alt text](assets/image_lab02_step01.png)
+
 25. Select the eventhouse `EH_YCSneakerEventStore`
+
+![alt text](assets/image_lab02_step01.png)
 
 26. Select the KQL Database `EH_YCSneakerEventStore`
 
+![alt text](assets/image_lab02_step01.png)
+
 27. Click `Save`
+
+![alt text](assets/image_lab02_step01.png)
 
 28. Click `Publish`
 
+![alt text](assets/image_lab02_step01.png)
+
 29. Wait for Eventhouse to load till the `Configure button` becomes available
+
+![alt text](assets/image_lab02_step01.png)
 
 
 ### 4. Lab 03 - Factory Events
@@ -1790,61 +1848,103 @@ This concludes our Digital Twin Builder experience. Notice that this Fabric item
 
 YourCompany receives from its shipping partners files containing all the shipments that have occured in that month. Since these files can come at any time and from many different providers, we will create an event driven workflow so that the files are processed and can be queried as soon as they arrive.
 
-1. Naviagate to `Real-Time hub`
+1. **Navigate** to `Real-Time hub`
 
-2. Click on `Subscribe to OneLake events`
+2. **Click** on `Subscribe to OneLake events`
 
-3. Select `Add a OneLake source`
+3. **Select** `Add a OneLake source`
 
-4. Select `LH_YCEcommLakehouse`
+4. **Select** `LH_YCEcommLakehouse`
 
-5. Click `Next`
+5. **Click** `Next`
 
-6. Check the box next to `Files`
+6. **Check** the box next to `Files`
 
-7. Click `Add`
+7. **Click** `Add`
 
-8. Rename the eventstream to `ES_OneLakeEvents`
+8. **Rename** the eventstream to `ES_OneLakeEvents`
 
-9. Click `Next`
+9. **Click** `Next`
 
-10. Review the selected parameters and name. Then click `Connect`.
+10. **Review** the selected parameters and name. Then **click** `Connect`.
 
 11. Wait for the Eventstream to establish connection to OneLake events.
 
-12. Click `Open Eventstream`
+12. **Click** `Open Eventstream`
 
-13. In the Eventstream canvas, click `Switch to edit mode to transform events or add destination`
+13. In the Eventstream canvas, **click** `Switch to edit mode to transform events or add destination`
 
-14. Click dropdown of `Transform events or add destination` node
+14. **Click** dropdown of `Transform events or add destination` node
 
-15. Select `Activator`from the list
+15. **Select** `Activator`from the list
 
-16. In the side pane, keep the defaults and select `ACT_TriggerNotebook` as the Activator and click `Save`
+16. In the side pane, keep the defaults and **select** `ACT_TriggerNotebook` as the Activator and **click** `Save`
 
-17. Click `Publish`. 18. Eventstream will commit the topology and begin routing events to the Activator. 
+17. **Click** `Publish`. Eventstream will commit the topology and begin routing events to the Activator. 
 
-18. Let's upload sample data to test OneLake to Eventstream to Activator flow. Navigate to 
+18. Let's upload sample data to test OneLake to Eventstream to Activator flow. **Navigate** to
+[Shipment History](https://github.com/microsoft/FabConRTIWorkshop/tree/main/assets/shipment-history) on the Github repo
 
+19. **Download** all 7 files on your local PC
 
-Navigate to your workspace.
+20. **Navigate** back to your workspace.
 
-19. Navigate to `LH_YCEcommLakehouse`
+21. **Navigate** to `LH_YCEcommLakehouse`
 
-20. In the `Files` section of the lakehouse, click on `...` when hovering to the `Files` folder
+22. In the `Files` section of the lakehouse, **click** on `...` when hovering to the `Files` folder
 
-21. Select `New subfolder`
+23. **Select** `New subfolder`
 
-22. Enter `shipping-history` as the folder name
+24. **Enter** `shipping-history` as the folder name
 
-23. Click `Create`
+25. **Click** `Create`
 
-24. Hover on `shipping-history` folder and click on `...`
+26. **Hover** on `shipping-history` folder and **click** on `...`
 
-25. Choose `upload` from the list and then select `Upload files`
+27. **Choose** `upload` from the list and then **select** `Upload files`
 
-26. 
+28. **Click** `folder` icon to upload files from your local PC. **Navigate** to the folder where you downloaded the files from Github
 
-18. Click `Activator` node and select `Details`
+29. **Select** `sample-file.csv` to upload. Do not upload the other files yet.
 
-19. Click `Open item`. Activator canvas will open as a new item
+30. **Close** the `Upload files` pane
+
+31. **Navigate** back to your workspace, go to `Lab 04 - OneLake Events` folder and open `ACT_TriggerNotebook` activator
+
+32. In the Activator canvas, you will see the OneLake event streamed from Eventstream when you uploaded the sample-file.csv
+
+33. **Click** `New rule`
+
+34. Keep the defaults in `Monitor` section and `Condition` section. In `Action` section, **select** Fabric item as type.
+
+35. **Click** `Select Fabric item to run`
+
+36. In `Select Fabric item to run` window, **select** `YC_LoadCSVtoDelta` notebook. We are going to trigger this notebook every time a new file is uploaded to the shipment-history folder.
+
+37. **Click** `Edit action` to define the parameters to be passed to the notebook.
+
+38. **Click** `Add parameter`
+
+39. **Enter** `source_location` as the parameter name.
+
+40. **Click** `Select property` button
+
+41. **Select** `source` as the value. `source` includes the workspace and lakehouse details that are necessary for the notebook to read the CSV file.
+
+42. **Click** 'Add parameter` to add another parameter
+
+43. **Enter** `relative_file_path` as the parameter name.
+
+44. **Click** `Select property` button
+
+45. **Select** `subject` as the value. `subject` includes the relative file path of the file you have uploaded.
+
+46. **Click** `Apply`
+
+47. **Click** `Save and start`
+
+48. Go back to your lakehouse and now upload all the files as shown in steps 26-30.
+
+49. **Navigate** to `LH_YCEcommLakehouse` and go to Tables section
+
+50. **Notice** there is a table `shippingevents` in the Tables section
