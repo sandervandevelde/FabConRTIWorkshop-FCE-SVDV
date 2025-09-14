@@ -395,9 +395,13 @@ To achieve this, we start with ingesting these shipping events into Real-Time In
 
 ![alt text](assets/image_lab01_step01.png)
 
-2. In the eventhouse main page, **click** on KQL Database of the same name `EH_YCSneakerEventStore`.
+2. (A) In the eventhouse main page, **click** on KQL Database of the same name `EH_YCSneakerEventStore`.
 
 ![alt text](assets/image_lab01_step02.png)
+
+2. (B) In the eventhouse main page, **turn on** OneLake Availability
+
+![alt text](assets/OneLake-Availability.png)
 
 3. **Click** `Get Data` (via the three dots) and **Select** `Azure Storage` as the data source for ingesting data.
 
