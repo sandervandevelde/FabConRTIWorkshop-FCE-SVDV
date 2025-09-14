@@ -84,11 +84,6 @@ All the **code** in this tutorial can be found here:
 - Each section is accompanied by a technical explanation of the Fabric Real-Time Intelligence component being used in the tutorial.
 - Without the accompanying explanation, the tutorial can be completed in 1-2 hours.
 
-<div class="important" data-title="Note">
-
-> There are two versions of this lab. One version is dependent on a given Azure Eventhub that streams the Factory and LoraWan data, in the other one, you can use notebooks to create the data streams **TBD**.
-
-</div>
 
 ## Authors
 
