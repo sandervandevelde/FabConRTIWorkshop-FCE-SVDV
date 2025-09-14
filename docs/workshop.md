@@ -1306,13 +1306,13 @@ In this section, we will add real-time weather data events. These events are str
 
 ![alt text](assets/image_task07_step10.png)
 
-9. First, **select** `Direct ingestion`, not 'Event processing before ingestion'! So, we need to add a table mapping later on as seen in the information box. Second, **Give** this destination a proper 'name' like `EventhouseDestination`. Last, **Select** the Eventhouse and KQL Database we just created as the destination.
+9. First, **select** `Direct ingestion`, not 'Event processing before ingestion'! So, we need to add a table mapping later on as seen in the information box. Second, **Give** this destination a proper 'name' like `EventhouseDestination`. Last, **Select** the `EH_YCSneakerEventStore` Eventhouse and KQL Database as the destination.
 
 ![alt text](assets/image_task07_step11.png)
 
 10. **Save** the destination settings.
 
-11. If the Destination is not yet connected to the source, you see this error sign. In that case, just **connect** the `output point` of the 'WeatherStream_ES' to the `input point` of the EventhouseDestination.
+11. If the Destination is not yet connected to the source, you see this error sign. In that case, just **connect** the `output point` of the 'ES_WeatherData' to the `input point` of the EventhouseDestination.
 
 ![alt text](assets/image_task07_step12.png)
 
