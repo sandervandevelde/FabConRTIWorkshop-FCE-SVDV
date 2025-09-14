@@ -749,7 +749,7 @@ Notice that the electric motor starts and stops every 15 minutes so you will see
 
    ![alt text](assets/image_task04_step24.png)
 
-23. **Leave the Eventstream and navigate to** the `FactoryEvents_EH` Eventhouse and clicking on the `FactoryEvents_EH` KQL Database name. This will show all content in the KQL Database. Notice that the `BronzeEnergyMeter` table is added, now. Check the columns of that table, including the Universal Namespace (UNS) of the Compact Controller PLC.
+23. **Leave the Eventstream and navigate to** the `EH_YCSneakerEventStore` Eventhouse and clicking on the `EH_YCSneakerEventStore` KQL Database name. This will show all content in the KQL Database. Notice that the `BronzeEnergyMeter` table is added, now. Check the columns of that table, including the Universal Namespace (UNS) of the Compact Controller PLC.
 
    ![alt text](assets/image_task04_step25.png)
 
@@ -789,11 +789,11 @@ Notice that the electric motor starts and stops every 15 minutes so you will see
 
    ![alt text](assets/image_task04_step34.png)
 
-33. We will use the KQL query language to turn the bronze table into two separate silver tables. **Navigate to the KQL Queryset** named `FactoryEvents_EH_queryset`.
+33. We will use the KQL query language to turn the bronze table into two separate silver tables. **Navigate to the KQL Queryset** named `EH_YCSneakerEventStore_queryset`.
 
    ![alt text](assets/image_task04_step35.png)
 
-34. Each KQL Database comes with a KQL Queryset already. **See** the KQL Queryset of the 'FactoryEvents_EH' KQL Database in the 'FactoryEvents_EH' Eventhouse has opened. A KQL Queryset offers a sandbox for querying the data using the Kusto Query Language (KQL). We will also create extra logic using KQL commands. We will create a silver voltage table `SilverEnergyMeterVoltage` and fill it with typed voltage rows by creating a Table update policy based on the `BronzeEnergyMeter`. The typed silver table data is copied from the bronze table every time new bronze table rows arrive. The conversion part is done via the function `ParseVoltageTelemetry`. **Execute these three KQL commands separately**. Do this by placing them all in the KQL Queryset, putting the cursor in each command, and running it. Do this for **one after another**.
+34. Each KQL Database comes with a KQL Queryset already. **See** the KQL Queryset of the 'EH_YCSneakerEventStore' KQL Database in the 'EH_YCSneakerEventStore' Eventhouse has opened. A KQL Queryset offers a sandbox for querying the data using the Kusto Query Language (KQL). We will also create extra logic using KQL commands. We will create a silver voltage table `SilverEnergyMeterVoltage` and fill it with typed voltage rows by creating a Table update policy based on the `BronzeEnergyMeter`. The typed silver table data is copied from the bronze table every time new bronze table rows arrive. The conversion part is done via the function `ParseVoltageTelemetry`. **Execute these three KQL commands separately**. Do this by placing them all in the KQL Queryset, putting the cursor in each command, and running it. Do this for **one after another**.
 
 ```
 // query 1/3 - Create a table
@@ -997,7 +997,7 @@ You will ingest the LoraWan data from an Azure Event Hub.
 
    ![alt text](assets/image_task05_step10.png)
 
-8. We **select** `Direct Ingestion`, not 'Event processing before ingestion'! So, we need to add a table mapping later on. Also, **provide** the 'Eventhouse' named `FactoryEvents_EH` and 'KQL Database' named `FactoryEvents_EH` as seen in the previous paragraph. **Save** the settings (this can take a moment to set up the connection, please be patient).
+8. We **select** `Direct Ingestion`, not 'Event processing before ingestion'! So, we need to add a table mapping later on. Also, **provide** the 'Eventhouse' named `EH_YCSneakerEventStore` and 'KQL Database' named `EH_YCSneakerEventStore` as seen in the previous paragraph. **Save** the settings (this can take a moment to set up the connection, please be patient).
 
    ![alt text](assets/image_task05_step11.png)
 
@@ -1009,7 +1009,7 @@ You will ingest the LoraWan data from an Azure Event Hub.
 
    ![alt text](assets/image_task05_step13.png)
 
-11. In the new 'Get data' dialog, we create a new table in the `FactoryEvents_EH` KQL Database. **Click** `New Table`.
+11. In the new 'Get data' dialog, we create a new table in the `EH_YCSneakerEventStore` KQL Database. **Click** `New Table`.
 
    ![alt text](assets/image_task05_step14.png)
 
@@ -1078,11 +1078,11 @@ You will ingest the LoraWan data from an Azure Event Hub.
 
    ![alt text](assets/image_task05_step28.png)
 
-27. In the Fabric portal, **navigate** to the `BronzeLoraWan` table, part of the 'FactoryEvents_EH' KQL Database in the 'FactoryEvents_EH' Eventhouse. This table shows four columns.
+27. In the Fabric portal, **navigate** to the `BronzeLoraWan` table, part of the 'EH_YCSneakerEventStore' KQL Database in the 'EH_YCSneakerEventStore' Eventhouse. This table shows four columns.
 
    ![alt text](assets/image_task05_step29.png)
 
-28. In the Eventhouse KQL Database 'FactoryEvents_EH' KQL Queryset `FactoryEvents_EH_queryset`, check the JSON table mapping by **running this command**.
+28. In the Eventhouse KQL Database 'EH_YCSneakerEventStore' KQL Queryset `EH_YCSneakerEventStore_queryset`, check the JSON table mapping by **running this command**.
 
 ```
 .show table BronzeLoraWan ingestion json mappings
@@ -1128,7 +1128,7 @@ BronzeLoraWan
 
    ![alt text](assets/image_task05_step33.png)
 
-36. In the KQL database `FactoryEvents_EH`, **notice** that the table is created.
+36. In the KQL database `EH_YCSneakerEventStore`, **notice** that the table is created.
 
    ![alt text](assets/image_task05_step34.png)
 
@@ -1605,7 +1605,7 @@ Microsoft Fabric OneLake is the single, unified, logical data lake for Microsoft
 
 Here, factory data from several 'silver' tables will be shared via OneLake so a Lakehouse can reference that data as tables too.
 
-1. The timeseries data in the KQL Database is not accessible by default in the Fabric OneLake. **Navigate** to the `FactoryEvents_EH` overview page and see that OneLake availability is disable:
+1. The timeseries data in the KQL Database is not accessible by default in the Fabric OneLake. **Navigate** to the `EH_YCSneakerEventStore` overview page and see that OneLake availability is disable:
 
    ![alt text](assets/image_task09_step01.png)
 
@@ -1643,7 +1643,7 @@ Here, factory data from several 'silver' tables will be shared via OneLake so a 
 
    ![alt text](assets/image_task09_step08.png)
 
-7. We see the KQL Database `FactoryEvents_EH` is listed. **Select** it and **click the Next Button**. 
+7. We see the KQL Database `EH_YCSneakerEventStore` is listed. **Select** it and **click the Next Button**. 
 
    ![alt text](assets/image_task09_step09.png)
 
