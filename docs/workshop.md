@@ -355,7 +355,7 @@ To complete the lab, you **must** have access to a [Microsoft Fabric](https://ww
 
 ![FabricURL](assets/image_task01_step01.png "Fabric URL")
 
-2. **Log in** with the provided credentials, if a trial fabric tenant was previously set up (reference Prerequisites). You may also choose to run the lab in your own Fabric Tenant if you already have one.
+2. **Log in** with the provided credentials, if a trial fabric tenant was previously set up (reference Prerequisites). You may also choose to run the lab in your own Fabric Tenant if you already have one. Skip the 'welcome tour'.
 
 #### 2. Fabric Workspace
 
@@ -676,11 +676,11 @@ Notice that the electric motor starts and stops every 15 minutes so you will see
 
    ![alt text](assets/image_task04_step03.png)
 
-2. **Click** `Select a data source`. In the dialog **click** on the button `Connect`.
+2. In the 'Select a data source' dialog **click** on the button `Connect`.
 
 ![alt text](assets/image_task04_step04.png)
 
-3. In the dialog 'Configure connection settings', **Select** `factorytelemetryeventhub` for the combobox 'Connection' and **insert** the name of the consumer group into the field 'Consumer group' that aligns with the username that was provided to you. In this case, this is `workshopuser49`. **Ensure** that the 'Data format' is `Json` and **click on the pencil** icon next to `Source name`.
+3. In the dialog 'Configure connection settings', **Select** `FabConEU2025 Factory Telemetry Connection` for the combobox 'Connection' and **insert** the name of the consumer group into the field 'Consumer group' that aligns with the username that was provided to you. In this case, this is `workshopuser49`. **Ensure** that the 'Data format' is `Json` and **click on the pencil** icon next to `Source name`.
 
 ![alt text](assets/image_task04_step05.png)
 
@@ -984,11 +984,11 @@ You will ingest the LoraWan data from an Azure Event Hub.
 
 ![alt text](assets/image_task05_step03.png)
 
-2. **Click** `Select a data source`. In the dialog **click** on the button `Connect`.
+2. In the 'Select a data source' dialog **click** on the button `Connect`.
 
 ![alt text](assets/image_task05_step04.png)
 
-3. In the dialog 'Configure connection settings' **Select** `loratelemetryeventhub` for the combobox 'Connection' and **insert** the name of the consumer group into the field 'Consumer group' that aligns with the username that was provided to you. In my case, this is `workshopuser49`. **Ensure** that the 'Data format' is `Json` and **click on the pencil** icon next to 'Source name'.
+3. In the dialog 'Configure connection settings' **Select** `FabConEU2025 Lorawan Connection` for the combobox 'Connection' and **insert** the name of the consumer group into the field 'Consumer group' that aligns with the username that was provided to you. In my case, this is `workshopuser49`. **Ensure** that the 'Data format' is `Json` and **click on the pencil** icon next to 'Source name'.
 
 ![alt text](assets/image_task05_step05.png)
 
@@ -1278,7 +1278,7 @@ In this section, we will add real-time weather data events. These events are str
 
 ![alt text](assets/image_task07_step03.png)
 
-2. **Click** `Select a data source`. In the dialog **click** on the menu item `New`.
+2. In the 'Select a data source' dialog **click** on the menu item `New`.
 
 ![alt text](assets/image_task07_step04.png)
 
@@ -1306,13 +1306,13 @@ In this section, we will add real-time weather data events. These events are str
 
 ![alt text](assets/image_task07_step10.png)
 
-9. First, **select** `Direct ingestion`, not 'Event processing before ingestion'! So, we need to add a table mapping later on as seen in the information box. Second, **Give** this destination a proper 'name' like `EventhouseDestination`. Last, **Select** the Eventhouse and KQL Database we just created as the destination.
+9. First, **select** `Direct ingestion`, not 'Event processing before ingestion'! So, we need to add a table mapping later on as seen in the information box. Second, **Give** this destination a proper 'name' like `EventhouseDestination`. Last, **Select** the `EH_YCSneakerEventStore` Eventhouse and KQL Database as the destination.
 
 ![alt text](assets/image_task07_step11.png)
 
 10. **Save** the destination settings.
 
-11. If the Destination is not yet connected to the source, you see this error sign. In that case, just **connect** the `output point` of the 'WeatherStream_ES' to the `input point` of the EventhouseDestination.
+11. If the Destination is not yet connected to the source, you see this error sign. In that case, just **connect** the `output point` of the 'ES_WeatherData' to the `input point` of the EventhouseDestination.
 
 ![alt text](assets/image_task07_step12.png)
 
