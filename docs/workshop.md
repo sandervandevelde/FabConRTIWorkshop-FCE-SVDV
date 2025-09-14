@@ -499,155 +499,9 @@ To achieve this, we start with ingesting these shipping events into Real-Time In
 
 The incoming XML messages with shipping events are now made available in typed columns and available for querying.
 
-### 3. Lab 02 - Clickstream Events
 
-YourCompany's website is the primary channel for customers to discover and buy its sneakers. Capturing, analysing and learning customer's behaviour from its website is very critical to continuously improve the customer engagement, adapt and improve social media marketing strategies as well as plan marketing events in proportion to the Return-on-Investment offered by the different digital channels.
 
-The clicks will be generated via a generator running in a workbook.
-
-1. **Navigate** to the `root level` of your workspace.
-
-![alt text](assets/image_lab02_step01.png)
-
-2. **Navigate** to the folder `Lab 02 Clickstream Events`.
-
-![alt text](assets/image_lab02_step02.png)
-
-3. **Open** the existing Eventstream `ES_ClickstreamEvents`.
-
-![alt text](assets/image_lab02_step03.png)
-
-4. **Select** the `Use custom endpoint` tile to add a source.
-
-![alt text](assets/image_lab02_step04.png)
-
-5. **Enter** the source name as `ClickstreamNBSource` and **click** `Add`.
-
-![alt text](assets/image_lab02_step05.png)
-
-6. **Click** `Publish` to publish the Eventstream as-is.
-
-![alt text](assets/image_lab02_step06.png)
-
-7. in the published Eventstream **Click** `ClickstreamNBSource` node to access the settings.
-
-![alt text](assets/image_lab02_step07.png)
-
-8. **Select** `Kafka` as the protocol.
-
-![alt text](assets/image_lab02_step08.png)
-
-9. **Select** `SAS Key Authentication` to access the secrets of this source endpoint.
-
-![alt text](assets/image_lab02_step09.png)
-
-10. **Copy** `Bootstrap server` value and **paste it** in a Notepad. You will need this value (and others) in the subsequent steps.
-
-![alt text](assets/image_lab02_step10.png)
-
-11. Similarly, **copy** `Topic name`. And then **copy** `Connection string-primary key` by first clicking on the eye and then on the copy icon on the right of that field. **Paste** these values in a notepad. You now have separate three values.
-
-![alt text](assets/image_lab02_step11.png)
-
-12. **Navigate** back to the `root level` of your workspace and go back to the folder `Lab 02 Clickstream Events`.
-
-![alt text](assets/image_lab02_step12.png)
-
-13. **Open** the existing notebook `NB_YCClickstreamGenerator`.
-
-![alt text](assets/image_lab02_step13.png)
-
-14. In the cell with the title '# Kafka Endpoint configuration parameters', **paste** the `bootstrap server value` as the value for the field 'KAFKA_BROKER', the `topic name` as the value for 'KAFKA_TOPIC' and `connection string` as the 'sas_password'.
-
-![alt text](assets/image_lab02_step14.png)
-
-15. **Click** on `Run all` to start generating clickstream events.
-
-![alt text](assets/image_lab02_step15.png)
-
-16. **Navigate** back to the published `ES_ClickstreamEvents` Eventstream from the side ribbon. 
-
-![alt text](assets/image_lab02_step16.png)
-
-17. **Click** `Edit` from the menu ribbon to add a Eventstream destination.
-
-![alt text](assets/image_lab02_step17.png)
-
-18. **Select** `Transform events or add destination` node and **select** `Eventhouse` from the dropdown. A new node is added and an Eventhouse pane is shown on the right.
-
-![alt text](assets/image_lab02_step18.png)
-
-19. **Select** the following in the `Eventhouse pane` and **click** `Save`
-
-| Field | Value | 
-| - | - |
-| Data ingestion mode | `Direct ingestion` |
-| Destination name | `ClickstreamEventhouseDestination` |
-| Workspace | `Your workspace` |
-| Eventhouse | `EH_YCSneakerEventStore` |
-| KQL Database | `EH_YCSneakerEventStore` |
-
-The direct ingestion destination settings are filled in like this.
-
-![alt text](assets/image_lab02_step19.png)
-
-**Click** `Save` to save the destination settings.
-
-20. **Click** `Publish` to publish the Eventstream.
-
-![alt text](assets/image_lab02_step20.png)
-
-21. Wait for Eventhouse destination to load. In the published Eventstream, the `Configure button` becomes available.
-
-![alt text](assets/image_lab02_step21.png)
-
-22. **Enter** the table name `RawClickstreamData`, **click** on the tick mark, **click** `Next`.
-
-![alt text](assets/image_lab02_step22.png)
-
-23. **Preview** the messages fetched from Eventstream and click `Finish` to accept the proposed mapping.
-
-![alt text](assets/image_lab02_step23.png)
-
-24. **Check** if all the steps are successfully completed and then **click** `Close`.
-
-![alt text](assets/image_lab02_step24.png)
-
-25. **Navigate** back to your workspace.
-
-26. **Open** the existing `EH_YCSneakerEventStore` Eventhouse.
-
-![alt text](assets/image_lab02_step26.png)
-
-27. **Click** on `EH_YCSneakerEventStore_queryset`, which is the default query editor of the Eventhouse.
-
-![alt text](assets/image_lab01_step20.png)
-
-28. **Navigate** to the github repo of this workshop [Clickstream Events KQL](https://aka.ms/FabConKQL2Url) in a separate tab.
-
-29. **Copy** the `KQL code` from this file in the repo.
-
-![alt text](assets/image_lab02_step29.png)
-
-30. **Paste** the copied KQL code in the `EH_YCSneakerEventStore_queryset`.
-
-![alt text](assets/image_lab02_step30.png)
-
-31. **Rename** the tab as `Clickstream Events`.
-
-![alt text](assets/image_lab02_step31.png)
-
-32. **Select** the entire script in the KQL Queryset tab page and click `Run`. 
-
-![alt text](assets/image_lab02_step32.png)
-
-33. **Check** the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
-
-![alt text](assets/image_lab02_step33.png)
-
-The raw clickstream events are now available in rows having typed values in the columns.
-
-### 4. Lab 03 - Factory Events
+### 3. Lab 02 - Factory Events
 
 Let's ingest energy meter events with power consumption telemetry measured on the Edge. coming from the electromotor available in our demo factory.
 
@@ -1878,6 +1732,154 @@ Here, we are building a Digital Twin where our production line is operated by se
 ![alt text](assets/image_task10_step39.png)
 
 This concludes our Digital Twin Builder experience. Notice that this Fabric item is still in preview. Still, we are already able to capture multiple data sources, both real-time data and contextual data, and related them into this 'ontology' model. This was all done without a single line of code. So users can get a good understanding of what the situation of each Twin is and how real-time data from multiple sources works together.
+
+### 4. Lab 03 - Clickstream Events
+
+YourCompany's website is the primary channel for customers to discover and buy its sneakers. Capturing, analysing and learning customer's behaviour from its website is very critical to continuously improve the customer engagement, adapt and improve social media marketing strategies as well as plan marketing events in proportion to the Return-on-Investment offered by the different digital channels.
+
+The clicks will be generated via a generator running in a workbook.
+
+1. **Navigate** to the `root level` of your workspace.
+
+![alt text](assets/image_lab02_step01.png)
+
+2. **Navigate** to the folder `Lab 02 Clickstream Events`.
+
+![alt text](assets/image_lab02_step02.png)
+
+3. **Open** the existing Eventstream `ES_ClickstreamEvents`.
+
+![alt text](assets/image_lab02_step03.png)
+
+4. **Select** the `Use custom endpoint` tile to add a source.
+
+![alt text](assets/image_lab02_step04.png)
+
+5. **Enter** the source name as `ClickstreamNBSource` and **click** `Add`.
+
+![alt text](assets/image_lab02_step05.png)
+
+6. **Click** `Publish` to publish the Eventstream as-is.
+
+![alt text](assets/image_lab02_step06.png)
+
+7. in the published Eventstream **Click** `ClickstreamNBSource` node to access the settings.
+
+![alt text](assets/image_lab02_step07.png)
+
+8. **Select** `Kafka` as the protocol.
+
+![alt text](assets/image_lab02_step08.png)
+
+9. **Select** `SAS Key Authentication` to access the secrets of this source endpoint.
+
+![alt text](assets/image_lab02_step09.png)
+
+10. **Copy** `Bootstrap server` value and **paste it** in a Notepad. You will need this value (and others) in the subsequent steps.
+
+![alt text](assets/image_lab02_step10.png)
+
+11. Similarly, **copy** `Topic name`. And then **copy** `Connection string-primary key` by first clicking on the eye and then on the copy icon on the right of that field. **Paste** these values in a notepad. You now have separate three values.
+
+![alt text](assets/image_lab02_step11.png)
+
+12. **Navigate** back to the `root level` of your workspace and go back to the folder `Lab 02 Clickstream Events`.
+
+![alt text](assets/image_lab02_step12.png)
+
+13. **Open** the existing notebook `NB_YCClickstreamGenerator`.
+
+![alt text](assets/image_lab02_step13.png)
+
+14. In the cell with the title '# Kafka Endpoint configuration parameters', **paste** the `bootstrap server value` as the value for the field 'KAFKA_BROKER', the `topic name` as the value for 'KAFKA_TOPIC' and `connection string` as the 'sas_password'.
+
+![alt text](assets/image_lab02_step14.png)
+
+15. **Click** on `Run all` to start generating clickstream events.
+
+![alt text](assets/image_lab02_step15.png)
+
+16. **Navigate** back to the published `ES_ClickstreamEvents` Eventstream from the side ribbon. 
+
+![alt text](assets/image_lab02_step16.png)
+
+17. **Click** `Edit` from the menu ribbon to add a Eventstream destination.
+
+![alt text](assets/image_lab02_step17.png)
+
+18. **Select** `Transform events or add destination` node and **select** `Eventhouse` from the dropdown. A new node is added and an Eventhouse pane is shown on the right.
+
+![alt text](assets/image_lab02_step18.png)
+
+19. **Select** the following in the `Eventhouse pane` and **click** `Save`
+
+| Field | Value | 
+| - | - |
+| Data ingestion mode | `Direct ingestion` |
+| Destination name | `ClickstreamEventhouseDestination` |
+| Workspace | `Your workspace` |
+| Eventhouse | `EH_YCSneakerEventStore` |
+| KQL Database | `EH_YCSneakerEventStore` |
+
+The direct ingestion destination settings are filled in like this.
+
+![alt text](assets/image_lab02_step19.png)
+
+**Click** `Save` to save the destination settings.
+
+20. **Click** `Publish` to publish the Eventstream.
+
+![alt text](assets/image_lab02_step20.png)
+
+21. Wait for Eventhouse destination to load. In the published Eventstream, the `Configure button` becomes available.
+
+![alt text](assets/image_lab02_step21.png)
+
+22. **Enter** the table name `RawClickstreamData`, **click** on the tick mark, **click** `Next`.
+
+![alt text](assets/image_lab02_step22.png)
+
+23. **Preview** the messages fetched from Eventstream and click `Finish` to accept the proposed mapping.
+
+![alt text](assets/image_lab02_step23.png)
+
+24. **Check** if all the steps are successfully completed and then **click** `Close`.
+
+![alt text](assets/image_lab02_step24.png)
+
+25. **Navigate** back to your workspace.
+
+26. **Open** the existing `EH_YCSneakerEventStore` Eventhouse.
+
+![alt text](assets/image_lab02_step26.png)
+
+27. **Click** on `EH_YCSneakerEventStore_queryset`, which is the default query editor of the Eventhouse.
+
+![alt text](assets/image_lab01_step20.png)
+
+28. **Navigate** to the github repo of this workshop [Clickstream Events KQL](https://aka.ms/FabConKQL2Url) in a separate tab.
+
+29. **Copy** the `KQL code` from this file in the repo.
+
+![alt text](assets/image_lab02_step29.png)
+
+30. **Paste** the copied KQL code in the `EH_YCSneakerEventStore_queryset`.
+
+![alt text](assets/image_lab02_step30.png)
+
+31. **Rename** the tab as `Clickstream Events`.
+
+![alt text](assets/image_lab02_step31.png)
+
+32. **Select** the entire script in the KQL Queryset tab page and click `Run`. 
+
+![alt text](assets/image_lab02_step32.png)
+
+33. **Check** the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
+
+![alt text](assets/image_lab02_step33.png)
+
+The raw clickstream events are now available in rows having typed values in the columns.
 
 ### 5. Lab 04 - OneLake Events
 
