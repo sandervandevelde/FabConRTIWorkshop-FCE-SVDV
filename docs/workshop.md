@@ -17,11 +17,11 @@ tags: javascript, api, node.js          # Required. Tags for filtering and searc
 #oc_id: <marketing_tracking_id>          # Optional. Set marketing tracking code for supported links
 #navigation_levels: 2                    # Optional. Number of levels displayed in the side menu (default: 2)
 #navigation_numbering: true             # Optional. Enable numbering in the side menu (default: true)
-sections_title:                         # Optional. Override titles for each section to be displayed in the side bar
-   - Introduction
-   - Architecture
-   - Building the platform
-   - Continue your learning journey
+sections_title: # Optional. Override titles for each section to be displayed in the side bar
+  - Introduction
+  - Architecture
+  - Building the platform
+  - Continue your learning journey
 ---
 
 ## Introduction
@@ -38,8 +38,9 @@ Through practical labs, you’ll:
 - Whether you’re a beginner or an experienced practitioner, this workshop will equip you with the skills to design and implement real-time intelligence solutions for modern enterprises using Microsoft Fabric.
 
 
-YourCompany is a Direct-to-Consumer (D2C) European sneaker manufacturer. YourCompany operates 3 manufacturing sites in Germany, Sweden and Estonia with multiple distribution centres, 10 retail brick and mortar stores and an e-commerce store. 
-YourCompany makes sneakers for men, women and kids. For each gender type, YourCompany has 3 different categories: 
+YourCompany is a Direct-to-Consumer (D2C) European sneaker manufacturer. YourCompany operates 3 manufacturing sites in Germany, Sweden and Estonia with multiple distribution centres, 10 retail brick and mortar stores and an e-commerce store.
+YourCompany makes sneakers for men, women and kids. For each gender type, YourCompany has 3 different categories:
+
 - GenZ Pros: These are sneakers designed for modern professionals that wants to pair sneakers with suits, trousers, office wear or any professional setting to make a lasting impression
 - Altars: These sneakers can be for a coffee date, dinner with your parents, or for just taking your dog for a walk. These sneakers go with your mood in the moment when you want to step out but don’t want to decide what footwear to wear
 - Colours: Who said sneakers had to be white or black and restricted to fixed colours. Find sneakers that match your vibe whether its vibrant, classic, ultra-modern, rainbow or a unicorn.
@@ -51,6 +52,7 @@ YourCompany partners with logistics companies to route the sneaker boxes from th
 YourCompany also owns a factory producing rubber required for sneakers that is sensitive to temperature changes during production. You are producing these products day and night, all year long, and you want to analyze and control the production process in real-time. So, you are interested in both the performance of your machinery and the environmental conditions (like temperature and humidity) inside and outside your factory.
 
 In this workshop, we will answer questions such as:
+
 - How are my customers interacting with my e-commerce portal?
 - What are my factory's performance parameters? How can I make it more efficient?
 - What are the shipping delays when sending sneakers to my customers?
@@ -66,13 +68,12 @@ You will learn how to:
 - Stream LoraWan sensor events into Microsoft Fabric Eventhouse via Eventstream.
 - Stream real-time weather data into Microsoft Fabric Eventhouse via Eventstream.
 - Send clickstream data to a kafka enabled endpoint of Eventstream
-- Auto ingest new XML files coming from the shipping companies 
+- Auto ingest new XML files coming from the shipping companies
 - Create real-time data transformations in Microsoft Fabric Eventhouse through the power of Kusto Query Language (KQL).
 - Create real-time visualizations using Real-Time Dashboards.
 - Build Activator actions as alerts on the streaming data.
 - Add a Digital Twin Builder representation.
 - Add a conversational Data Agent to talk to your data.
-
 
 All the **code** in this tutorial can be found here:
 [Fabric Real-Time Intelligence Workshop](https://github.com/microsoft/fabconrtiworkshop/)
@@ -99,17 +100,18 @@ All the **code** in this tutorial can be found here:
 - If you'd like to contribute to this lab, report a bug or issue, please feel free to submit a pull request to the [GitHub repo](https://github.com/microsoft/fabconrtiworkshop/) for us to review or [submit any issues](https://github.com/microsoft/fabconrtiworkshop/issues) you encounter.
 
 ---
+
 ## Workshop Structure
 
-### Lab 1: Tracking and monitoring shipments 
+### Lab 1: Tracking and monitoring shipments
 
 Monitoring shipments across multiple shipping partners is essential for YourCompany as it provides comprehensive visibility throughout the supply chain, minimizing the risk of delays or disruptions. It allows for the early detection of potential issues such as lost, delayed, or damaged packages, thereby safeguarding patient trust and satisfaction. Consistent tracking also enables performance benchmarking across carriers, ensuring cost efficiency and reliability. Moreover, real-time monitoring supports adherence to delivery SLAs and regulatory requirements, which are particularly critical in healthcare logistics. In addition, the data collected offers valuable insights to drive continuous improvement and informed decision-making in operations.
 
-### Lab 2: Real-time view into customer interactions 
+### Lab 2: Real-time view into customer interactions
 
 Clickstream monitoring is vital for YourCompany as it provides detailed insights into how users interact with digital platforms, enabling a deeper understanding of customer behavior and preferences. By tracking user journeys in real time, it becomes possible to identify pain points, optimize website performance, and improve the overall user experience. This monitoring also highlights trends that inform data-driven decisions in marketing, product design, and service delivery. Furthermore, it supports the detection of unusual activity, strengthening security and compliance. Ultimately, the business value lies in driving higher engagement, improving conversion rates, and ensuring that digital services meet both customer needs and regulatory standards.
 
-### Lab 3: Connected Factory 
+### Lab 3: Connected Factory
 
 In today's data-driven world, understanding factory behavior is essential for optimizing the production process for better Overall Equipment Effectiveness (OEE). This lab focuses on a simplified connected factory scenario that demonstrates how telemetry can be captured and analyzed using key data entities.
 
@@ -153,7 +155,7 @@ This Real-Time hub works in conjunction with Eventstreams for ingesting that dat
 
 In this lab, we won’t cover every aspect of a Real-Time Intelligence solution, but we will focus on the most essential components. By the end, you'll be equipped to build a complete end-to-end solution that incorporates all the key building blocks. These components are highlighted in the following architectural diagram:
 
-   ![Real-Time Dashboards](assets/rtiworkshop_architecture_1.png)
+![Real-Time Dashboards](assets/rtiworkshop_architecture_1.png)
 
 ### Data schema
 
@@ -165,34 +167,34 @@ These are the tables and materialized views you will encounter today.
 
 ##### Lab 1
 
-| Name | Origin | Description |
-| - | - | - |
-| **RawShippingsMsgs** | Eventhouse table | Raw XML shipment notifications from the shipping companies |
-| **ShippingNotifications** | Eventhouse table | Strongly typed tabl schema of raw XML shipping notifications|
+| Name                      | Origin           | Description                                                  |
+| ------------------------- | ---------------- | ------------------------------------------------------------ |
+| **RawShippingsMsgs**      | Eventhouse table | Raw XML shipment notifications from the shipping companies   |
+| **ShippingNotifications** | Eventhouse table | Strongly typed tabl schema of raw XML shipping notifications |
 
 ##### Lab 2
 
-| Name | Origin | Description |
-| - | - | - |
-| **RawClickstreamData** | Eventhouse table | Raw JSON clickstream data from the e-commerce website |
-| **Clickstream_AddToCart** | Eventhouse table | Filtered data for Add To Cart event types|
-| **Clickstream_BrowseCategory** | Eventhouse table | Filtered data for Browse Category event types |
-| **Clickstream_CreateAccount** | Eventhouse table | Filtered data for Create Account event types |
-| **Clickstream_Newsletter** | Eventhouse table | Filtered data for Newsletter event types |
-| **Clickstream_ViewProduct** | Eventhouse Materialized view | Filtered data for View Product event types |
+| Name                           | Origin                       | Description                                           |
+| ------------------------------ | ---------------------------- | ----------------------------------------------------- |
+| **RawClickstreamData**         | Eventhouse table             | Raw JSON clickstream data from the e-commerce website |
+| **Clickstream_AddToCart**      | Eventhouse table             | Filtered data for Add To Cart event types             |
+| **Clickstream_BrowseCategory** | Eventhouse table             | Filtered data for Browse Category event types         |
+| **Clickstream_CreateAccount**  | Eventhouse table             | Filtered data for Create Account event types          |
+| **Clickstream_Newsletter**     | Eventhouse table             | Filtered data for Newsletter event types              |
+| **Clickstream_ViewProduct**    | Eventhouse Materialized view | Filtered data for View Product event types            |
 
 ##### Lab 3
 
-| Name | Origin | Description |
-| - | - | - |
-| **BronzeEnergyMeter** | Eventhouse table | Raw untyped energy meter data (current, voltage, reactive) |
-| **SilverEnergyMeterCurrent** | Eventhouse table | Typed current data from energy meter |
-| **SilverEnergyMeterVoltage** | Eventhouse table | Typed voltage data from energy meter |
-| **BronzeLoraWan** | Eventhouse table | Raw untyped LoraWan data from many sensors |
-| **SilverLoraWanTemperature** | Eventhouse table | Typed LoraWan environmental data from one type of temperature sensors |
-| **GoldLoraWanTemperature** | Eventhouse Materialized view | Average LoraWan environmental data in 10-minute bins for a report |
-| **BronzeWeather** | Eventhouse table | Real-time, raw, weather data from one or more locations, full of duplicates |
-| **SilverWeather** | Eventhouse Materialized view | Real-time, typed, weather data from one or more locations, without duplicates |
+| Name                         | Origin                       | Description                                                                   |
+| ---------------------------- | ---------------------------- | ----------------------------------------------------------------------------- |
+| **BronzeEnergyMeter**        | Eventhouse table             | Raw untyped energy meter data (current, voltage, reactive)                    |
+| **SilverEnergyMeterCurrent** | Eventhouse table             | Typed current data from energy meter                                          |
+| **SilverEnergyMeterVoltage** | Eventhouse table             | Typed voltage data from energy meter                                          |
+| **BronzeLoraWan**            | Eventhouse table             | Raw untyped LoraWan data from many sensors                                    |
+| **SilverLoraWanTemperature** | Eventhouse table             | Typed LoraWan environmental data from one type of temperature sensors         |
+| **GoldLoraWanTemperature**   | Eventhouse Materialized view | Average LoraWan environmental data in 10-minute bins for a report             |
+| **BronzeWeather**            | Eventhouse table             | Real-time, raw, weather data from one or more locations, full of duplicates   |
+| **SilverWeather**            | Eventhouse Materialized view | Real-time, typed, weather data from one or more locations, without duplicates |
 
 Materialized views are used due to their unique ability to aggregate rows, like de-duplicating excess rows.
 
@@ -266,11 +268,11 @@ We will use a materialized view to create the weather data silver Layer in our m
 
 - Feature [documentation](https://learn.microsoft.com/fabric/get-started/copilot-real-time-intelligence).
 
-   ![Copilot](assets/Copilot.png "Fabric Copilot in KQL Queryset")
+![Copilot](assets/Copilot.png "Fabric Copilot in KQL Queryset")
 
 #### Real-Time Dashboards
 
-   ![Real-Time Dashboards](assets/RTIMenu.png "Some Fabric RTI menu items to create like Eventhouse, Eventstream, and Real-Time Dashboard")
+![Real-Time Dashboards](assets/RTIMenu.png "Some Fabric RTI menu items to create like Eventhouse, Eventstream, and Real-Time Dashboard")
 
 - While similar to Power BI's dashboard functionality, Real-time Dashboards have a different use case. Real-time Dashboards are commonly used for operational decision-making, rather than the business intelligence use cases Power BI targets. Power BI supports more advanced visualizations and provides richer data-story capabilities. Real-time Dashboards refresh very fast and allow with ease to toggle between visuals, and analysts to pro-developer can explore/edit queries without needing to download a desktop tool. This makes the experience simpler for analysts to understand and visualize large volumes of highly granular data.
 
@@ -299,7 +301,7 @@ We will use a materialized view to create the weather data silver Layer in our m
 
 #### OneLake shortcut for Lakehouse
 
-In Microsoft Fabric, a OneLake shortcut is a way to access data from other locations without physically moving or copying it. It acts like a virtual link, allowing you to work with data as if it were stored locally within your Lakehouse, even if it resides elsewhere. This means you can integrate data from various sources into your Lakehouse without creating duplicates. 
+In Microsoft Fabric, a OneLake shortcut is a way to access data from other locations without physically moving or copying it. It acts like a virtual link, allowing you to work with data as if it were stored locally within your Lakehouse, even if it resides elsewhere. This means you can integrate data from various sources into your Lakehouse without creating duplicates.
 
 #### Digital Twin Builder
 
@@ -312,7 +314,6 @@ It's key capabilities are ontology modeling (Define a shared vocabulary and stru
 Data agent in Microsoft Fabric is a new Microsoft Fabric feature that allows you to build your own conversational Q&A systems using generative AI. A Fabric data agent makes data insights more accessible and actionable for everyone in your organization. With a Fabric data agent, your team can have conversations, with plain English-language questions, about the data that your organization stored in Fabric OneLake and then receive relevant answers. This way, even people without technical expertise in AI or a deep understanding of the data structure can receive precise and context-rich answers.
 
 You can also add organization-specific instructions, examples, and guidance to fine-tune the Fabric data agent. This ensures that responses align with your organization's needs and goals, allowing everyone to engage with data more effectively. Fabric data agent fosters a culture of data-driven decision-making because it lowers barriers to insight accessibility, it facilitates collaboration, and it helps your organization extract more value from its data.
-
 
 ## Pre-requisites
 
@@ -329,7 +330,6 @@ To complete the lab, you **must** have access to a [Microsoft Fabric](https://ww
 > For the purpose of this tutorial, speakers/proctors will provide a tenant with capacity for you to build your solution.
 
 </div>
-
 
 ---
 
@@ -353,11 +353,12 @@ To complete the lab, you **must** have access to a [Microsoft Fabric](https://ww
 
 1. **Open** [app.fabric.microsoft.com](https://app.fabric.microsoft.com/) in your browser.
 
-   ![FabricURL](assets/image_task01_step01.png "Fabric URL")
+![FabricURL](assets/image_task01_step01.png "Fabric URL")
 
 2. **Log in** with the provided credentials, if a trial fabric tenant was previously set up (reference Prerequisites). You may also choose to run the lab in your own Fabric Tenant if you already have one.
 
 #### 2. Fabric Workspace
+
 <!---
 1. If a Microsoft Fabric Workspace is 'designated' to your login by the Fabric Trial Tenant, **click** `Workspaces` in the menu on the left of the portal and open your designated workspace.
 
@@ -391,115 +392,115 @@ For this workshop, Fabric items relevant for this workshop have been pre-created
 
 ### 2. Lab 01 - Shipping Events
 
-YourCompany receives shipping events as XML files in an Azure storage account, from third party suppliers. It is imperative to capture and track these shipping events to ensure that any delays can be proactively be detected and the customers can be notified instead of waiting to get the signal a few minutes/hours/days later. 
+YourCompany receives shipping events as XML files in an Azure storage account, from third party suppliers. It is imperative to capture and track these shipping events to ensure that any delays can be proactively be detected and the customers can be notified instead of waiting to get the signal a few minutes/hours/days later.
 
 To achieve this, we start with ingesting these shipping events into Real-Time Intelligence components continuously as soon as they arrive in the storage account. We will setup an architecture to continuously listen to the shipping events.
 
 1. In your workspace, **navigate** to the existing `EH_YCSneakerEventStore` Eventhouse.
 
-   ![alt text](assets/image_lab01_step01.png)
+![alt text](assets/image_lab01_step01.png)
 
 2. In the eventhouse main page, **click** on KQL Database of the same name `EH_YCSneakerEventStore`.
 
-   ![alt text](assets/image_lab01_step02.png)
+![alt text](assets/image_lab01_step02.png)
 
 3. **Click** `Get Data` (via the three dots) and **Select** `Azure Storage` as the data source for ingesting data.
 
-   ![alt text](assets/image_lab01_step03.png)
+![alt text](assets/image_lab01_step03.png)
 
 4. A dialog is shown. **Create** a new table `RawShippingMsgs`. Pay attention to this table name, it is reused later on (Copy the table name as-is else the subsequent scripts will fail to execute).
 
-   ![alt text](assets/image_lab01_step04.png)
+![alt text](assets/image_lab01_step04.png)
 
 5. Keep the defaults of Continuous Ingestion as On and 'Connect to a storage account'. **Select** `FabConVienna 2025 Azure Subscription` as the Subscription.
 
-   ![alt text](assets/image_lab01_step05.png)
+![alt text](assets/image_lab01_step05.png)
 
 6. **Select** `fabconvienna2025sa` as the Blob storage account.
 
-   ![alt text](assets/image_lab01_step06.png)
+![alt text](assets/image_lab01_step06.png)
 
 7. **Select** `rawshippingmsgs` as the container.
 
-   ![alt text](assets/image_lab01_step07.png)
+![alt text](assets/image_lab01_step07.png)
 
 8. **Select** `New connection` in the connection.
 
-   ![alt text](assets/image_lab01_step08.png)
+![alt text](assets/image_lab01_step08.png)
 
 9. In the New connection pop up, keep the other defaults. **Paste** the Connection name as your user account. For example, if you are FabCon User 002, paste that as the connection name.
 
-   ![alt text](assets/image_lab01_step09.png)
+![alt text](assets/image_lab01_step09.png)
 
 10. **Click** `Save`.
 
-   ![alt text](assets/image_lab01_step10.png)
+![alt text](assets/image_lab01_step10.png)
 
 11. **Click** `Close`.
 
-   ![alt text](assets/image_lab01_step11.png)
+![alt text](assets/image_lab01_step11.png)
 
 12. In the Connection drop down, **Select** the connection that you just created.
 
-   ![alt text](assets/image_lab01_step12.png)
+![alt text](assets/image_lab01_step12.png)
 
 13. **Rename** the Eventstream Name to `ES_ShippingEvents`.
 
-   ![alt text](assets/image_lab01_step13.png)
+![alt text](assets/image_lab01_step13.png)
 
 14. **Click** `Next`.
 
-   ![alt text](assets/image_lab01_step14.png)
+![alt text](assets/image_lab01_step14.png)
 
 15. **Notice** the preview of a single XML message retrieved from the storage account.
 
-   ![alt text](assets/image_lab01_step15.png)
+![alt text](assets/image_lab01_step15.png)
 
 16. **Click** `Finish`.
 
-   ![alt text](assets/image_lab01_step16.png)
+![alt text](assets/image_lab01_step16.png)
 
 17. After clicking 'Finish', Eventhouse will establish a connection with the storage account and will read XML files as soon as they are created in the storage account. Let the processing continue as it completes the required background processes. You can **click** `Close` and it will still continue background processing.
 
-   ![alt text](assets/image_lab01_step17.png)
+![alt text](assets/image_lab01_step17.png)
 
 18. In KQL Database tree, you will notice the table `RawShippingMsgs`.
 
-   ![alt text](assets/image_lab01_step18.png)
+![alt text](assets/image_lab01_step18.png)
 
 19. **Click** on the table to see the preview of the messages.
 
-   ![alt text](assets/image_lab01_step19.png)
+![alt text](assets/image_lab01_step19.png)
 
 20. **Click** on 'EH_YCSneakerEventStore_queryset', which is the default query editor of the Eventhouse.
 
-   ![alt text](assets/image_lab01_step20.png)
+![alt text](assets/image_lab01_step20.png)
 
 21. **Navigate** to the github repo of this workshop [Shipping Events KQL](https://github.com/microsoft/FabConRTIWorkshop/blob/main/assets/kqlcode/Lab1_QS_YCShippingDDLScript.kql) in a separate tab.
 
-   ![alt text](assets/image_lab01_step21.png)
+![alt text](assets/image_lab01_step21.png)
 
 22. **Copy** the KQL code from this file in the repo.
 
-   ![alt text](assets/image_lab01_step22.png)
+![alt text](assets/image_lab01_step22.png)
 
 23. **Paste** the copied KQL code in the `EH_YCSneakerEventStore_queryset`.
 
-   ![alt text](assets/image_lab01_step23.png)
+![alt text](assets/image_lab01_step23.png)
 
 24. **Rename** the tab as `Shipping Events`. You will be creating more tabs so naming them will be helpful.
 
-   ![alt text](assets/image_lab01_step24_1.png)
-   
-   ![alt text](assets/image_lab01_step24_2.png)
+![alt text](assets/image_lab01_step24_1.png)
+
+![alt text](assets/image_lab01_step24_2.png)
 
 25. **Select** the entire script in the KQL Queryset tab page and click `Run`. 
 
-   ![alt text](assets/image_lab01_step25.png)
+![alt text](assets/image_lab01_step25.png)
 
 26. **Check** the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
 
-   ![alt text](assets/image_lab01_step26.png)
+![alt text](assets/image_lab01_step26.png)
 
 The incoming XML messages with shipping events are now made available in typed columns and available for querying.
 
@@ -581,7 +582,7 @@ The clicks will be generated via a generator running in a workbook.
 
 ![alt text](assets/image_lab02_step18.png)
 
-19. **Select** the following in the `Eventhouse pane`.
+19. **Select** the following in the `Eventhouse pane` and **click** `Save`
 
 | Field | Value | 
 | - | - |
@@ -621,35 +622,33 @@ The direct ingestion destination settings are filled in like this.
 
 26. **Open** the existing `EH_YCSneakerEventStore` Eventhouse.
 
-   ![alt text](assets/image_lab02_step26.png)
+![alt text](assets/image_lab02_step26.png)
 
 27. **Click** on `EH_YCSneakerEventStore_queryset`, which is the default query editor of the Eventhouse.
 
-   ![alt text](assets/image_lab01_step20.png)
+![alt text](assets/image_lab01_step20.png)
 
 28. **Navigate** to the github repo of this workshop [Clickstream Events KQL](https://github.com/microsoft/FabConRTIWorkshop/blob/main/assets/kqlcode/Lab1_QS_YCShippingDDLScript.kql) in a separate tab.
 
-   ![alt text](assets/image_lab02_step28.png)
-
 29. **Copy** the `KQL code` from this file in the repo.
 
-   ![alt text](assets/image_lab02_step29.png)
+![alt text](assets/image_lab02_step29.png)
 
 30. **Paste** the copied KQL code in the `EH_YCSneakerEventStore_queryset`.
 
-   ![alt text](assets/image_lab02_step30.png)
+![alt text](assets/image_lab02_step30.png)
 
 31. **Rename** the tab as `Clickstream Events`.
 
-   ![alt text](assets/image_lab02_step31.png)
+![alt text](assets/image_lab02_step31.png)
 
 32. **Select** the entire script in the KQL Queryset tab page and click `Run`. 
 
-   ![alt text](assets/image_lab02_step32.png)
+![alt text](assets/image_lab02_step32.png)
 
 33. **Check** the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
 
-   ![alt text](assets/image_lab02_step33.png)
+![alt text](assets/image_lab02_step33.png)
 
 The raw clickstream events are now available in rows having typed values in the columns.
 
@@ -671,145 +670,145 @@ You will ingest the energy meter data from an Azure Event Hub.
 
 Notice that the electric motor starts and stops every 15 minutes so you will see some erratic behavior in the current consumption.
 
-   ![alt text](assets/rtiLabArchitecture_workshop_4.png)
+![alt text](assets/rtiLabArchitecture_workshop_4.png)
 
-1. **Open** the Eventstream named `ES_EnergyMeter`, already provided in the 'Factory events folder'. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
+1. **Open** the Eventstream named `ES_EnergyMeter`, already provided in the 'Lab 03 Factory events' folder of your workspace. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
 
    ![alt text](assets/image_task04_step03.png)
 
 2. **Click** `Select a data source`. In the dialog **click** on the button `Connect`.
 
-   ![alt text](assets/image_task04_step04.png)
+![alt text](assets/image_task04_step04.png)
 
 3. In the dialog 'Configure connection settings', **Select** `factorytelemetryeventhub` for the combobox 'Connection' and **insert** the name of the consumer group into the field 'Consumer group' that aligns with the username that was provided to you. In this case, this is `workshopuser49`. **Ensure** that the 'Data format' is `Json` and **click on the pencil** icon next to `Source name`.
 
-   ![alt text](assets/image_task04_step05.png)
+![alt text](assets/image_task04_step05.png)
 
 4. **Enter** `EnergyMeterEventsSource` as 'Source name' and then **click** on the button `Next`.
 
-   ![alt text](assets/image_task04_step06.png)
+![alt text](assets/image_task04_step06.png)
 
 5. On the screen 'Review + Connect' **review** all of the information and then **click** on the button `Add`.
 
-   ![alt text](assets/image_task04_step07.png)
+![alt text](assets/image_task04_step07.png)
 
 6. The source is added. **Notice** that data from several types of energy meter messages is received. We see the arrival of both 'current', 'voltage' and 'reactive' messages in the Test result. The related telemetry arrives every few seconds, with little pauses between them. Notice that the local time is provided in UTC.
 
-   ![alt text](assets/image_task04_step08.png)
+![alt text](assets/image_task04_step08.png)
 
 7. Eventstream offers multiple ways to transform incoming data, including a filter, perfect for making the Eventstream ignore the 'reactive' data. **Add a filter** by using the `drop-down option` in the 'Transform events or add destination' step (for now, ignore the 'Transform events' menu item).
 
-   ![alt text](assets/image_task04_step09.png)
+![alt text](assets/image_task04_step09.png)
 
 8. The step now turns into a Filter aggregation, but we need to set it up first. **Use the pencil** to set up the filter settings.
 
-   ![alt text](assets/image_task04_step10.png)
+![alt text](assets/image_task04_step10.png)
 
 9. **Give the filter** a 'Operation name' like `ReactiveFilter`. We only want to keep messages when the `key does not equal reactive` by **selecting the 'key' column and adding the filter values**. **Save** the filter.
 
-   ![alt text](assets/image_task04_step11.png)
+![alt text](assets/image_task04_step11.png)
 
 10. Although the filter is now set, it still shows 'error' because no Destination is set as next step.
 
-   ![alt text](assets/image_task04_step12.png)
+![alt text](assets/image_task04_step12.png)
 
-11. **Click on the plus sign** to the right of this Filter step and **select the Stream** (also known as Derived Stream). 
+11. **Click on the plus sign** to the right of this Filter step and **select the Stream** (also known as Derived Stream).
 
-   ![alt text](assets/image_task04_step13.png)
+![alt text](assets/image_task04_step13.png)
 
 12. Notice that the 'error' message disappears when a Destination is added. **Use the pencil** to edit the Derived stream.
 
-   ![alt text](assets/image_task04_step14.png)
+![alt text](assets/image_task04_step14.png)
 
 13. **Provide a Stream name** like `EnergyMeterDerivedStream`. **Save** the change.
 
-   ![alt text](assets/image_task04_step15.png)
+![alt text](assets/image_task04_step15.png)
 
 14. When you **select** the Derived stream and **Refresh** the test result, it shows only the 'current' and 'voltage' messages. The 'reactive' messages are now filtered.
 
-   ![alt text](assets/image_task04_step16.png)
+![alt text](assets/image_task04_step16.png)
 
 15. The Derived stream is added, so these messages are potentially shared with other users accessing the same workspace you are working on. Notice that the Derived stream can have other steps added to the right, it is not the end of the flow. **Add a destination** for an Eventhouse, behind the Derived stream.
 
-   ![alt text](assets/image_task04_step17.png)
+![alt text](assets/image_task04_step17.png)
 
 16. The Eventhouse destination needs a setup. **Click on the pencil** to set it up.
 
-   ![alt text](assets/image_task04_step18.png)
+![alt text](assets/image_task04_step18.png)
 
 17. We **keep** the `Event processing before ingestion`. **Give the Destination a name** like `Eventhouse`. **Select your own workspace** and **Select your own Eventhouse** and **Select your own KQL Database**. Regarding the table, **Create a new table** and name it `BronzeEnergyMeter`. Keep the input data format to Json.
 
-   ![alt text](assets/image_task04_step19.png)
+![alt text](assets/image_task04_step19.png)
 
 18. **Save** the Eventhouse Destination set-up.
 
-   ![alt text](assets/image_task04_step20.png)
+![alt text](assets/image_task04_step20.png)
 
 19. Once the destination dialog is saved, notice the Eventhouse destination will also receive only 'current' and 'voltage' messages by **Refreshing** the test result so Fabric knows what the format of the incoming messages looks like.
 
-   ![alt text](assets/image_task04_step21.png)
+![alt text](assets/image_task04_step21.png)
 
 20. **Publish** the Eventstream.
 
-   ![alt text](assets/image_task04_step22.png)
+![alt text](assets/image_task04_step22.png)
 
 21. In the background, the table is created in the KQL Database of the Eventhouse, and the infrastructure is set up. This will take a moment or so.
 
-   ![alt text](assets/image_task04_step23.png)
+![alt text](assets/image_task04_step23.png)
 
 22. Finally, the Eventhouse destination is active.
 
-   ![alt text](assets/image_task04_step24.png)
+![alt text](assets/image_task04_step24.png)
 
-23. **Leave the Eventstream and navigate to** the `FactoryEvents_EH` Eventhouse and clicking on the `FactoryEvents_EH` KQL Database name. This will show all content in the KQL Database. Notice that the `BronzeEnergyMeter` table is added, now. Check the columns of that table, including the Universal Namespace (UNS) of the Compact Controller PLC.
+23. **Leave the Eventstream and navigate to** the `EH_YCSneakerEventStore` Eventhouse and clicking on the `EH_YCSneakerEventStore` KQL Database name. This will show all content in the KQL Database. Notice that the `BronzeEnergyMeter` table is added, now. Check the columns of that table, including the Universal Namespace (UNS) of the Compact Controller PLC.
 
-   ![alt text](assets/image_task04_step25.png)
+![alt text](assets/image_task04_step25.png)
 
 24. If you **select** the table `Data preview`, a preview of the current ingested data is shown.
 
-   ![alt text](assets/image_task04_step26.png)
+![alt text](assets/image_task04_step26.png)
 
 25. If you **select** the table `Schema insights`, a preview of the schema and some statistics are shown. Here, we see that multiple columns are of type 'string', including the 'value' column. Because this column represents decimal values in a string format, doing mathematical calculations will be hard. So, we need to fix that.
 
-   ![alt text](assets/image_task04_step27.png)
+![alt text](assets/image_task04_step27.png)
 
 26. If you follow the three dots next to the `BronzeEnergyMeter` table name, you get a sub-menu with extra options. **Select Visual exploration** for a no-code experience.
 
-   ![alt text](assets/image_task04_step28.png)
+![alt text](assets/image_task04_step28.png)
 
 27. A new dialog is shown with a preview of incoming messages. Some visual statistics are shown to the right, like the distribution of keys. **Change the visualization** at the top.
 
-   ![alt text](assets/image_task04_step29.png)
+![alt text](assets/image_task04_step29.png)
 
 28. We want to see the same messages now visualized as a `Line chart`.
 
-   ![alt text](assets/image_task04_step30.png)
+![alt text](assets/image_task04_step30.png)
 
 29. The visualization is not smart enough to understand the actual meaning of the value column at this moment. This is both because we are mixing two types of messages (`current` and `voltage`) and because the values are of type 'string', not decimal values. We will fix this later on.
 
-   ![alt text](assets/image_task04_step31.png)
+![alt text](assets/image_task04_step31.png)
 
 30. The visual exploration also offers extra filters and aggregations.
 
-   ![alt text](assets/image_task04_step32.png)
+![alt text](assets/image_task04_step32.png)
 
 31. Just as a demonstration of how this dialog works, add an aggregation (Notice that this step will not produce any useful results due to the string values!). So, we are interested in the `Average operator` based on the `value column`. We **add two** `group by` rows. We **group by key** (so we potentially split 'current' messages from 'voltage' messages), and we **group by deviceId** so we split up messages coming from different devices. **Apply** the aggregation.
- 
-   ![alt text](assets/image_task04_step33.png)
+
+![alt text](assets/image_task04_step33.png)
 
 32. Because of the current limitation of the incoming data (the `value column` is still of type 'string'), so the aggregation will fail. But the intent of this dialog is still understood, the KQL query language shows a summary by key and deviceId.
 
-   ![alt text](assets/image_task04_step34.png)
+![alt text](assets/image_task04_step34.png)
 
-33. We will use the KQL query language to turn the bronze table into two separate silver tables. **Navigate to the KQL Queryset** named `FactoryEvents_EH_queryset`.
+33. We will use the KQL query language to turn the bronze table into two separate silver tables. **Navigate to the KQL Queryset** named `EH_YCSneakerEventStore_queryset`.
 
-   ![alt text](assets/image_task04_step35.png)
+![alt text](assets/image_task04_step35.png)
 
-34. Each KQL Database comes with a KQL Queryset already. **See** the KQL Queryset of the 'FactoryEvents_EH' KQL Database in the 'FactoryEvents_EH' Eventhouse has opened. A KQL Queryset offers a sandbox for querying the data using the Kusto Query Language (KQL). We will also create extra logic using KQL commands. We will create a silver voltage table `SilverEnergyMeterVoltage` and fill it with typed voltage rows by creating a Table update policy based on the `BronzeEnergyMeter`. The typed silver table data is copied from the bronze table every time new bronze table rows arrive. The conversion part is done via the function `ParseVoltageTelemetry`. **Execute these three KQL commands separately**. Do this by placing them all in the KQL Queryset, putting the cursor in each command, and running it. Do this for **one after another**.
+34. Each KQL Database comes with a KQL Queryset already. **See** the KQL Queryset of the 'EH_YCSneakerEventStore' KQL Database in the 'EH_YCSneakerEventStore' Eventhouse has opened. A KQL Queryset offers a sandbox for querying the data using the Kusto Query Language (KQL). We will also create extra logic using KQL commands. We will create a silver voltage table `SilverEnergyMeterVoltage` and fill it with typed voltage rows by creating a Table update policy based on the `BronzeEnergyMeter`. The typed silver table data is copied from the bronze table every time new bronze table rows arrive. The conversion part is done via the function `ParseVoltageTelemetry`. **Execute these three KQL commands separately**. Do this by placing them all in the KQL Queryset, putting the cursor in each command, and running it. Do this for **one after another**.
 
 ```
 // query 1/3 - Create a table
-.create table SilverEnergyMeterVoltage (voltageValue : double, timestamp : datetime, deviceId : string, company: string , country:string, city:string, building: string, line: string, unit: string) 
+.create table SilverEnergyMeterVoltage (voltageValue : double, timestamp : datetime, deviceId : string, company: string , country:string, city:string, building: string, line: string, unit: string)
 
 // query 2/3 - Create function
 .create function
@@ -819,7 +818,7 @@ ParseVoltageTelemetry ()
   BronzeEnergyMeter
     | where key has "voltage"
     | extend splitUNS=split(UNS, '/')
-    | project 
+    | project
         voltageValue = todouble(value),
         timestamp = todatetime(timestamp),
         deviceId = deviceId,
@@ -833,7 +832,7 @@ ParseVoltageTelemetry ()
 
 // query 3/3 - Add the table update policy
 .alter table
-SilverEnergyMeterVoltage 
+SilverEnergyMeterVoltage
 policy update @'[{"Source": "BronzeEnergyMeter", "Query": "ParseVoltageTelemetry", "IsEnabled" : true, "IsTransactional": true }]'
 ```
 
@@ -846,13 +845,13 @@ SilverEnergyMeterVoltage
 
 36. The result will **show** a list of ten random rows from the `SilverEnergyMeterVoltage` table via the 'take' statement.
 
-   ![alt text](assets/image_task04_step36.png)
+![alt text](assets/image_task04_step36.png)
 
 37. **Repeat** this also for the other new silver table `SilverEnergyMeterCurrent`. Again, **execute these three KQL commands separately**, again one after another.
 
 ```
 // query 1/3 - Create a table
-.create table SilverEnergyMeterCurrent (currentValue : double, timestamp : datetime, deviceId : string, company: string , country:string, city:string, building: string, line: string, unit: string) 
+.create table SilverEnergyMeterCurrent (currentValue : double, timestamp : datetime, deviceId : string, company: string , country:string, city:string, building: string, line: string, unit: string)
 
 // query 2/3 - Create function
 .create function
@@ -862,7 +861,7 @@ ParseCurrentTelemetry ()
   BronzeEnergyMeter
     | where key has "current"
     | extend splitUNS=split(UNS, '/')
-    | project 
+    | project
         currentValue = todouble(value),
         timestamp = todatetime(timestamp),
         deviceId = deviceId,
@@ -876,7 +875,7 @@ ParseCurrentTelemetry ()
 
 // query 3/3 - Add the table update policy
 .alter table
-SilverEnergyMeterCurrent 
+SilverEnergyMeterCurrent
 policy update @'[{"Source": "BronzeEnergyMeter", "Query": "ParseCurrentTelemetry", "IsEnabled" : true, "IsTransactional": true }]'
 ```
 
@@ -889,7 +888,7 @@ SilverEnergyMeterCurrent
 
 39. The result will show a list of ten random rows from the `SilverEnergyMeterCurrent` table via the 'take' statement.
 
-   ![alt text](assets/image_task04_step37.png)
+![alt text](assets/image_task04_step37.png)
 
 40. Now, we have typed columns in both tables, we can do some calculations. Did you notice we split the Universal Namespace (UNS) column and turned the values into doubles? **Execute the following query**. It will join the tables with typed voltage values and typed current values based on a time difference of less than a few seconds (because the telemetry arrives every few seconds). So the right combination is used to calculate the wattage used by the electromotor (when running). We only look at the latest ten entries.
 
@@ -909,7 +908,7 @@ SilverEnergyMeterCurrent
 
 41. The result will be a table with a `wattage` calculated from the current and voltage.
 
-   ![alt text](assets/image_task04_step38.png)
+![alt text](assets/image_task04_step38.png)
 
 42. How about rendering the values? **Execute this query** with a 'render' statement.
 
@@ -924,16 +923,16 @@ SilverEnergyMeterCurrent
 | extend wattage= round(voltageValue * currentValue, 2)
 | project wattage, voltageValue, currentValue, timestamp, deviceId
 | order by timestamp asc
-| render timechart 
+| render timechart
 ```
 
 43. The result will be a chart with a `wattage` calculated from the current and voltage.
 
-   ![alt text](assets/image_task04_step39.png)
+![alt text](assets/image_task04_step39.png)
 
 44. Here, the electric motor just started, resulting in a large spike due to the huge amount of current needed to get it running. The measurement was taken just at the right moment.
 
-   ![alt text](assets/image_task04_step40.png)
+![alt text](assets/image_task04_step40.png)
 
 45. It must be clear that all new BronzeEnergyMeter rows are duplicated and distributed over the two Silver tables. If you are confident this works as expected, the retention time of the bronze table can be reduced so the database stores less data. **Change the retention time** to one hour. This is not a soft deletion.
 
@@ -945,23 +944,23 @@ SilverEnergyMeterCurrent
 
 47. One more thing. Do you remember that Derived stream in the Eventstream? Let's **visit** the `Real-Time Hub` to check out what this looks like for other users. On the portal menu at the left side of your Fabric portal, **select** `Real-Time`.
 
-   ![alt text](assets/image_task04_step41.png)
+![alt text](assets/image_task04_step41.png)
 
 48. If a Welcome dialog is shown, **press** `Get started` (leave the checkbox unchecked to take the tour later on).
 
-   ![alt text](assets/image_task04_step42.png)
+![alt text](assets/image_task04_step42.png)
 
 49. The Real-Time Hub shows all data streams accessible to you. It even offers a starting point for creating new ones. Our derived stream `EnergyMeterDeriveStream` is listed here too.
 
-   ![alt text](assets/image_task04_step43.png)
+![alt text](assets/image_task04_step43.png)
 
 50. The `EnergyMeterDeriveStream` offers a 'Preview data' option. **Click on the eye** next to it.
 
-   ![alt text](assets/image_task04_step44.png)
+![alt text](assets/image_task04_step44.png)
 
 51. A new dialog shows both a chart with the number of ingested rows over the last six hours at the top and a preview of rows at the bottom.
 
-   ![alt text](assets/image_task04_step45.png)
+![alt text](assets/image_task04_step45.png)
 
 We now have a solid stream of Energy meter data, ingested from the Edge to the cloud using both Azure IoT Operations and Microsoft Fabric. We have also experienced how the KQL query language helps us regarding the bronze-silver-gold medallion architecture to cope with ingested data and turning it into value.
 
@@ -979,122 +978,122 @@ Using an Azure IoT Hub connection the LoraWan messages are routed to an Azure Ev
 
 You will ingest the LoraWan data from an Azure Event Hub.
 
-   ![alt text](assets/rtiLabArchitecture_workshop_5.png)
+![alt text](assets/rtiLabArchitecture_workshop_5.png)
 
-1. **Open** the Eventstream named `ES_LoraWanStream`, already provided in the 'Factory events folder'. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
+1. **Open** the Eventstream named `ES_LoraWanStream`, already provided in the 'Lab 03 Factory events' folder of your workspace. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
 
-   ![alt text](assets/image_task05_step03.png)
+![alt text](assets/image_task05_step03.png)
 
 2. **Click** `Select a data source`. In the dialog **click** on the button `Connect`.
 
-   ![alt text](assets/image_task05_step04.png)
+![alt text](assets/image_task05_step04.png)
 
 3. In the dialog 'Configure connection settings' **Select** `loratelemetryeventhub` for the combobox 'Connection' and **insert** the name of the consumer group into the field 'Consumer group' that aligns with the username that was provided to you. In my case, this is `workshopuser49`. **Ensure** that the 'Data format' is `Json` and **click on the pencil** icon next to 'Source name'.
 
-   ![alt text](assets/image_task05_step05.png)
+![alt text](assets/image_task05_step05.png)
 
 4. **Enter** `LoraWanEventsSource` as 'Source name' and then **click** on the button 'Next'.
 
-   ![alt text](assets/image_task05_step06.png)
+![alt text](assets/image_task05_step06.png)
 
 5. On the screen 'Review + Connect', **review** all of the information and then **click** on the button `Add`.
 
-   ![alt text](assets/image_task05_step07.png)
+![alt text](assets/image_task05_step07.png)
 
 6. The source is added. **Notice** that raw data from several (types of) devices is received.
 
-   ![alt text](assets/image_task05_step08.png)
+![alt text](assets/image_task05_step08.png)
 
 7. Do not worry about the complex data in the columns, we will fix that. In the 'Destination' section of the 'Transform events or add destination' dropdown of the green item at the right side of the flow, **Select** Fabric `Eventhouse`.
 
-   ![alt text](assets/image_task05_step10.png)
+![alt text](assets/image_task05_step10.png)
 
-8. We **select** `Direct Ingestion`, not 'Event processing before ingestion'! So, we need to add a table mapping later on. Also, **provide** the 'Eventhouse' named `FactoryEvents_EH` and 'KQL Database' named `FactoryEvents_EH` as seen in the previous paragraph. **Save** the settings (this can take a moment to set up the connection, please be patient).
+8. We **select** `Direct Ingestion`, not 'Event processing before ingestion'! So, we need to add a table mapping later on. Also, **provide** the 'Eventhouse' named `EH_YCSneakerEventStore` and 'KQL Database' named `EH_YCSneakerEventStore` as seen in the previous paragraph. **Save** the settings (this can take a moment to set up the connection, please be patient).
 
-   ![alt text](assets/image_task05_step11.png)
+![alt text](assets/image_task05_step11.png)
 
 9. Before we **publish** the Eventstream, **make sure** we see the test results when the `middle step` is active. **Refresh** these results to be sure the mapping is providing sample telemetry, before continuing.
 
-   ![alt text](assets/image_task05_step12.png)
+![alt text](assets/image_task05_step12.png)
 
 10. Once the Eventstream is published, the Eventhouse destination needs extra configuration for the table mapping. **Configure** the mapping.
 
-   ![alt text](assets/image_task05_step13.png)
+![alt text](assets/image_task05_step13.png)
 
-11. In the new 'Get data' dialog, we create a new table in the `FactoryEvents_EH` KQL Database. **Click** `New Table`.
+11. In the new 'Get data' dialog, we create a new table in the `EH_YCSneakerEventStore` KQL Database. **Click** `New Table`.
 
-   ![alt text](assets/image_task05_step14.png)
+![alt text](assets/image_task05_step14.png)
 
 12. **Fill in** `BronzeLoraWan` as the 'Table name'. **Accept** the data source connection name. **Go to** the `next` page to create a mapping.
 
-   ![alt text](assets/image_task05_step15.png)
+![alt text](assets/image_task05_step15.png)
 
 13. The incoming LoraWan messages are available in the JSON format. Here, we demonstrate how we can use the KQL table mapping to shape the message to columns in the table. First, we **start** by `changing the Nested levels to 0 (zero)`. This results in one column of the 'dynamic' type containing the complete message. Use the `pencil` to **change the mapping**, adding extra columns.
 
-   ![alt text](assets/image_task05_step16.png)
+![alt text](assets/image_task05_step16.png)
 
 14. In the new dialog, we see that one column is named 'Data'. Notice that the type is 'dynamic'. **Add a second column**.
 
-   ![alt text](assets/image_task05_step17.png)
+![alt text](assets/image_task05_step17.png)
 
 15. **Name** the second column `deviceId`. The type is 'string'. Add a source by opening the drop-down list.
 
-   ![alt text](assets/image_task05_step18.png)
+![alt text](assets/image_task05_step18.png)
 
 16. Select **Create new source** for deviceId.
 
-   ![alt text](assets/image_task05_step19.png)
+![alt text](assets/image_task05_step19.png)
 
 17. **Set the source** to `.end_device_ids.device_id` (The dollar sign represents the 'root' of the full JSON message. Together with that dollar sign and a dot, this makes the JSON path '$.end_device_ids.device_id').
 
-   ![alt text](assets/image_task05_step20.png)
+![alt text](assets/image_task05_step20.png)
 
 18. The second column looks like this. Notice the sample.
 
-   ![alt text](assets/image_task05_step21.png)
+![alt text](assets/image_task05_step21.png)
 
 19. **Add a third column** named `applicationId` of type 'string' with 'create new source' `.end_device_ids.application_ids.application_id` (so the JSON path is '$.end_device_ids.application_ids.application_id').
 
-   ![alt text](assets/image_task05_step22.png)
+![alt text](assets/image_task05_step22.png)
 
 20. This third column looks like this. Notice the sample.
 
-   ![alt text](assets/image_task05_step23.png)
+![alt text](assets/image_task05_step23.png)
 
 21. **Add a fourth column** named `timestamp` of type 'datetime' with 'create new source' `.received_at` (so the JSON path is '$.received_at'). Make sure you change the type to `datetime` (instead of 'string').
 
-   ![alt text](assets/image_task05_step24.png)
+![alt text](assets/image_task05_step24.png)
 
 22. This fourth column looks like this (notice the 'datetime' type). Notice the sample.
 
-   ![alt text](assets/image_task05_step25.png)
+![alt text](assets/image_task05_step25.png)
 
 23. We have all the columns we need at this moment. This should look like this.
 
-| Column | Name | type | New source |
-| - | - | - | - |
-| 1 | Data | dynamic | $ |
-| 2 | deviceId | string | $.end_device_ids.device_id |
-| 3 | applicationId | string | $.end_device_ids.application_ids.application_id |
-| 4 | timestamp | datetime | $.received_at |
+| Column | Name          | type     | New source                                      |
+| ------ | ------------- | -------- | ----------------------------------------------- |
+| 1      | Data          | dynamic  | $                                               |
+| 2      | deviceId      | string   | $.end_device_ids.device_id                      |
+| 3      | applicationId | string   | $.end_device_ids.application_ids.application_id |
+| 4      | timestamp     | datetime | $.received_at                                   |
 
 24. **Apply** the mapping.
 
-   ![alt text](assets/image_task05_step26.png)
+![alt text](assets/image_task05_step26.png)
 
 25. In the overview of the mapping, all four rows are now showing the new mapping. **Finish** the mapping.
 
-   ![alt text](assets/image_task05_step27.png)
+![alt text](assets/image_task05_step27.png)
 
 26. In the summary, we see the creation of the table, the JSON mapping, and the data connection. **Close** the dialog afterwards.
 
-   ![alt text](assets/image_task05_step28.png)
+![alt text](assets/image_task05_step28.png)
 
-27. In the Fabric portal, **navigate** to the `BronzeLoraWan` table, part of the 'FactoryEvents_EH' KQL Database in the 'FactoryEvents_EH' Eventhouse. This table shows four columns.
+27. In the Fabric portal, **navigate** to the `BronzeLoraWan` table, part of the 'EH_YCSneakerEventStore' KQL Database in the 'EH_YCSneakerEventStore' Eventhouse. This table shows four columns.
 
-   ![alt text](assets/image_task05_step29.png)
+![alt text](assets/image_task05_step29.png)
 
-28. In the Eventhouse KQL Database 'FactoryEvents_EH' KQL Queryset `FactoryEvents_EH_queryset`, check the JSON table mapping by **running this command**.
+28. In the Eventhouse KQL Database 'EH_YCSneakerEventStore' KQL Queryset `EH_YCSneakerEventStore_queryset`, check the JSON table mapping by **running this command**.
 
 ```
 .show table BronzeLoraWan ingestion json mappings
@@ -1102,7 +1101,7 @@ You will ingest the LoraWan data from an Azure Event Hub.
 
 29. This results in this mapping, complete with all JSON paths.
 
-   ![alt text](assets/image_task05_step30.png)
+![alt text](assets/image_task05_step30.png)
 
 30. The LoraWan table is filled with messages from all kinds of devices. We are especially interested in the environmental values (temperature, humidity) of the Elsys ERS Eco sensors. **Run this KQL query** to see if these are already arriving in our Eventhouse (notice this can take a few minutes because the LoraWan sensors only provide telemetry every five minutes, due to preserving energy as a low-powered device).
 
@@ -1113,36 +1112,36 @@ BronzeLoraWan
 
 31. Here, two different sensors (if available, check the `deviceId`) are providing temperature-related telemetry rows. Notice that the `Data` column is written in JSON and is hard to read.
 
-   ![alt text](assets/image_task05_step31.png)
+![alt text](assets/image_task05_step31.png)
 
 32. **Run this KQL query** to get all details from all available sensors in the 'svelde-elsys-ers' application.
 
 ```
 BronzeLoraWan
 | where applicationId == 'svelde-elsys-ers'
-| project applicationId, deviceId, timestamp, 
+| project applicationId, deviceId, timestamp,
           humidity = toint(Data.uplink_message.decoded_payload.humidity), temperature = todouble(Data.uplink_message.decoded_payload.temperature),
-          light = toint(Data.uplink_message.decoded_payload.light), battery = toint(Data.uplink_message.decoded_payload.vdd) 
+          light = toint(Data.uplink_message.decoded_payload.light), battery = toint(Data.uplink_message.decoded_payload.vdd)
 | order by timestamp desc
 ```
 
 33. The KQL Query Language (KQL) makes it very easy to get nested values from a JSON-formatted dynamic. The values returned are of type 'dynamic' too. To actually calculate with these values, we also need to convert the type (eg. `todouble()`) too.
 
-   ![alt text](assets/image_task05_step32.png)
+![alt text](assets/image_task05_step32.png)
 
 34. To prevent having to filter the temperature values constantly, including getting the nested values and formatting, we **create** a `SilverLoraWanTemperature` table first.
 
 ```
-.create table SilverLoraWanTemperature (applicationId : string, deviceId : string, timestamp : datetime, humidity: int, temperature: double, light: int, battery: int) 
+.create table SilverLoraWanTemperature (applicationId : string, deviceId : string, timestamp : datetime, humidity: int, temperature: double, light: int, battery: int)
 ```
 
 35. **Run** that table creation command.
 
-   ![alt text](assets/image_task05_step33.png)
+![alt text](assets/image_task05_step33.png)
 
-36. In the KQL database `FactoryEvents_EH`, **notice** that the table is created.
+36. In the KQL database `EH_YCSneakerEventStore`, **notice** that the table is created.
 
-   ![alt text](assets/image_task05_step34.png)
+![alt text](assets/image_task05_step34.png)
 
 37. To have it filled automatically when new rows arrive at the `BronzeLoraWan` table, we make use of a 'table update policy'. For each new row in `BronzeLoraWan` table, a KQL function will be executed, doing all the conversions towards the `SilverLoraWanTemperature` table. To keep the mapping simple, we only look at devices in the 'svelde-elsys-ers' application. **Run this KQL command**.
 
@@ -1153,29 +1152,29 @@ ParseTemperatureLoraWanData()
 {
 BronzeLoraWan
 | where applicationId == 'svelde-elsys-ers'
-| project applicationId, deviceId, timestamp, 
-          humidity = toint(Data.uplink_message.decoded_payload.humidity), 
-          temperature = todouble(Data.uplink_message.decoded_payload.temperature), 
-          light = toint(Data.uplink_message.decoded_payload.light), 
-          battery = toint(Data.uplink_message.decoded_payload.vdd) 
+| project applicationId, deviceId, timestamp,
+          humidity = toint(Data.uplink_message.decoded_payload.humidity),
+          temperature = todouble(Data.uplink_message.decoded_payload.temperature),
+          light = toint(Data.uplink_message.decoded_payload.light),
+          battery = toint(Data.uplink_message.decoded_payload.vdd)
 }
 ```
 
 38. The KQL function is created.
 
-   ![alt text](assets/image_task05_step35.png)
+![alt text](assets/image_task05_step35.png)
 
 39. Alter the `SilverLoraWanTemperature` table by adding this 'table update policy' so the `ParseTemperatureLoraWanData` function is executed each time the BronzeLoraWan table gets new rows. **Run this KQL command**.
 
 ```
 .alter table
-SilverLoraWanTemperature 
+SilverLoraWanTemperature
 policy update @'[{"Source": "BronzeLoraWan", "Query": "ParseTemperatureLoraWanData", "IsEnabled" : true, "IsTransactional": true }]'
 ```
 
 40. The table update policy is added.
 
-   ![alt text](assets/image_task05_step36.png)
+![alt text](assets/image_task05_step36.png)
 
 41. **Wait** a few minutes **and see** if the temperature sensor data is forwarded to the `SilverLoraWanTemperature` table, containing typed data (refresh a few times).
 
@@ -1187,27 +1186,27 @@ SilverLoraWanTemperature
 
 43. The output should look like this.
 
-   ![alt text](assets/image_task05_step37.png)
+![alt text](assets/image_task05_step37.png)
 
 44. In the KQL Database, the `SilverLoraWanTemperature` provides several options to work with the data by **clicking the 'three dots'** so this menu pops up. **Select Visual Exploration**.
 
-   ![alt text](assets/image_task05_step38.png)
+![alt text](assets/image_task05_step38.png)
 
 45. A new dialog is shown with table column details (like minimum and maximum values) to the right and rows in the Results pane. **Play around** with the Columns pane by providing 'deviceId' as column name.
 
-   ![alt text](assets/image_task05_step39.png)
+![alt text](assets/image_task05_step39.png)
 
 46. **Change the visualization** to 'Line chart' or any other applicable visualization.
 
-   ![alt text](assets/image_task05_step40.png)
+![alt text](assets/image_task05_step40.png)
 
 We have seen how we can ingest LoraWan telemetry from multiple devices via one Eventstream. The telemetry is ingested into a Bronze LoraWan table in the KQL Database via an elaborate table mapping. The Eventhouse supports the Medallion Architecture via table Update policies. Here, a Silver LoraWan table with temperature sensor telemetry is filled, complete with the correct column types. We have also seen how we can use the no-code Visual Exploration to check the data in more detail. In the next paragraph, we will complete the temperature sensor data with data from a real-time weather data service.
 
-#### Lab 03.3 - Activator alerts based on high temperatures 
+#### Lab 03.3 - Activator alerts based on high temperatures
 
-In this section, we will extend the LoraWan solution with an Activator, sending alerts under certain conditions. In our demo factory, the production output will have lower quality when the temperature in the factory is higher than 30 degrees Celsius. The Activator will send alert messages based on temperatures higher than 30 degrees Celsius within the factory, measured by our LoraWan temperature sensors. 
+In this section, we will extend the LoraWan solution with an Activator, sending alerts under certain conditions. In our demo factory, the production output will have lower quality when the temperature in the factory is higher than 30 degrees Celsius. The Activator will send alert messages based on temperatures higher than 30 degrees Celsius within the factory, measured by our LoraWan temperature sensors.
 
-   ![alt text](assets/rtiLabArchitecture_workshop_6.png)
+![alt text](assets/rtiLabArchitecture_workshop_6.png)
 
 1. **Create a new tab page** in the KQL Queryset and name it `temperature alert`. In this new tab page, **Add this KQL query**.
 
@@ -1216,59 +1215,52 @@ let cutoff = ago(15m);
 SilverLoraWanTemperature
 | where timestamp > cutoff
 | project timestamp
-      , temperature 
+      , temperature
       , applicationId = strcat(applicationId , '-' , deviceId)
-| render linechart 
+| render linechart
 ```
 
 2. This query shows all temperature values measured by our LoraWan temperature sensors over the last 15 minutes in a line chart.
 
-   ![alt text](assets/image_task06_step01.png)
+![alt text](assets/image_task06_step01.png)
 
 3. Within the KQL Queryset, we can turn any query into an alert. Here, we create an alert when any temperature value is above 30 degrees Celsius. **Put the focus on the KQL query** by placing the cursor in it. Then **select** `Set alert` from the menu bar.
 
-   ![alt text](assets/image_task06_step02.png)
+![alt text](assets/image_task06_step02.png)
 
 4. A new dialog is shown for setting alerts from a KQL Queryset. This will create an Activator afterwards. **Set the following values**. Run the KQL query `every 15 minutes`. We group the temperatures using the `applicationId` as the grouping field. We are interested in alerts only when `the temperature becomes greater than 30`, so we only get that message when it becomes greater than 30, not when it stays greater than 30 (This limits the amount of alert messages). The alert `should be an email`. (Notice that you potentially have no access to the email inbox due to the account used in this workshop.)
 
-   ![alt text](assets/image_task06_step03.png)
+![alt text](assets/image_task06_step03.png)
 
-5. The last step is setting up a new Activator (notice that this makes it possible to add multiple alerts to one Activator). **Create a new item**.
+5. The last step is **selecting** the existing Activator `ACT_YCFactoryEvents` as 'Item' (notice that this makes it possible to add multiple alerts to the same Activator). **Press** the `Create` button.
 
-   ![alt text](assets/image_task06_step04.png)
+6. Within a few moments, the alert is created within the Activator. **Press the Open button** to navigate to the Activator.
 
-6. Name the new Activator `FactoryEvents_ACT` and **press the Create button**.
+![alt text](assets/image_task06_step06.png)
 
-   ![alt text](assets/image_task06_step05.png)
+7. **Change the time** to the last `30 minutes`. In the monitor part of the page, we see all recent temperature values in that time span. Notice that probable all values in this example are well below the alert limit of 30 degrees Celsius. To force having alerts, change the temperature limit in the definition. **Change it to** `somewhere near and below (some of) the values` in the Y-axis of the Monitor graph. A 'horizontal red line' appears in the Monitor graph at that value you have chosen. In this case it's '23.5'.
 
-7. Within a few moments, the alert is created within the new Activator. **Press the Open button** to navigate to the new Activator.
+![alt text](assets/image_task06_step07.png)
 
-   ![alt text](assets/image_task06_step06.png)
+8.  First, if that limit is low enough, some temperature values (but not all) will pass that threshold and will pop up in the Condition part. These will end up as Actions, seen at the bottom. Second, notice that in this example, where all temperature values are at the same level, `only the first two values` (for each sensor one value) leads to actions. The following temperature values are ignored because the action condition is based on 'becomes greater than' (the Activator handles this as 'Increases above').
 
-8. **Change the time** to the last `30 minutes`. In the monitor part of the page, we see all recent temperature values in that time span. Notice that probable all values in this example are well below the alert limit of 30 degrees Celsius. To force having alerts, change the temperature limit in the definition. **Change it to** `somewhere near and below (some of) the values` in the Y-axis of the Monitor graph. A 'horizontal red line' appears in the Monitor graph at that value you have chosen. In this case it's '23.5'.
+![alt text](assets/image_task06_step08.png)
 
-   ![alt text](assets/image_task06_step07.png)
+9. As shown in the Definition, the action will be an email. **Change the message**. The message could be `Temperature too high `. This text can be enriched by adding a property referencing the current temperature. First, **Click** on the `tag` icon and then select `temperature`.
 
-9.  First, if that limit is low enough, some temperature values (but not all) will pass that threshold and will pop up in the Condition part. These will end up as Actions, seen at the bottom. Second, notice that in this example, where all temperature values are at the same level, `only the first two values` (for each sensor one value) leads to actions. The following temperature values are ignored because the action condition is based on 'becomes greater than' (the Activator handles this as 'Increases above').
+![alt text](assets/image_task06_step09.png)
 
-   ![alt text](assets/image_task06_step08.png)
+10. **Add** the same `temperature` as context.
 
-10. As shown in the Definition, the action will be an email. **Change the message**. The message could be `Temperature too high `. This text can be enriched by adding a property referencing the current temperature. First, **Click** on the `tag` icon and then select `temperature`.
+![alt text](assets/image_task06_step10.png)
 
-   ![alt text](assets/image_task06_step09.png)
+11. A alternative edit option is available. **Press the 'Edit action' button**.
 
+![alt text](assets/image_task06_step11.png)
 
-11. **Add** the same `temperature` as context.
+12. This will provide the same editing experience, together with a preview of the email to expect. Optionally, you can ask for a test action to be sent. (Notice that access to the email inbox could be limited depending on the account used for this workshop) **Discard changes** afterwards.
 
-   ![alt text](assets/image_task06_step10.png)
-
-12. A alternative edit option is available. **Press the 'Edit action' button**.
-
-   ![alt text](assets/image_task06_step11.png)
-
-13. This will provide the same editing experience, together with a preview of the email to expect. Optionally, you can ask for a test action to be sent. (Notice that access to the email inbox could be limited depending on the account used for this workshop) **Discard changes** afterwards.
-
-   ![alt text](assets/image_task06_step12.png)
+![alt text](assets/image_task06_step12.png)
 
 We have experienced how we can use an Activator to turn events and KQL queries under certain conditions into actions like sending an email or a Teams message. It's even possible to attach Power Automate actions.
 
@@ -1280,90 +1272,90 @@ At this moment, we get energy meter telemetry from an electric motor within our 
 
 In this section, we will add real-time weather data events. These events are streamed into an Eventstream using a real-time weather data source and are ingested into our Eventhouse KQL Database.
 
-   ![alt text](assets/rtiLabArchitecture_workshop_7.png)
+![alt text](assets/rtiLabArchitecture_workshop_7.png)
 
-1. **Open** the Eventstream named `ES_WeatherData`, already provided in the 'Factory events folder'. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
+1. **Open** the Eventstream named `ES_WeatherData`, already provided in the 'Lab 03 Factory events' folder of your workspace. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
 
-   ![alt text](assets/image_task07_step03.png)
+![alt text](assets/image_task07_step03.png)
 
 2. **Click** `Select a data source`. In the dialog **click** on the menu item `New`.
 
-   ![alt text](assets/image_task07_step04.png)
+![alt text](assets/image_task07_step04.png)
 
 3. On the next page, **filter** the list of data sources for 'weather' and **connect** the `Real-time weather data` source.
 
-   ![alt text](assets/image_task07_step05.png)
+![alt text](assets/image_task07_step05.png)
 
 4. In the dialog 'Configure connection settings', **select** a location to ingest real-time weather data. Either **put a pin** somewhere on the map (use the zoom buttons to get a better view) or **type in a location name** like `Helmond-West, Helmond NL` and use the drop-down to get the specific location.
 
-   ![alt text](assets/image_task07_step06.png)
+![alt text](assets/image_task07_step06.png)
 
 5. **Enter** `WeatherEventsSource` as 'Source name' (using the pencil) and then **click** on the button `Next`.
 
-   ![alt text](assets/image_task07_step07.png)
+![alt text](assets/image_task07_step07.png)
 
 6. On the screen 'Review + Connect', **review** all of the information and then **click** on the button `Add`.
 
-   ![alt text](assets/image_task07_step08.png)
+![alt text](assets/image_task07_step08.png)
 
 7. The source is added to the flow. **Check** for the arrival sample weather data on the Data preview tab.
 
-   ![alt text](assets/image_task07_step09.png)
+![alt text](assets/image_task07_step09.png)
 
 8. The arriving weather data should be sent to the Eventhouse we just created. **Add** an `Eventhouse destination` from the top menu bar 'Add destination' drop down list.
 
-   ![alt text](assets/image_task07_step10.png)
+![alt text](assets/image_task07_step10.png)
 
 9. First, **select** `Direct ingestion`, not 'Event processing before ingestion'! So, we need to add a table mapping later on as seen in the information box. Second, **Give** this destination a proper 'name' like `EventhouseDestination`. Last, **Select** the Eventhouse and KQL Database we just created as the destination.
 
-   ![alt text](assets/image_task07_step11.png)
+![alt text](assets/image_task07_step11.png)
 
 10. **Save** the destination settings.
 
 11. If the Destination is not yet connected to the source, you see this error sign. In that case, just **connect** the `output point` of the 'WeatherStream_ES' to the `input point` of the EventhouseDestination.
 
-   ![alt text](assets/image_task07_step12.png)
+![alt text](assets/image_task07_step12.png)
 
 12. Make sure you first **hit** the `refresh` button while the `middle flow item` is selected, before publishing this Eventstream. The next steps rely on sample data for the Eventhouse direct ingestion.
 
-   ![alt text](assets/image_task07_step13.png)
+![alt text](assets/image_task07_step13.png)
 
 13. Once the destination is connected, **Publish** the Eventstream. This will show the `live` version. **Wait** until all resources are created, this can take a moment until 'loading' has finished.
 
-   ![alt text](assets/image_task07_step14.png)
+![alt text](assets/image_task07_step14.png)
 
 14. **Hit** the `Configure` button on the 'Destination', picking a 'destination' table and 'configure' the source. This is the first step of the Get Data wizard.
 
-   ![alt text](assets/image_task07_step15.png)
+![alt text](assets/image_task07_step15.png)
 
 15. We **create a new table** in the KQL Database for the weather data. Name it `BronzeWeather`. Once the table name is accepted, and a data connection is created. Go to the **Next** page.
 
-   ![alt text](assets/image_task07_step16.png)
+![alt text](assets/image_task07_step16.png)
 
 16. The table mapping is suggested based on incoming sample data. Notice the 'Waiting for data from the event stream. This could take a few moments' message. **Notice** that one or more rows should be found to support the mapping. The wizard gives us the option to add, remove, and change column values. Here, although not the most perfect mapping (some columns still contain 'Json' values), we **keep this proposed JSON mapping** and, **Finish** the wizard.
 
-   ![alt text](assets/image_task07_step18.png)
+![alt text](assets/image_task07_step18.png)
 
 17. A summary is shown. We see the table is created, together with the mapping and data connection. **Explore the results** by hitting `Explore` instead of 'close'.
 
-   ![alt text](assets/image_task07_step19.png)
+![alt text](assets/image_task07_step19.png)
 
 18. Exploring time series data is done using the KQL Queryset. The predefined query '['BronzeWeather'] | take 10' makes use of the KQL `take` statement, showing a number of random rows in a table if available. **Hit the Run button** while the cursor is placed in the query to execute it. Walk through the different columns of the real-time weather data to get a better understanding of the data arriving. Notice that the original location of the weather data is provided. You will notice two more things:
 
-* Duplicate rows for the same location and timestamp (see column dateTime) are generated by the real-time weather data service. 
-* Almost all columns have 'dynamic' values with sub-values in them.
+- Duplicate rows for the same location and timestamp (see column dateTime) are generated by the real-time weather data service.
+- Almost all columns have 'dynamic' values with sub-values in them.
 
-   ![alt text](assets/image_task07_step20.png)
+![alt text](assets/image_task07_step20.png)
 
 19. We have fixed the dynamic columns yet in the table mapping. Run this KQL command to show the table mapping as it is now in the bronze table.
 
 ```
-.show table BronzeWeather ingestion json mappings 
+.show table BronzeWeather ingestion json mappings
 ```
 
 20. This results in this simple mapping.
 
-   ![alt text](assets/image_task07_step21.png)
+![alt text](assets/image_task07_step21.png)
 
 21. Now, let's check the content of the `BronzeWeather`. **Run** this query.
 
@@ -1374,18 +1366,18 @@ BronzeWeather
 
 22. We see both duplicate rows in the table and most columns work with dynamic field having dynamic 'json' values.
 
-   ![alt text](assets/image_task07_step22.png)
+![alt text](assets/image_task07_step22.png)
 
-23. Let's fix both 'flaws' by creating a 'silver' layer using a Materialized View. Unlike a view in eg. SQL Server, each row in this view is actually persisted after creation, so it's very fast when used for querying. **Add and run this materialized view** first: 
+23. Let's fix both 'flaws' by creating a 'silver' layer using a Materialized View. Unlike a view in eg. SQL Server, each row in this view is actually persisted after creation, so it's very fast when used for querying. **Add and run this materialized view** first:
 
 ```
 .create materialized-view with(lookback=20m, lookback_column = "dateTime", backfill=true, docString="Unique Real-Time Weather Service data entries", folder="MaterializedViews") SilverWeather on table BronzeWeather
 {
 BronzeWeather
-| project dateTime, 
-description, 
-iconCode = toint(iconCode.value), 
-hasPrecipitation, 
+| project dateTime,
+description,
+iconCode = toint(iconCode.value),
+hasPrecipitation,
 temperature = todouble(temperature.value),
 realFeelTemperature = todouble(realFeelTemperature.value),
 realFeelTemperatureShade = todouble(realFeelTemperatureShade.value),
@@ -1426,9 +1418,10 @@ longitude = todouble(location.longitude)
 | summarize arg_max(dateTime, *) by dateTime, longitude, latitude
 }
 ```
+
 24. We now have a materialized view with typed data.
 
-   ![alt text](assets/image_task07_step23.png)
+![alt text](assets/image_task07_step23.png)
 
 25. The rows are de-duplicated per location. **Run** this query.
 
@@ -1439,7 +1432,7 @@ SilverWeather
 
 26. Notice that we can now work with the right column values and without duplicate rows (per location).
 
-   ![alt text](assets/image_task07_step24.png)
+![alt text](assets/image_task07_step24.png)
 
 27. Regarding the bronze table, we do not need to remember all old rows because the materialized view will remember all historical rows. Deleting obsolete 'bronze' rows can be automated. **Run this command** so the BronzeWeather table gets a one-hour retention.
 
@@ -1462,7 +1455,7 @@ SilverWeather
 
 29. This results in a table like this.
 
-   ![alt text](assets/image_task07_step25.png)
+![alt text](assets/image_task07_step25.png)
 
 30. Let's create a map showing the latest location. **Run this KQL query**.
 
@@ -1478,15 +1471,15 @@ SilverWeather
 
 31. This results in a map like this.
 
-   ![alt text](assets/image_task07_step26.png)
+![alt text](assets/image_task07_step26.png)
 
 32. In the Visual Formatting, **change the Label column** into 'label'.
 
-   ![alt text](assets/image_task07_step27.png)
+![alt text](assets/image_task07_step27.png)
 
 33. If you **hover over the location you selected**, you will see a label pop up.
 
-   ![alt text](assets/image_task07_step28.png)
+![alt text](assets/image_task07_step28.png)
 
 We have learned how to ingest Real-time Weather data from a source via the EventStream and forward it to a KQL Database table via a table mapping and a data stream. We can even render maps in the editor for data exploration.
 
@@ -1498,7 +1491,7 @@ Finally, we learned about using a materialized view to de-duplicate rows and add
 
 In this section, we mix the environmental data from the LoraWan sensors with the Real-Time weather data. The events will be queried both in a KQL Queryset and a Real-Time dashboard.
 
-   ![alt text](assets/rtiLabArchitecture_workshop_8.png)
+![alt text](assets/rtiLabArchitecture_workshop_8.png)
 
 1. Let's mix the environmental data from the LoraWan temperature sensors with the Real-Time weather data. **Execute this query**, where we make use of both the `SilverLoraWanTemperature` table and `SilverWeather` materialized view.
 
@@ -1507,7 +1500,7 @@ let cutoff = ago(1h);
 SilverLoraWanTemperature
 | where timestamp > cutoff
 | project timestamp
-      , temperature 
+      , temperature
       , applicationId = strcat(applicationId , '-' , deviceId)
 | union (SilverWeather | where dateTime > cutoff | project timestamp = dateTime, temperature = apparentTemperature, applicationId = 'apparentTemperature')
 | union (SilverWeather | where dateTime > cutoff | project timestamp = dateTime, temperature = realFeelTemperature, applicationId = 'realFeelTemperature')
@@ -1517,7 +1510,7 @@ SilverLoraWanTemperature
 
 2. This will show a line chart like this, rendering the temperature values of each device for the last hour, together with two weather data `apparentTemperature` and `realFeelTemperature` values. Notice that two weather data lines have lower temperature values so they were 'measured' outside the factory. The sensor temperature values are measured inside the factory when the environment is warmer.
 
-   ![alt text](assets/image_task08_step01.png)
+![alt text](assets/image_task08_step01.png)
 
 3. Regarding the sensor values, we render every single value here. This looks nice here, but in a chart, this means a lot of detailed information will be rendered when you are looking at weeks of data. These details are not needed for the report, so let's add a `GoldLoraWanTemperature` materialized view having telemetry averages. **Execute this KQL command** to create the materialized view.
 
@@ -1531,7 +1524,7 @@ SilverLoraWanTemperature
 
 4. The `GoldLoraWanTemperature` materialized view is created, offering average values based on the LoraWan temperature sensor data every ten minutes (notice that the timestamp increment).
 
-   ![alt text](assets/image_task08_step02.png)
+![alt text](assets/image_task08_step02.png)
 
 5. Let's combine both gold queries so we have an overview of both LoraWan environmental sensor data and real-time weather data that offers both performance and enough details to add value. **Check out this query**.
 
@@ -1540,7 +1533,7 @@ let cutoff = ago(1h);
 GoldLoraWanTemperature
 | where timestamp > cutoff
 | project timestamp
-      , temperature 
+      , temperature
       , applicationId = strcat(applicationId , '-' , deviceId)
 | union (SilverWeather | where dateTime > cutoff | project timestamp = dateTime, temperature = apparentTemperature, applicationId = 'apparentTemperature')
 | union (SilverWeather | where dateTime > cutoff | project timestamp = dateTime, temperature = realFeelTemperature, applicationId = 'realFeelTemperature')
@@ -1548,25 +1541,25 @@ GoldLoraWanTemperature
 | render linechart
 ```
 
-6. The following chart is rendered. Notice the LoraWan sensor values are now rendered as averages at a ten minutes interval. 
+6. The following chart is rendered. Notice the LoraWan sensor values are now rendered as averages at a ten minutes interval.
 
-   ![alt text](assets/image_task08_step03.png)
+![alt text](assets/image_task08_step03.png)
 
 7. Because this is an interesting query to share with others within your team, having access to the same Microsoft Fabric workspace, let's turn this into a Real-Time Dashboard. **Put the cursor in the last query** so it is selected. **Click 'Pin to dashboard'**.
 
-   ![alt text](assets/image_task08_step04.png)
+![alt text](assets/image_task08_step04.png)
 
 8. A dialog is shown. First, select pinning to a new dashboard by selecting `In a new dashboard`. Then, **Name** the new dashboard `FactoryEvents_RTD` and **name** the tile within the dashboard, showing this query `Factory temperature vs. Weather data`. Finally, **Create** the dashboard.
 
-   ![alt text](assets/image_task08_step05.png)
+![alt text](assets/image_task08_step05.png)
 
 9. A Real-Time dashboard is shown. Notice that we are in 'Viewing' mode. A `Time range` of the last hour is shown, just above the tile we added. This is a 'parameter' (actually two: start time and end time) that can be applied to tiles like a filter. But if we change this `Time range` dropdown, nothing happens. The query is not noticing the `Time range` parameter change yet. Let's fix this. First, we turn the 'Viewing' mode into **Editing** mode.
 
-   ![alt text](assets/image_task08_step06.png)
+![alt text](assets/image_task08_step06.png)
 
 10. The tile supports two ways to edit it. **Edit** the tile.
 
-   ![alt text](assets/image_task08_step07.png)
+![alt text](assets/image_task08_step07.png)
 
 11. The original query is shown with the 'hard-coded' one-hour cutoff. **Replace the original query** with the following version. Notice that we now use the `_startTime and _endTime` parameters. These parameters are available by default, but we can add additional parameters based on queries or hard-coded values (out of scope in this workshop). Notice that the `render` part of the query is also removed.
 
@@ -1574,7 +1567,7 @@ GoldLoraWanTemperature
 GoldLoraWanTemperature
 | where timestamp between (['_startTime'] .. ['_endTime']) // Time range filtering
 | project timestamp
-      , temperature 
+      , temperature
       , applicationId = strcat(applicationId , '-' , deviceId)
 | union (SilverWeather | where dateTime between (['_startTime'] .. ['_endTime']) | project timestamp = dateTime, temperature = apparentTemperature, applicationId = 'apparentTemperature')
 | union (SilverWeather | where dateTime between (['_startTime'] .. ['_endTime']) | project timestamp = dateTime, temperature = realFeelTemperature, applicationId = 'realFeelTemperature')
@@ -1583,23 +1576,23 @@ GoldLoraWanTemperature
 
 12. If you **run** the updated query and **change the Time range** to eg. 30 minutes, you see the time span of the line chart is updated automatically. Press **Apply changes** for the tile. **Save** the Dashboard changes. Notice that other parameters, like a filter of the available devices, could be added (out of scope in this workshop). Before we change the mode back to 'Viewing', we alter the Auto refresh. **Select** the `Manage tab`.
 
-   ![alt text](assets/image_task08_step08.png)
+![alt text](assets/image_task08_step08.png)
 
 13. **Open** the `Auto refresh` dialog. You need to **enable Auto refresh** and **set the default refresh rate** to `continuous`.
 
-   ![alt text](assets/image_task08_step09.png)
+![alt text](assets/image_task08_step09.png)
 
 14. **Apply** the Auto refresh settings. You return to the Dashboard, still in 'Editing' mode. **Save** the changes again. **Change** the 'mode' back to `Viewing`. The tile is now showing the temperatures again. Let's check the interaction with the parameter. **Change it into 'last 30 minutes'**.
 
-   ![alt text](assets/image_task08_step10.png)
+![alt text](assets/image_task08_step10.png)
 
 15. Notice the Time range parameter dropdown is working now, fewer values are shown. We also notice that the Real-Time dashboard is now updated in real-time. **Click** the `Share` button.
 
-   ![alt text](assets/image_task08_step11.png)
+![alt text](assets/image_task08_step11.png)
 
-16. A pop-up dialog is shown, offering several ways to share this dashboard with other People in your organization. You can eg. copy a link and share it with them or share the link via email or Teams (out of scope for this workshop). Once you are ready with checking out this dialog, **cancel** it by clicking the cross in the upper right corner. 
+16. A pop-up dialog is shown, offering several ways to share this dashboard with other People in your organization. You can eg. copy a link and share it with them or share the link via email or Teams (out of scope for this workshop). Once you are ready with checking out this dialog, **cancel** it by clicking the cross in the upper right corner.
 
-Queries we want to share with others are the ones we share in Real-Time Dashboards. We can make the tiles more interactive with the standard time span parameters or with custom parameters (based on queries or just hard-coded values). 
+Queries we want to share with others are the ones we share in Real-Time Dashboards. We can make the tiles more interactive with the standard time span parameters or with custom parameters (based on queries or just hard-coded values).
 
 We can also adjust the default refresh rate, ideal for a dashboard that needs less interaction, eg. on a display in a 'war room' of a factory.
 
@@ -1611,35 +1604,35 @@ Now, let's investigate how more traditional data lakes can benefit from real-tim
 
 A Microsoft Fabric Lakehouse is a unified platform for storing, managing, and analyzing both structured and unstructured data, turning eg. CSV files into tables. Using more traditional SQL, these tables can be queried.
 
-   ![alt text](assets/rtiLabArchitecture_workshop_9.png)
+![alt text](assets/rtiLabArchitecture_workshop_9.png)
 
 Microsoft Fabric OneLake is the single, unified, logical data lake for Microsoft Fabric, designed to be the central storage for all organizational data. Here, Fabric users can exchange data without the need of copying the data while keeping full control over access.
 
 Here, factory data from several 'silver' tables will be shared via OneLake so a Lakehouse can reference that data as tables too.
 
-1. The timeseries data in the KQL Database is not accessible by default in the Fabric OneLake. **Navigate** to the `FactoryEvents_EH` overview page and see that OneLake availability is disable:
+1. The timeseries data in the KQL Database is not accessible by default in the Fabric OneLake. **Navigate** to the `EH_YCSneakerEventStore` overview page and see that OneLake availability is disable:
 
-   ![alt text](assets/image_task09_step01.png)
+![alt text](assets/image_task09_step01.png)
 
 2. Although this option offers Onlake access for all tables, we can also enable it per table. **Enable OneLake availability** for all three 'silver' tables `SilverEnergyMeterCurrent`, `SilverEnergyMeterVoltage`, and `SilverLoraWanTemperature`.
 
-   ![alt text](assets/image_task09_step02.png)
+![alt text](assets/image_task09_step02.png)
 
 3. Now, the tables are accessible from other Fabric resource, eg. a Lakehouse. To create an Eventhouse, **click** on the button `+ New Item` in the workspace.
 
-   ![alt text](assets/image_task09_step03.png)
+![alt text](assets/image_task09_step03.png)
 
-2. In the pop-up window 'New item', filter and select `Lakehouse` while 'All items' is selected. Here we **filter** for items with `lakehouse` in the name. **Select** the Lakehouse.
+4. In the pop-up window 'New item', filter and select `Lakehouse` while 'All items' is selected. Here we **filter** for items with `lakehouse` in the name. **Select** the Lakehouse.
 
-   ![alt text](assets/image_task09_step04.png)
+![alt text](assets/image_task09_step04.png)
 
-3. In the dialog 'New Lakehouse' **insert** `FactoryEvents_LH` as the name and **click** on `Create`.
+5. In the dialog 'New Lakehouse' **insert** `FactoryEvents_LH` as the name and **click** on `Create`.
 
-   ![alt text](assets/image_task09_step05.png)
+![alt text](assets/image_task09_step05.png)
 
-4. After the Lakehouse has been created, it will be automatically opened. To access Eventhouse tables via OneLake, **add a shortcut**.
+6. After the Lakehouse has been created, it will be automatically opened. To access Eventhouse tables via OneLake, **add a shortcut**.
 
-   ![alt text](assets/image_task09_step06.png)
+![alt text](assets/image_task09_step06.png)
 
 <div class="important" data-title="Note">
 
@@ -1649,69 +1642,71 @@ Here, factory data from several 'silver' tables will be shared via OneLake so a 
 
 5. A OneLake shortcut wizard is launched.
 
-   ![alt text](assets/image_task09_step07.png)
+![alt text](assets/image_task09_step07.png)
 
 6. In a new dialog, we can see several sources for shortcuts, including OneLake. **Select it**.
 
-   ![alt text](assets/image_task09_step08.png)
+![alt text](assets/image_task09_step08.png)
 
-7. We see the KQL Database `FactoryEvents_EH` is listed. **Select** it and **click the Next Button**. 
 
-   ![alt text](assets/image_task09_step09.png)
+7. We see the KQL Database `EH_YCSneakerEventStore` is listed. **Select** it and **click the Next Button**. 
+
+
+![alt text](assets/image_task09_step09.png)
 
 8. Notice that in OneLake, three KQL Database tables are available. Those are the 'silver' tables we made available for OneLake.
 
-   ![alt text](assets/image_task09_step11.png)
+![alt text](assets/image_task09_step11.png)
 
 9. **Select** all three tables via the check boxes and **press Next**.
 
-   ![alt text](assets/image_task09_step12.png)
+![alt text](assets/image_task09_step12.png)
 
 10. All three tables with real-time data will become available in the Lakehouse via OneLake shortcuts. **Create** the shortcuts.
 
-   ![alt text](assets/image_task09_step13.png)
+![alt text](assets/image_task09_step13.png)
 
 11. The three KQL queries are now available in the Lakehouse.
 
-   ![alt text](assets/image_task09_step14.png)
+![alt text](assets/image_task09_step14.png)
 
 <div class="important" data-title="Note">
 
-> This workshop will not dive deeper into the Lakehouse query endpoint where SQL statements can be used to query the tables inside this Lakehouse (and thus the underlying data sources). Check the Lakehouse documentation for more details. 
+> This workshop will not dive deeper into the Lakehouse query endpoint where SQL statements can be used to query the tables inside this Lakehouse (and thus the underlying data sources). Check the Lakehouse documentation for more details.
 
 </div>
 
 12. We can also add context data about our factory in Lakehouse, like a list of production lines and operators. This 'enterprise' level data tells us under which circumstances the real-time data was created. **Upload files** via the associated button.
 
-   ![alt text](assets/image_task09_step15.png)
+![alt text](assets/image_task09_step15.png)
 
 13. You are asked to upload files.
 
-   ![alt text](assets/image_task09_step16.png)
+![alt text](assets/image_task09_step16.png)
 
-14. Get the 'Operator.csv' and 'ProductionLine.csv' from this [GitHub location](https://github.com/microsoft/fabconrtiworkshop/tree/main/assets). **Download both files** and store them on your laptop as CSV format. Finally, **Click on the Files folder** bar, **select** the files, and **click** on the Upload button. 
+14. Get the 'Operator.csv' and 'ProductionLine.csv' from this [GitHub location](https://github.com/microsoft/fabconrtiworkshop/tree/main/assets). **Download both files** and store them on your laptop as CSV format. Finally, **Click on the Files folder** bar, **select** the files, and **click** on the Upload button.
 
-   ![alt text](assets/image_task09_step17.png)
+![alt text](assets/image_task09_step17.png)
 
 15. The two files are uploaded. You can **close** this dialog.
 
-   ![alt text](assets/image_task09_step18.png)
+![alt text](assets/image_task09_step18.png)
 
 16. The two files are now part of the Lakehouse. **Click** on the Files folder and notice the two files.
 
-   ![alt text](assets/image_task09_step19.png)
+![alt text](assets/image_task09_step19.png)
 
 17. Let's turn these two files into tables too so we can work with them. **Hover over** the 'Operator.csv' file and there `...` (three dots) appear. This gives access to a menu, offering the ability to turn this file in a new table. **Create a new table** based on the `Operator` file.
 
-   ![alt text](assets/image_task09_step20.png)
+![alt text](assets/image_task09_step20.png)
 
 18. Keep all settings and **Load** the `Operator` file into a new `operator` table.
 
-   ![alt text](assets/image_task09_step21.png)
+![alt text](assets/image_task09_step21.png)
 
 19. **Repeat** the last steps for the 'ProductionLine' file. **Create** an new label based on the `ProductionLine` file. **Load** the `ProductionLine` file into a new `productionline` table. Both tables with context data are added. Here we see the content of the 'ProductionLine' context data, showing that `line1` is operational and is producing 'vulcanized rubber'. Notice that both our electromotor and one of the LoraWan temperature sensors are related to this production line.
 
-   ![alt text](assets/image_task09_step22.png)
+![alt text](assets/image_task09_step22.png)
 
 In our Lakehouse, we have gathered both real-time data from sensors and contextual data.
 
@@ -1719,7 +1714,7 @@ Let's dive into that data via a Digital Twin, available in Microsoft Fabric.
 
 <div class="important" data-title="Note">
 
-> This workshop will not dive deeper into the Lakehouse query endpoint where SQL statements can be used to query the tables inside this Lakehouse (and thus the underlying data sources). Check the Lakehouse documentation for more details. 
+> This workshop will not dive deeper into the Lakehouse query endpoint where SQL statements can be used to query the tables inside this Lakehouse (and thus the underlying data sources). Check the Lakehouse documentation for more details.
 
 </div>
 
@@ -1727,165 +1722,165 @@ Let's dive into that data via a Digital Twin, available in Microsoft Fabric.
 
 A Digital Twin is a simplified representation, a model, based on real-life 'things' like devices, locations, buildings, vehicles, or even persons.
 
-   ![alt text](assets/rtiLabArchitecture_workshop_9.png)
+![alt text](assets/rtiLabArchitecture_workshop_9.png)
 
 Here, we are building a Digital Twin where our production line is operated by several operators. We also gather realtime data for the production line and make that available in our Digital Twin too.
 
 1. First, to create an Digital Twin, **click** on the button `+ New Item` in the workspace.
 
-   ![alt text](assets/image_task10_step01.png)
+![alt text](assets/image_task10_step01.png)
 
 2. In the pop-up window 'New item', filter and select `Digital Twin Builder` while 'All items' is selected. Here we **filter** for items with `twin` in the name. **Select** the Lakehouse.
 
-   ![alt text](assets/image_task10_step02.png)
+![alt text](assets/image_task10_step02.png)
 
 3. In the dialog 'New Digital Twin Builder' **insert** `FactoryEvents_DTB` as the name and **click** on `Create`.
 
-   ![alt text](assets/image_task10_step03.png)
+![alt text](assets/image_task10_step03.png)
 
 4. Before we can add twins reflecting real-world objects and locations, we first need to add entities and relationships. We derive these 'domain model entities' from the context data we have: Production lines and Operators. **Add** our first entity.
 
-   ![alt text](assets/image_task10_step04.png)
+![alt text](assets/image_task10_step04.png)
 
 5. **Add** a `generic` entity type named `Productionline`.
 
-   ![alt text](assets/image_task10_step05.png)
+![alt text](assets/image_task10_step05.png)
 
-6. The 'Productionline' entity is created and all it has is a DisplayName as property. Let's add more properties by mapping it on context data. **Open** the `Mappings` tab and **click  Add data**.
+6. The 'Productionline' entity is created and all it has is a DisplayName as property. Let's add more properties by mapping it on context data. **Open** the `Mappings` tab and **click Add data**.
 
-   ![alt text](assets/image_task10_step06.png)
+![alt text](assets/image_task10_step06.png)
 
-7. A Lakehouse table must be selected, **press** the `Select Lakehouse table` button first. **Select** the `FactoryEvents_LH` in the Workspace and **Select** the `productionline` table.  
+7. A Lakehouse table must be selected, **press** the `Select Lakehouse table` button first. **Select** the `FactoryEvents_LH` in the Workspace and **Select** the `productionline` table.
 
-   ![alt text](assets/image_task10_step07.png)
+![alt text](assets/image_task10_step07.png)
 
 8. Once selected, **Select** this datasource.
 
-   ![alt text](assets/image_task10_step08.png)
+![alt text](assets/image_task10_step08.png)
 
 9. So, a non-timeseries datasource is chosen. We still need to provide a unique id and map additional properties. Let's start with the id. **Click** on the `pencil` next to 'Select an Id'.
 
-   ![alt text](assets/image_task10_step09.png)
+![alt text](assets/image_task10_step09.png)
 
-9. In the new dialog **select** the `id` column as unique ID column and **Press** the `OK` button.
+10. In the new dialog **select** the `id` column as unique ID column and **Press** the `OK` button.
 
-   ![alt text](assets/image_task10_step10.png)
+![alt text](assets/image_task10_step10.png)
 
-10. The next step is mapping *all* properties which takes a bit more effort. First, **click** on the `pencil` next to 'Select an Id' to open the dialog. As seen above, an entity has a DisplayName property. **Map** it to the same `id` column because it values (eg. 'line1', 'line2') best describe the production lines.
+11. The next step is mapping _all_ properties which takes a bit more effort. First, **click** on the `pencil` next to 'Select an Id' to open the dialog. As seen above, an entity has a DisplayName property. **Map** it to the same `id` column because it values (eg. 'line1', 'line2') best describe the production lines.
 
-   ![alt text](assets/image_task10_step11.png)
+![alt text](assets/image_task10_step11.png)
 
-11. After that, **map** *all* table columns to entity properties: `energyMeterId`, `grade`, `id`, `installationDate`, `isOperational`, `product`, and `tempSensorId`. **Keep** the proposed property names. **Click** the `checkbox` to acknowledge we do not want to change anything anymore. **Apply** the settings.
+11. After that, **map** _all_ table columns to entity properties: `energyMeterId`, `grade`, `id`, `installationDate`, `isOperational`, `product`, and `tempSensorId`. **Keep** the proposed property names. **Click** the `checkbox` to acknowledge we do not want to change anything anymore. **Apply** the settings.
 
-   ![alt text](assets/image_task10_step12.png)
+![alt text](assets/image_task10_step12.png)
 
-12. **Save** the properties. Now, we have a full 'productionline' entity. The next step in the Digital Twin Builder environment is loading the actual Twins (the rows in the 'productionline' table) by hand or scheduled. These are also called 'Entity instances'. **Click** on the `Scheduling` tab. 
+12. **Save** the properties. Now, we have a full 'productionline' entity. The next step in the Digital Twin Builder environment is loading the actual Twins (the rows in the 'productionline' table) by hand or scheduled. These are also called 'Entity instances'. **Click** on the `Scheduling` tab.
 
-   ![alt text](assets/image_task10_step13.png)
+![alt text](assets/image_task10_step13.png)
 
 13. Here, we run the ingestion by hand. **Click** on the `Run` button. The ingestion is scheduled via a Digital Twin Builder flow in the background.
 
-   ![alt text](assets/image_task10_step14.png)
+![alt text](assets/image_task10_step14.png)
 
 14. Although not worked out, check the `Schedule flow`. **Create** a new flow and **name it** `productionlinescheduler`.
 
-   ![alt text](assets/image_task10_step15.png)
+![alt text](assets/image_task10_step15.png)
 
 15. A new dialog is shown to manage the scheduler. It should be clear that context data like a list of `production lines` or `operators` does not change often so a daily ingest at 01.00 AM would be perfect. At that moment, the Lakehouse table context is read and the Twins (or 'Entity instances') are updated. You can **Apply** one or **Discard** it for now.
 
-   ![alt text](assets/image_task10_step16.png)
+![alt text](assets/image_task10_step16.png)
 
-16. **Repeat** the last steps by **adding** a generic  entity with an entity name `Operator` and using the the `FactoryEvents_LH` Lakehouse `operator` table as datasource. The 'Unique Id' is the operator table `Id` column. **Add** *all* columns as properties. The 'DisplayName' is the operator table `Name` column. Finally, **run** the ingestion flow by hand for 'operator' entity instances. (Optionally, you can add a scheduler for this mapping too.) 
+16. **Repeat** the last steps by **adding** a generic entity with an entity name `Operator` and using the the `FactoryEvents_LH` Lakehouse `operator` table as datasource. The 'Unique Id' is the operator table `Id` column. **Add** _all_ columns as properties. The 'DisplayName' is the operator table `Name` column. Finally, **run** the ingestion flow by hand for 'operator' entity instances. (Optionally, you can add a scheduler for this mapping too.)
 
-   ![alt text](assets/image_task10_step17.png)
+![alt text](assets/image_task10_step17.png)
 
 17. Next, add the relationship between the production lines and operators where multiple operators 'operate' on the same line. As seen in the table rows, each operator is related to one production line. **Click** on the `Add relationship` menu button while the `Operator` entity is **selected**.
 
-   ![alt text](assets/image_task10_step18.png)
+![alt text](assets/image_task10_step18.png)
 
 18. **Configure** the Operator `line` column and the Production line `Id` so a `Many operators per production line` relationship is created, having the name `Operates`. **Click** on the `Create` button.
 
-   ![alt text](assets/image_task10_step19.png)
+![alt text](assets/image_task10_step19.png)
 
 19. This results in this relationship between operator Twins and product line Twins. **Click** on the relation to select it.
 
-   ![alt text](assets/image_task10_step20.png)
+![alt text](assets/image_task10_step20.png)
 
-20. Each entity has twins via its own underlying Lakehouse table rows but a relationship must de based on the context of both entities. This is why relationships have their own scheduling. **Run** the update. Optionally, a scheduler can be added too. THe relationship scheduler normally runs *after* the entity tables are updated via their own scheduler.
+20. Each entity has twins via its own underlying Lakehouse table rows but a relationship must de based on the context of both entities. This is why relationships have their own scheduling. **Run** the update. Optionally, a scheduler can be added too. THe relationship scheduler normally runs _after_ the entity tables are updated via their own scheduler.
 
-   ![alt text](assets/image_task10_step21.png)
+![alt text](assets/image_task10_step21.png)
 
 21. We can check the execution of scheduled ingestion. **Click** on the `Manage operations` menu button.
 
-   ![alt text](assets/image_task10_step22.png)
+![alt text](assets/image_task10_step22.png)
 
 22. This leads to an overview of all Twin and relationship updates via the various flows. Details are available too. **Click** the `home` in the left upper corner to go back to the entities.
 
-   ![alt text](assets/image_task10_step23.png)
+![alt text](assets/image_task10_step23.png)
 
-23. Until now, we have experienced how we can shape both entities, relationships, and instantiate actual entity instances (Twins) by ingesting the context data (production lines, operators, etc). By adding more entities and relationships, your *ontology* can grow larger and larger. But, we are still missing one important part and that is mapping 'timeseries data' to entities and updating the timeseries related properties with the underlying timeseries rows. We already have three OneLake shortcut tables being filled with Eventhouse table rows in the 'FactoryEvents_LH' Lakehouse. **Let's map** these three tables and relate them via columns in the production line table (eg. energyMeterId, tempSensorId). **Navigate** to the 'mapping' tab of the 'Productionline entity' and **click** `Add data`. 
+23. Until now, we have experienced how we can shape both entities, relationships, and instantiate actual entity instances (Twins) by ingesting the context data (production lines, operators, etc). By adding more entities and relationships, your _ontology_ can grow larger and larger. But, we are still missing one important part and that is mapping 'timeseries data' to entities and updating the timeseries related properties with the underlying timeseries rows. We already have three OneLake shortcut tables being filled with Eventhouse table rows in the 'FactoryEvents_LH' Lakehouse. **Let's map** these three tables and relate them via columns in the production line table (eg. energyMeterId, tempSensorId). **Navigate** to the 'mapping' tab of the 'Productionline entity' and **click** `Add data`.
 
-   ![alt text](assets/image_task10_step24.png)
+![alt text](assets/image_task10_step24.png)
 
 24. In the new dialog, select the data source. As Lakehouse, **select** `FactoryEvents_LH` and as table, **select** `SilverLoraWanTemperature`. **Select** this data source.
 
-   ![alt text](assets/image_task10_step25.png)
+![alt text](assets/image_task10_step25.png)
 
 25. In this new 'SilverLoraWanTemperature' mapping Entity configuration, **Select** the `Timeseries properties` as 'property type'. With that we first **add** `mapped properties` in a new dialog. Because timeseries data is all about time-related observations, we need to **select** `timestamp` as `Timestamp` property. After that, **add** the other `applicationId`, `battery`, `deviceId`, `humidity`, `light`, and `temperature` entity properties. **Click** the `checkbox` to acknowledge the changes and **apply** the changes. The Mapped properties are set.
 
-   ![alt text](assets/image_task10_step26.png)
+![alt text](assets/image_task10_step26.png)
 
 26. Next, the 'Lorawan Temperature sensor' time-series data must be related to the `Production line` entity. For that, we **link** with an `entity property` 'tempSensorId' in a new dialog. In that dialog, select the 'Production line' entity `tempSensorId` at the top and link it by **selecting** the `deviceId` in the 'LoraWan Temperature' timeseries data. **Apply** the link.
 
-   ![alt text](assets/image_task10_step27.png)
+![alt text](assets/image_task10_step27.png)
 
 27. Finally, we need to setup a schedule for this LoraWan temperature timeseries data. **Select** the `scheduling` tab and **run** the flow to ingest the 'Productionline_SilverLoraWanTemperature_TimeSeries'. Notice that the on-demand digital twin builder flow has been successfully queued. In a real-life scenario, this flow should be scheduled eg. every 15 minutes to update the Digital Twin with the latest timeseries rows of related 'LoraWan Temperature devices'.
 
-   ![alt text](assets/image_task10_step28.png)
+![alt text](assets/image_task10_step28.png)
 
 28. We repeat the same 'Add LoraWan Temperature timeseries data' steps for the 'SilverEnergyMeterCurrent' shortcut table. First, **Add** the `SilverEnergyMeterCurrent` data source and **set** the 'property type' to `timeseries properties`. When mapping the properties, not all columns from the previous timeseries datasource mapping can be mapped here (like 'temperature'). Just ignore them if no mapping is applicable. When mapping is applicable, **map** the `deviceId` and `timestamp`. And, **add** new mappings for `building`, `city`, `company`, `country`, `currentValue`, `line`, and `unit`.
 
-   ![alt text](assets/image_task10_step29.png)
+![alt text](assets/image_task10_step29.png)
 
 29. **Link** the 'productionline' entity property `energyMeterId` to this timeseries data column `deviceId` in this realtime table.
 
-   ![alt text](assets/image_task10_step30.png)
+![alt text](assets/image_task10_step30.png)
 
-30. Finally, we repeat the same 'SilverEnergyMeterCurrent' steps for the 'SilverEnergyMeterVoltage' shortcut table. First, **Add** the `SilverEnergyMeterVoltage` data source and **set** the 'property type' to `timeseries properties`. Again, when mapping the properties, not all columns from the previous  *two* timeseries datasource mappings can be mapped here. So, **Map** the `building` and `city`, `company`, `country`, `deviceId`, `line`, `timestamp`, and `unit`. **Add** the new mapping `currentValue`.
+30. Finally, we repeat the same 'SilverEnergyMeterCurrent' steps for the 'SilverEnergyMeterVoltage' shortcut table. First, **Add** the `SilverEnergyMeterVoltage` data source and **set** the 'property type' to `timeseries properties`. Again, when mapping the properties, not all columns from the previous _two_ timeseries datasource mappings can be mapped here. So, **Map** the `building` and `city`, `company`, `country`, `deviceId`, `line`, `timestamp`, and `unit`. **Add** the new mapping `currentValue`.
 
-   ![alt text](assets/image_task10_step31.png)
+![alt text](assets/image_task10_step31.png)
 
 31. **Link** the 'productionline' entity property `energyMeterId` to this timeseries data column `deviceId` in this realtime table.
 
-   ![alt text](assets/image_task10_step32.png)
+![alt text](assets/image_task10_step32.png)
 
 32. We now have mapped all three Lakehouse tabled with real-time timeseries data to the 'production line'. **Run** the `schedule` for the second and third timeseries mapping too.
 
-   ![alt text](assets/image_task10_step33.png)
+![alt text](assets/image_task10_step33.png)
 
-33. **Wait** until the status of all ingestion pipelines is set to `completed`. Each pipeline should have run at least once succesfully so data and relations are in place. 
+33. **Wait** until the status of all ingestion pipelines is set to `completed`. Each pipeline should have run at least once succesfully so data and relations are in place.
 
-   ![alt text](assets/image_task10_step34.png)
+![alt text](assets/image_task10_step34.png)
 
 34. We have now set up both the Digital Twin 'ontology' and have the twins and relationships up and running. Until now, we have only played with the graph, not the twins themselves. In the menu bar, **click** `Explore entity instance`, or: Twins.
 
-   ![alt text](assets/image_task10_step35.png)
+![alt text](assets/image_task10_step35.png)
 
 35. In a new dialog, we see both the ingested Production lines and Operators. We can use a simple filter to get to some entity like 'line1'. There is also an `Advanced query` option.
 
-   ![alt text](assets/image_task10_step36.png)
+![alt text](assets/image_task10_step36.png)
 
 36. Although we will not dive deeper in this Advanced query, we see we can filter on entities with certain property values.
 
-   ![alt text](assets/image_task10_step37.png)
+![alt text](assets/image_task10_step37.png)
 
 37. **Select** Production line `line1`. In the 'Details' the current properties of this production line are shown.
 
-   ![alt text](assets/image_task10_step38.png)
+![alt text](assets/image_task10_step38.png)
 
 38. **Click** the `Charts` tab and **select** the `light` and `battery`, and `voltage` checkboxes. Notice that the latest data is shown and the realtime data from all three shortcut table are mixed (here we see that the light sensor of this production line tells us the factory got dark during the night, so probably no artificial light were lit during the night).
 
-   ![alt text](assets/image_task10_step39.png)
+![alt text](assets/image_task10_step39.png)
 
 This concludes our Digital Twin Builder experience. Notice that this Fabric item is still in preview. Still, we are already able to capture multiple data sources, both real-time data and contextual data, and related them into this 'ontology' model. This was all done without a single line of code. So users can get a good understanding of what the situation of each Twin is and how real-time data from multiple sources works together.
 
@@ -1893,106 +1888,168 @@ This concludes our Digital Twin Builder experience. Notice that this Fabric item
 
 YourCompany receives from its shipping partners files containing all the shipments that have occured in that month. Since these files can come at any time and from many different providers, we will create an event driven workflow so that the files are processed and can be queried as soon as they arrive.
 
+These shipments are ingested via the Real-Time Hub experience. 
+
 1. **Navigate** to `Real-Time hub`
+
+![alt text](assets/image_task11_step01.png)
 
 2. **Click** on `Subscribe to OneLake events`
 
+![alt text](assets/image_task11_step02.png)
+
 3. **Select** `Add a OneLake source`
 
-4. **Select** `LH_YCEcommLakehouse`
+![alt text](assets/image_task11_step03.png)
 
-5. **Click** `Next`
+4. **Select** `LH_YCEcommLakehouse` and **Click** `Next`
 
-6. **Check** the box next to `Files`
+![alt text](assets/image_task11_step04.png)
 
-7. **Click** `Add`
+5. **Check** the box next to `Files` and then **Click** `Add`
 
-8. **Rename** the eventstream to `ES_OneLakeEvents`
+![alt text](assets/image_task11_step05.png)
 
-9. **Click** `Next`
+6. **Rename** the eventstream to `ES_OneLakeEvents` and then **Click** `Next`
 
-10. **Review** the selected parameters and name. Then **click** `Connect`.
+![alt text](assets/image_task11_step06.png)
 
-11. Wait for the Eventstream to establish connection to OneLake events.
+7. **Review** the selected parameters and name. Then **click** `Connect`.
 
-12. **Click** `Open Eventstream`
+![alt text](assets/image_task11_step07.png)
 
-13. In the Eventstream canvas, **click** `Switch to edit mode to transform events or add destination`
+8. Wait for the Eventstream to establish connection to OneLake events and then **Click** `Open Eventstream`.
 
-14. **Click** dropdown of `Transform events or add destination` node
+![alt text](assets/image_task11_step08.png)
 
-15. **Select** `Activator`from the list
+9. In the Eventstream canvas, **click** `Switch to edit mode to transform events or add destination`
 
-16. In the side pane, keep the defaults and **select** `ACT_TriggerNotebook` as the Activator and **click** `Save`
+![alt text](assets/image_task11_step09.png)
 
-17. **Click** `Publish`. Eventstream will commit the topology and begin routing events to the Activator. 
+10. **Click** dropdown of `Transform events or add destination` node and then **Select** `Activator` from the list.
 
-18. Let's upload sample data to test OneLake to Eventstream to Activator flow. **Navigate** to
-[Shipment History](https://github.com/microsoft/FabConRTIWorkshop/tree/main/assets/shipment-history) on the Github repo
+![alt text](assets/image_task11_step10.png)
 
-19. **Download** all 7 files on your local PC
+11. In the side pane, keep the defaults and **select** `ACT_TriggerNotebook` as the Activator and **click** `Save`
 
-20. **Navigate** back to your workspace.
+![alt text](assets/image_task11_step11.png)
 
-21. **Navigate** to `LH_YCEcommLakehouse`
+12. **Click** `Publish`. Eventstream will commit the topology and begin routing events to the Activator.
 
-22. In the `Files` section of the lakehouse, **click** on `...` when hovering to the `Files` folder
+![alt text](assets/image_task11_step12.png)
 
-23. **Select** `New subfolder`
+13. Let's upload sample data to test OneLake to Eventstream to Activator flow. **Navigate** to
+    [Shipment History](https://github.com/microsoft/FabConRTIWorkshop/tree/main/assets/shipment-history) on the Github repo.
 
-24. **Enter** `shipping-history` as the folder name
+![alt text](assets/image_task11_step13.png)
 
-25. **Click** `Create`
+14. **Download** all 7 files on your local PC
 
-26. **Hover** on `shipping-history` folder and **click** on `...`
+![alt text](assets/image_task11_step14.png)
 
-27. **Choose** `upload` from the list and then **select** `Upload files`
+15. **Navigate** back to your workspace and then **click** on `LH_YCEcommLakehouse`
 
-28. **Click** `folder` icon to upload files from your local PC. **Navigate** to the folder where you downloaded the files from Github
+![alt text](assets/image_task11_step15.png)
 
-29. **Select** `sample-file.csv` to upload. Do not upload the other files yet.
+16. In the `Files` section of the lakehouse, **click** on `...` when hovering to the `Files` folder and then **select** `New subfolder`.
 
-30. **Close** the `Upload files` pane
+![alt text](assets/image_task11_step16.png)
 
-31. **Navigate** back to your workspace, go to `Lab 04 - OneLake Events` folder and open `ACT_TriggerNotebook` activator
+17. **Enter** `shipping-history` as the folder name and then **click** `Create`.
 
-32. In the Activator canvas, you will see the OneLake event streamed from Eventstream when you uploaded the sample-file.csv
+![alt text](assets/image_task11_step17.png)
 
-33. **Click** `New rule`
+18. **Hover** on `shipping-history` folder and **click** on `...`
 
-34. Keep the defaults in `Monitor` section and `Condition` section. In `Action` section, **select** Fabric item as type.
+![alt text](assets/image_task11_step18.png)
 
-35. **Click** `Select Fabric item to run`
+19. **Choose** `Upload` from the menu and then **select** `Upload files`.
 
-36. In `Select Fabric item to run` window, **select** `NB_YCLoadCSVtoDelta` notebook. We are going to trigger this notebook every time a new file is uploaded to the shipment-history folder.
+![alt text](assets/image_task11_step19.png)
 
-37. **Click** `Edit action` to define the parameters to be passed to the notebook.
+20. **Click** `folder` icon to upload files from your local PC. **Navigate** to the folder where you downloaded the files from Github.
 
-38. **Click** `Add parameter`
+![alt text](assets/image_task11_step20.png)
 
-39. **Enter** `source_location` as the parameter name.
+21. **Select** `sample-file.csv` to upload. Do not upload the other files yet.
 
-40. **Click** `Select property` button
+![alt text](assets/image_task11_step21.png)
 
-41. **Select** `source` as the value. `source` includes the workspace and lakehouse details that are necessary for the notebook to read the CSV file.
+22. Then click on `Upload` to upload this single file.
 
-42. **Click** 'Add parameter` to add another parameter
+![alt text](assets/image_task11_step22.png)
 
-43. **Enter** `relative_file_path` as the parameter name.
+23. **Close** the `Upload files` pane
 
-44. **Click** `Select property` button
+![alt text](assets/image_task11_step23.png)
 
-45. **Select** `subject` as the value. `subject` includes the relative file path of the file you have uploaded.
+24. **Navigate** back to your workspace, go to `Lab 04 - OneLake Events` folder.
 
-46. **Click** `Apply`
+![alt text](assets/image_task11_step24.png)
 
-47. **Click** `Save and start`
+25. **Open** `ACT_TriggerNotebook` activator.
 
-48. Go back to your lakehouse and now upload all the files as shown in steps 26-30.
+![alt text](assets/image_task11_step25.png)
 
-49. **Navigate** to `LH_YCEcommLakehouse` and go to Tables section
+26. In the Activator canvas, you will see the OneLake event streamed from Eventstream when you uploaded the sample-file.csv. To see this **scroll to the right** until you see the column `subject`.
 
-50. **Notice** there is a table `shippingevents` in the Tables section
+![alt text](assets/image_task11_step26.png)
+
+27. **Click** `New rule`
+
+![alt text](assets/image_task11_step27.png)
+
+28. Keep the defaults in `Monitor` section and `Condition` section. In `Action` section, **select** Fabric item as type.
+
+![alt text](assets/image_task11_step28.png)
+
+29. **Click** `Select Fabric item to run`
+
+![alt text](assets/image_task11_step29.png)
+
+30. In `Select Fabric item to run` window, **select** `NB_YCLoadCSVtoDelta` notebook. We are going to trigger this notebook every time a new file is uploaded to the shipment-history folder. **Click** on `Connect`.
+
+![alt text](assets/image_task11_step30.png)
+
+31. **Click** `Edit action` to define the parameters to be passed to the notebook.
+
+![alt text](assets/image_task11_step31.png)
+
+32. **Click** `Add parameter`
+
+![alt text](assets/image_task11_step32.png)
+
+33. **Enter** `source_location` as the parameter name. **Click** `Select property` button. **Select** `source` as the value. `source` includes the workspace and lakehouse details that are necessary for the notebook to read the CSV file.
+
+![alt text](assets/image_task11_step33.png)
+
+34. **Click** 'Add parameter` to add another parameter
+
+![alt text](assets/image_task11_step34.png)
+
+35. **Enter** `relative_file_path` as the parameter name. **Click** `Select property` button. **Select** `subject` as the value. `subject` includes the relative file path of the file you have uploaded.
+
+![alt text](assets/image_task11_step35.png)
+
+36. **Click** `Apply`
+
+![alt text](assets/image_task11_step36.png)
+
+37. **Click** `Save and start`
+
+![alt text](assets/image_task11_step37.png)
+
+38. Go back to your lakehouse and now upload all the files as shown in steps 20-23.
+
+![alt text](assets/image_task11_step38.png)
+
+39. **Navigate** to `LH_YCEcommLakehouse` and go to Tables section.
+
+![alt text](assets/image_task11_step39.png)
+
+40. **Notice** there is a table `shippingevents` in the Tables section
+
+![alt text](assets/image_task11_step40.png)
 
 ---
 
