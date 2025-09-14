@@ -24,7 +24,7 @@ sections_title:                         # Optional. Override titles for each sec
    - Continue your learning journey
 ---
 
-# Introduction
+## Introduction
 
 YourCompany is a Direct-to-Consumer (D2C) European sneaker manufacturer. YourCompany operates 3 manufacturing sites in Germany, Sweden and Estonia with multiple distribution centres, 10 retail brick and mortar stores and an e-commerce store. 
 YourCompany makes sneakers for men, women and kids. For each gender type, YourCompany has 3 different categories: 
