@@ -4,7 +4,7 @@ This repository contains artifacts created to deliver Microsoft Fabric Real-Time
 
 To get started, proceeed to the MOAW:
 - [Fabric Real-Time Intelligence Workshop](https://aka.ms/FabConRTIWorkshop)
-- [Markdown for the workshop]()
+- [Markdown for the workshop](https://github.com/microsoft/FabConRTIWorkshop/blob/main/docs/workshop.md)
 
 Please contact the authors at add the link to the speaker contact doc page.
 
