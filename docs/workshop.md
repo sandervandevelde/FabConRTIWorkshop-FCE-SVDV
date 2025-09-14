@@ -476,7 +476,7 @@ To achieve this, we start with ingesting these shipping events into Real-Time In
 
 ![alt text](assets/image_lab01_step20.png)
 
-21. **Navigate** to the github repo of this workshop [Shipping Events KQL](https://github.com/microsoft/FabConRTIWorkshop/blob/main/assets/kqlcode/Lab1_QS_YCShippingDDLScript.kql) in a separate tab.
+21. **Navigate** to the github repo of this workshop [Shipping Events KQL](https://aka.ms/FabConKQL1Url) in a separate tab.
 
 ![alt text](assets/image_lab01_step21.png)
 
@@ -628,7 +628,7 @@ The direct ingestion destination settings are filled in like this.
 
 ![alt text](assets/image_lab01_step20.png)
 
-28. **Navigate** to the github repo of this workshop [Clickstream Events KQL](https://github.com/microsoft/FabConRTIWorkshop/blob/main/assets/kqlcode/Lab1_QS_YCShippingDDLScript.kql) in a separate tab.
+28. **Navigate** to the github repo of this workshop [Clickstream Events KQL](https://aka.ms/FabConKQL2Url) in a separate tab.
 
 29. **Copy** the `KQL code` from this file in the repo.
 
