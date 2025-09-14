@@ -1398,7 +1398,7 @@ GoldLoraWanTemperature
 
 ![alt text](assets/image_task08_step03.png)
 
-7. Because this is an interesting query to share with others within your team, having access to the same Microsoft Fabric workspace, let's turn this into a Real-Time Dashboard. **Put the cursor in the last query** so it is selected. **Click 'Pin to dashboard'**.
+7. Because this is an interesting query to share with others within your team, having access to the same Microsoft Fabric workspace, let's turn this into a Real-Time Dashboard. **Put the cursor in the last query** so it is selected. **Click** `Pin to dashboard`.
 
 ![alt text](assets/image_task08_step04.png)
 
