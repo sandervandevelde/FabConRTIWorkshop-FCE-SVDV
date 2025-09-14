@@ -355,7 +355,7 @@ To complete the lab, you **must** have access to a [Microsoft Fabric](https://ww
 
 ![FabricURL](assets/image_task01_step01.png "Fabric URL")
 
-2. **Log in** with the provided credentials, if a trial fabric tenant was previously set up (reference Prerequisites). You may also choose to run the lab in your own Fabric Tenant if you already have one.
+2. **Log in** with the provided credentials, if a trial fabric tenant was previously set up (reference Prerequisites). You may also choose to run the lab in your own Fabric Tenant if you already have one. Skip the 'welcome tour'.
 
 #### 2. Fabric Workspace
 
