@@ -676,7 +676,7 @@ Notice that the electric motor starts and stops every 15 minutes so you will see
 
    ![alt text](assets/image_task04_step03.png)
 
-2. **Click** `Select a data source`. In the dialog **click** on the button `Connect`.
+2. In the 'Select a data source' dialog **click** on the button `Connect`.
 
 ![alt text](assets/image_task04_step04.png)
 
@@ -984,7 +984,7 @@ You will ingest the LoraWan data from an Azure Event Hub.
 
 ![alt text](assets/image_task05_step03.png)
 
-2. **Click** `Select a data source`. In the dialog **click** on the button `Connect`.
+2. In the 'Select a data source' dialog **click** on the button `Connect`.
 
 ![alt text](assets/image_task05_step04.png)
 
@@ -1278,7 +1278,7 @@ In this section, we will add real-time weather data events. These events are str
 
 ![alt text](assets/image_task07_step03.png)
 
-2. **Click** `Select a data source`. In the dialog **click** on the menu item `New`.
+2. In the 'Select a data source' dialog **click** on the menu item `New`.
 
 ![alt text](assets/image_task07_step04.png)
 
