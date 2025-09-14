@@ -407,7 +407,7 @@ To achieve this, we start with ingesting these shipping events into Real-Time In
 
 ![alt text](assets/image_lab01_step04.png)
 
-5. Keep the defaults of Continuous Ingestion as On and 'Connect to a storage account'. **Select** `FabConVienna 2025 Azure Subscription` as the Subscription.
+5. **Keep the defaults** of Continuous Ingestion as `On` and `Connect to a storage account`. **Select** `FabConVienna 2025 Azure Subscription` as the Subscription.
 
 ![alt text](assets/image_lab01_step05.png)
 
@@ -423,15 +423,15 @@ To achieve this, we start with ingesting these shipping events into Real-Time In
 
 ![alt text](assets/image_lab01_step08.png)
 
-9. In the New connection pop up, keep the other defaults. **Paste** the Connection name as your user account. For example, if you are FabCon User 002, paste that as the connection name.
+9. In the New connection pop up, keep the other defaults. **Paste** the `Connection name` as your 'user account'. For example, if you are 'FabCon User 002', paste that as the connection name.
 
 ![alt text](assets/image_lab01_step09.png)
 
-10. **Click** `Save`.
+10. **Click** `Save` for the new connection.
 
 ![alt text](assets/image_lab01_step10.png)
 
-11. **Click** `Close`.
+11. **Click** `Close` (instead of 'Save').
 
 ![alt text](assets/image_lab01_step11.png)
 
@@ -439,7 +439,7 @@ To achieve this, we start with ingesting these shipping events into Real-Time In
 
 ![alt text](assets/image_lab01_step12.png)
 
-13. **Rename** the Eventstream Name to `ES_ShippingEvents`.
+13. **Rename** the 'Eventstream Name' to `ES_ShippingEvents`.
 
 ![alt text](assets/image_lab01_step13.png)
 
@@ -475,7 +475,7 @@ To achieve this, we start with ingesting these shipping events into Real-Time In
 
 ![alt text](assets/image_lab01_step21.png)
 
-22. **Copy** the KQL code from this file in the repo.
+22. **Copy** the (raw) KQL code from this file in the repo.
 
 ![alt text](assets/image_lab01_step22.png)
 
@@ -553,7 +553,7 @@ Notice that the electric motor starts and stops every 15 minutes so you will see
 
 ![alt text](assets/image_task04_step10.png)
 
-9. **Give the filter** a 'Operation name' like `ReactiveFilter`. We only want to keep messages when the `key does not equal reactive` by **selecting the 'key' column and adding the filter values**. **Save** the filter.
+9. **Give the filter** a 'Operation name' like `ReactiveFilter`. We only want to keep messages when the `key does not equal reactive` by **selecting the 'key' column and adding the filter values** 'does not equal' and 'reactive'. **Save** the filter.
 
 ![alt text](assets/image_task04_step11.png)
 
@@ -569,7 +569,7 @@ Notice that the electric motor starts and stops every 15 minutes so you will see
 
 ![alt text](assets/image_task04_step14.png)
 
-13. **Provide a Stream name** like `EnergyMeterDerivedStream`. **Save** the change.
+13. **Provide a Derived Stream name** like `EnergyMeterDerivedStream`. **Save** the change.
 
 ![alt text](assets/image_task04_step15.png)
 
@@ -577,7 +577,7 @@ Notice that the electric motor starts and stops every 15 minutes so you will see
 
 ![alt text](assets/image_task04_step16.png)
 
-15. The Derived stream is added, so these messages are potentially shared with other users accessing the same workspace you are working on. Notice that the Derived stream can have other steps added to the right, it is not the end of the flow. **Add a destination** for an Eventhouse, behind the Derived stream.
+15. The Derived stream is added, so these messages are potentially shared with other users accessing the same workspace you are working on. Notice that the Derived stream can have other steps added to the right, it is not the end of the flow. **Add a destination** for an `Eventhouse`, behind the Derived stream.
 
 ![alt text](assets/image_task04_step17.png)
 
@@ -585,7 +585,7 @@ Notice that the electric motor starts and stops every 15 minutes so you will see
 
 ![alt text](assets/image_task04_step18.png)
 
-17. We **keep** the `Event processing before ingestion`. **Give the Destination a name** like `Eventhouse`. **Select your own workspace** and **Select your own Eventhouse** and **Select your own KQL Database**. Regarding the table, **Create a new table** and name it `BronzeEnergyMeter`. Keep the input data format to Json.
+17. We **keep** the `Event processing before ingestion`. **Give the Destination a name** like `EventhouseDestination`. **Select your own workspace** and **Select your the Eventhouse** `EH_YCSneakerEventStore` and **Select the KQL Database** `EH_YCSneakerEventStore`. Regarding the table, **Create a new table** and name it `BronzeEnergyMeter`. Keep the input data format to Json.
 
 ![alt text](assets/image_task04_step19.png)
 
@@ -609,7 +609,7 @@ Notice that the electric motor starts and stops every 15 minutes so you will see
 
 ![alt text](assets/image_task04_step24.png)
 
-23. **Leave the Eventstream and navigate to** the `EH_YCSneakerEventStore` Eventhouse and clicking on the `EH_YCSneakerEventStore` KQL Database name. This will show all content in the KQL Database. Notice that the `BronzeEnergyMeter` table is added, now. Check the columns of that table, including the Universal Namespace (UNS) of the Compact Controller PLC.
+23. **Leave the Eventstream and navigate to** the `EH_YCSneakerEventStore` Eventhouse (at the root of your workspace) and clicking on the `EH_YCSneakerEventStore` KQL Database name in the Eventhouse. This will show all content in the KQL Database. Notice that the `BronzeEnergyMeter` table is added, now. Check the columns of that table, including the Universal Namespace (UNS) of the Compact Controller PLC.
 
 ![alt text](assets/image_task04_step25.png)
 
@@ -645,15 +645,15 @@ Notice that the electric motor starts and stops every 15 minutes so you will see
 
 ![alt text](assets/image_task04_step33.png)
 
-32. Because of the current limitation of the incoming data (the `value column` is still of type 'string'), so the aggregation will fail. But the intent of this dialog is still understood, the KQL query language shows a summary by key and deviceId.
+32. Because of the current type limitation of the incoming data (the `value column` is still of type 'string'), so the aggregation will fail. But the intent of this dialog is still understood, the KQL query language shows a summary by key and deviceId.
 
 ![alt text](assets/image_task04_step34.png)
 
-33. We will use the KQL query language to turn the bronze table into two separate silver tables. **Navigate to the KQL Queryset** named `EH_YCSneakerEventStore_queryset`.
+33. **Click** `Back` to leave the Visual exploration. **Navigate to the KQL Queryset** named `EH_YCSneakerEventStore_queryset` within the database. We will use the KQL query language to turn the bronze table into two separate silver tables.
 
 ![alt text](assets/image_task04_step35.png)
 
-34. Each KQL Database comes with a KQL Queryset already. **See** the KQL Queryset of the 'EH_YCSneakerEventStore' KQL Database in the 'EH_YCSneakerEventStore' Eventhouse has opened. A KQL Queryset offers a sandbox for querying the data using the Kusto Query Language (KQL). We will also create extra logic using KQL commands. We will create a silver voltage table `SilverEnergyMeterVoltage` and fill it with typed voltage rows by creating a Table update policy based on the `BronzeEnergyMeter`. The typed silver table data is copied from the bronze table every time new bronze table rows arrive. The conversion part is done via the function `ParseVoltageTelemetry`. **Execute these three KQL commands separately**. Do this by placing them all in the KQL Queryset, putting the cursor in each command, and running it. Do this for **one after another**.
+34. Each KQL Database comes with a KQL Queryset already. **See** that the KQL Queryset of the 'EH_YCSneakerEventStore' KQL Database in the 'EH_YCSneakerEventStore' Eventhouse has opened. A KQL Queryset offers a sandbox for querying the data using the Kusto Query Language (KQL). We will also create extra logic using KQL commands. We will create a silver voltage table `SilverEnergyMeterVoltage` and fill it with typed voltage rows by creating a Table update policy based on the `BronzeEnergyMeter`. The typed silver table data is copied from the bronze table every time new bronze table rows arrive. The conversion part is done via the function `ParseVoltageTelemetry`. **Execute these three KQL commands separately**. Do this by placing them all in the KQL Queryset, putting the cursor in each command, and running it. Do this for **one after another**.
 
 ```
 // query 1/3 - Create a table
@@ -857,11 +857,11 @@ You will ingest the LoraWan data from an Azure Event Hub.
 
 ![alt text](assets/image_task05_step10.png)
 
-8. We **select** `Direct Ingestion`, not 'Event processing before ingestion'! So, we need to add a table mapping later on. Also, **provide** the 'Eventhouse' named `EH_YCSneakerEventStore` and 'KQL Database' named `EH_YCSneakerEventStore` as seen in the previous paragraph. **Save** the settings (this can take a moment to set up the connection, please be patient).
+8. We **select** `Direct Ingestion`, not 'Event processing before ingestion'! So, we need to add a table mapping later on. Also, **provide** the 'Eventhouse' named `EH_YCSneakerEventStore` and 'KQL Database' named `EH_YCSneakerEventStore` as seen in the previous paragraph. **Save** the settings (this can take a moment to set up the connection, please be patient). **Change** the 'Destination name' into `EventhouseDestination`.
 
 ![alt text](assets/image_task05_step11.png)
 
-9. Before we **publish** the Eventstream, **make sure** we see the test results when the `middle step` is active. **Refresh** these results to be sure the mapping is providing sample telemetry, before continuing.
+9. Before we publish the Eventstream, **make sure** we see the test results when the `middle step` is active. **Refresh** these results to be sure the mapping is providing sample telemetry, before continuing. Only then, **Publish**.
 
 ![alt text](assets/image_task05_step12.png)
 
@@ -1763,7 +1763,7 @@ The clicks will be generated via a generator running in a workbook.
 
 ![alt text](assets/image_lab02_step06.png)
 
-7. in the published Eventstream **Click** `ClickstreamNBSource` node to access the settings.
+7. in the published Eventstream **Click** `ClickstreamNBSource` node to access the settings/details.
 
 ![alt text](assets/image_lab02_step07.png)
 
@@ -1795,11 +1795,11 @@ The clicks will be generated via a generator running in a workbook.
 
 ![alt text](assets/image_lab02_step14.png)
 
-15. **Click** on `Run all` to start generating clickstream events.
+15. **Click** on `Run all` to start generating clickstream events. 
 
 ![alt text](assets/image_lab02_step15.png)
 
-16. **Navigate** back to the published `ES_ClickstreamEvents` Eventstream from the side ribbon. 
+16. **Navigate** back to the published `ES_ClickstreamEvents` Eventstream from the side ribbon (This Notebook will keep running). 
 
 ![alt text](assets/image_lab02_step16.png)
 
@@ -1821,65 +1821,66 @@ The clicks will be generated via a generator running in a workbook.
 | Eventhouse | `EH_YCSneakerEventStore` |
 | KQL Database | `EH_YCSneakerEventStore` |
 
-The direct ingestion destination settings are filled in like this.
+20. The direct ingestion destination settings are filled in like this.
 
 ![alt text](assets/image_lab02_step19.png)
 
 **Click** `Save` to save the destination settings.
 
-20. **Click** `Publish` to publish the Eventstream.
+21. **Click** `Publish` to publish the Eventstream.
 
 ![alt text](assets/image_lab02_step20.png)
 
-21. Wait for Eventhouse destination to load. In the published Eventstream, the `Configure button` becomes available.
+22. Wait for Eventhouse destination to load. In the published Eventstream, the `Configure button` becomes available.
 
 ![alt text](assets/image_lab02_step21.png)
 
-22. **Enter** the table name `RawClickstreamData`, **click** on the tick mark, **click** `Next`.
+23. **Enter** the table name `RawClickstreamData`, **click** on the tick mark, **click** `Next`.
 
 ![alt text](assets/image_lab02_step22.png)
 
-23. **Preview** the messages fetched from Eventstream and click `Finish` to accept the proposed mapping.
+24. **Preview** the messages fetched from Eventstream and click `Finish` to accept the proposed mapping.
 
 ![alt text](assets/image_lab02_step23.png)
 
-24. **Check** if all the steps are successfully completed and then **click** `Close`.
+25. **Check** if all the steps are successfully completed and then **click** `Close`.
 
 ![alt text](assets/image_lab02_step24.png)
 
-25. **Navigate** back to your workspace.
+26. **Navigate** back to your workspace.
 
-26. **Open** the existing `EH_YCSneakerEventStore` Eventhouse.
+27. **Open** the existing `EH_YCSneakerEventStore` Eventhouse.
 
 ![alt text](assets/image_lab02_step26.png)
 
-27. **Click** on `EH_YCSneakerEventStore_queryset`, which is the default query editor of the Eventhouse.
+28. **Click** on `EH_YCSneakerEventStore_queryset`, which is the default query editor of the Eventhouse.
 
 ![alt text](assets/image_lab01_step20.png)
 
-28. **Navigate** to the github repo of this workshop [Clickstream Events KQL](https://aka.ms/FabConKQL2Url) in a separate tab.
+29. **Navigate** to the github repo of this workshop [Clickstream Events KQL](https://aka.ms/FabConKQL2Url) in a separate tab.
 
-29. **Copy** the `KQL code` from this file in the repo.
+30. **Copy** the `KQL code` from this file in the repo.
 
 ![alt text](assets/image_lab02_step29.png)
 
-30. **Paste** the copied KQL code in the `EH_YCSneakerEventStore_queryset`.
+31. **Paste** the copied KQL code in the `EH_YCSneakerEventStore_queryset`.
 
 ![alt text](assets/image_lab02_step30.png)
 
-31. **Rename** the tab as `Clickstream Events`.
+32. **Rename** the tab as `Clickstream Events`.
 
 ![alt text](assets/image_lab02_step31.png)
 
-32. **Select** the entire script in the KQL Queryset tab page and click `Run`. 
+34. **Select** the entire script in the KQL Queryset tab page and click `Run`. 
 
 ![alt text](assets/image_lab02_step32.png)
 
-33. **Check** the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
+34. **Check** the output as shown in the image below. A new function, table and an update policy must have been created in your workspace.
 
 ![alt text](assets/image_lab02_step33.png)
 
-The raw clickstream events are now available in rows having typed values in the columns.
+The raw clickstream events are now available in rows in multiple tables, having typed values in the columns.
+
 
 ### 5. Lab 04 - OneLake Events
 
