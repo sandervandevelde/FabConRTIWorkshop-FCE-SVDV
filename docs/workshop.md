@@ -1,11 +1,11 @@
 ---
-published: false                        # Optional. Set to true to publish the workshop (default: false)
+published: true                        # Optional. Set to true to publish the workshop (default: false)
 type: workshop                          # Required.
 title: Fabric Real-Time Intelligence Workshop              # Required. Full title of the workshop
 short_title: Fabric Real-Time Intelligence Workshop     # Optional. Short title displayed in the header
-description: In this technical workshop, you will build a complete analytics platform with streaming data using Microsoft Fabric Real-Time Intelligence components and other features of Microsoft Fabric. This is a proctor led worksop in which each section is accompanied by a technical overview of Fabric RTI components.  # Required.
+description: In this technical workshop, you will build a complete analytics platform with streaming data using Microsoft Fabric Real-Time Intelligence components and other features of Microsoft Fabric. This is a proctor-led workshop in which each section is accompanied by a technical overview of Fabric RTI components.  # Required.
 level: Can be 'beginner', 'intermediate' or 'advanced'                         # Required. Can be 'beginner', 'intermediate' or 'advanced'
-authors: Devang Shah, Sander van de Velde                               # Required. You can add as many authors as needed      
+authors: Devang Shah, Sander van de Velde, Frank Geisler, Edgar Cotte                               # Required. You can add as many authors as needed      
 contacts:                               # Required. Must match the number of authors
   - devsha@microsoft.com, sander.vandevelde@alten.nl
 duration_minutes: 360                    # Required. Estimated duration in minutes
@@ -26,6 +26,18 @@ sections_title:                         # Optional. Override titles for each sec
 
 ## Introduction
 
+This workshop is a hands-on, guided experience designed to help you build a complete analytics platform for streaming data using Microsoft Fabric Real-Time Intelligence. You’ll step into the shoes of a modern European sneaker manufacturer, YourCompany, and learn how to leverage Microsoft Fabric’s powerful components—including Eventstream, Eventhouse, KQL, Real-Time Dashboards, Activator, Digital Twin Builder, and Lakehouse—to ingest, process, analyze, and visualize real-time data from factories, logistics, and customer interactions.
+
+Through practical labs, you’ll:
+
+- Ingest and transform real-time telemetry, sensor, and weather data.
+- Monitor shipments and customer clickstream events.
+- Build a medallion architecture for scalable analytics.
+- Create actionable alerts and interactive dashboards.
+- Integrate contextual and timeseries data using Lakehouse and Digital Twin Builder.
+- Whether you’re a beginner or an experienced practitioner, this workshop will equip you with the skills to design and implement real-time intelligence solutions for modern enterprises using Microsoft Fabric.
+
+
 YourCompany is a Direct-to-Consumer (D2C) European sneaker manufacturer. YourCompany operates 3 manufacturing sites in Germany, Sweden and Estonia with multiple distribution centres, 10 retail brick and mortar stores and an e-commerce store. 
 YourCompany makes sneakers for men, women and kids. For each gender type, YourCompany has 3 different categories: 
 - GenZ Pros: These are sneakers designed for modern professionals that wants to pair sneakers with suits, trousers, office wear or any professional setting to make a lasting impression
@@ -34,7 +46,7 @@ YourCompany makes sneakers for men, women and kids. For each gender type, YourCo
 
 ![YourCompany](assets/rtiworkshop_cover_image_0.png)
 
-YourCompany partners with logistics companies to route the sneaker boxes from their distribution centres to customers’ addresses when the orders are placed online. YourCompany runs a design and simulation lab in which they design sneakers as per the latest style trends and test the sneakers for durability, duress and performance to ensure that every customer feels that each sneaker is of high quality and can be used for multiple purposes.
+YourCompany partners with logistics companies to route the sneaker boxes from their distribution centres to customers’ addresses when the orders are placed online. 
 
 YourCompany also owns a factory producing rubber required for sneakers that is sensitive to temperature changes during production. You are producing these products day and night, all year long, and you want to analyze and control the production process in real-time. So, you are interested in both the performance of your machinery and the environmental conditions (like temperature and humidity) inside and outside your factory.
 
@@ -493,7 +505,7 @@ The incoming XML messages with shipping events are now made available in typed c
 
 ### 3. Lab 02 - Clickstream Events
 
-YourCompany's website is the primary channel for customers to discover and buy its sneakers. Capturing, analysing and learning customer's behaviour from its website is very critical to continuously improve the customer engagement, adapt and improve social media marketing strategies as well as plan marketing events in commensuration with the Return-on-Investment offered by the different digital channels.
+YourCompany's website is the primary channel for customers to discover and buy its sneakers. Capturing, analysing and learning customer's behaviour from its website is very critical to continuously improve the customer engagement, adapt and improve social media marketing strategies as well as plan marketing events in proportion to the Return-on-Investment offered by the different digital channels.
 
 The clicks will be generated via a generator running in a workbook.
 
@@ -1597,7 +1609,7 @@ Now, let's investigate how more traditional data lakes can benefit from real-tim
 
 #### Lab 03.6 - Adding Lakehouse shortcuts to real-time data via OneLake
 
-A Microsoft Fabric Lakehouse is a unified platform for storing, managing, and analyzing both structured and unstructured data, turing eg. CSV files into tables. Using more traditional SQL, these tables can be queried.
+A Microsoft Fabric Lakehouse is a unified platform for storing, managing, and analyzing both structured and unstructured data, turning eg. CSV files into tables. Using more traditional SQL, these tables can be queried.
 
    ![alt text](assets/rtiLabArchitecture_workshop_9.png)
 
@@ -1779,7 +1791,7 @@ Here, we are building a Digital Twin where our production line is operated by se
 
    ![alt text](assets/image_task10_step15.png)
 
-15. A new dialog is shown to manage the scheduler. It should be clear that context date like a list of `production lines` or `operators` does not change often so a daily ingest at 01.00 AM would be perfect. At that moment, the Lakehouse table context is read and the Twins (or 'Entity instances') are updated. You can **Apply** one or **Discard** it for now.
+15. A new dialog is shown to manage the scheduler. It should be clear that context data like a list of `production lines` or `operators` does not change often so a daily ingest at 01.00 AM would be perfect. At that moment, the Lakehouse table context is read and the Twins (or 'Entity instances') are updated. You can **Apply** one or **Discard** it for now.
 
    ![alt text](assets/image_task10_step16.png)
 
@@ -1855,7 +1867,7 @@ Here, we are building a Digital Twin where our production line is operated by se
 
    ![alt text](assets/image_task10_step34.png)
 
-34. We have now set up both the Digital Twin 'ontology' and have the twins and relationships up and running. Until now, we have only payed with the graph, not the twins themselves. In the menu bar, **click** `Explore entity instance`, or: Twins.
+34. We have now set up both the Digital Twin 'ontology' and have the twins and relationships up and running. Until now, we have only played with the graph, not the twins themselves. In the menu bar, **click** `Explore entity instance`, or: Twins.
 
    ![alt text](assets/image_task10_step35.png)
 
