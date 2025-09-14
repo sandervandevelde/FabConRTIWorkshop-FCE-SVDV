@@ -1,12 +1,12 @@
-# Fabric Real-Time Intelligence Hands-on Lab
+# Fabric Real-Time Intelligence Workshop Delivered as a Hands-on Lab
 
 This repository contains artifacts created to deliver Microsoft Fabric Real-Time Intelligence hands-on lab cum tutorial. This workshop can be accessed on the MOAW (Mother of All Workshops) portal.
 
 To get started, proceeed to the MOAW:
-- Add the aka ms link
-- Add the link to workshop.md doc
+- [Fabric Real-Time Intelligence Workshop](https://aka.ms/FabConRTIWorkshop)
+- [Markdown for the workshop](https://github.com/microsoft/FabConRTIWorkshop/blob/main/docs/workshop.md)
 
-Please contact the authors at add the link to the speaker contact doc page.
+Please create an issue on this repo to request any changes or share feedback.
 
 ## Contributing
 
