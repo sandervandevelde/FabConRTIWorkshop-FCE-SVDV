@@ -661,7 +661,7 @@ Notice that the electric motor starts and stops every 15 minutes so you will see
 
    ![alt text](assets/rtiLabArchitecture_workshop_4.png)
 
-1. **Open** the Eventstream named `ES_EnergyMeter`, already provided in the 'Factory events folder'. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
+1. **Open** the Eventstream named `ES_EnergyMeter`, already provided in the 'Lab 03 Factory events' folder of your workspace. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
 
    ![alt text](assets/image_task04_step03.png)
 
@@ -969,7 +969,7 @@ You will ingest the LoraWan data from an Azure Event Hub.
 
    ![alt text](assets/rtiLabArchitecture_workshop_5.png)
 
-1. **Open** the Eventstream named `ES_LoraWanStream`, already provided in the 'Factory events folder'. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
+1. **Open** the Eventstream named `ES_LoraWanStream`, already provided in the 'Lab 03 Factory events' folder of your workspace. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
 
    ![alt text](assets/image_task05_step03.png)
 
@@ -1264,7 +1264,7 @@ In this section, we will add real-time weather data events. These events are str
 
    ![alt text](assets/rtiLabArchitecture_workshop_7.png)
 
-1. **Open** the Eventstream named `ES_WeatherData`, already provided in the 'Factory events folder'. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
+1. **Open** the Eventstream named `ES_WeatherData`, already provided in the 'Lab 03 Factory events' folder of your workspace. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
 
    ![alt text](assets/image_task07_step03.png)
 
@@ -1874,6 +1874,8 @@ This concludes our Digital Twin Builder experience. Notice that this Fabric item
 ### 5. Lab 04 - OneLake Events
 
 YourCompany receives from its shipping partners files containing all the shipments that have occured in that month. Since these files can come at any time and from many different providers, we will create an event driven workflow so that the files are processed and can be queried as soon as they arrive.
+
+These shipments are ingested via the Real-Time Hub experience. 
 
 1. **Navigate** to `Real-Time hub`
 
