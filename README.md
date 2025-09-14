@@ -1,4 +1,4 @@
-# Fabric Real-Time Intelligence Hands-on Lab
+# Fabric Real-Time Intelligence Workshop Delivered as a Hands-on Lab
 
 This repository contains artifacts created to deliver Microsoft Fabric Real-Time Intelligence hands-on lab cum tutorial. This workshop can be accessed on the MOAW (Mother of All Workshops) portal.
 
