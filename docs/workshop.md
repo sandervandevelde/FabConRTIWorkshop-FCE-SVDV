@@ -1221,40 +1221,34 @@ SilverLoraWanTemperature
 
    ![alt text](assets/image_task06_step03.png)
 
-5. The last step is setting up a new Activator (notice that this makes it possible to add multiple alerts to one Activator). **Create a new item**.
+5. The last step is **selecting** the existing Activator `ACT_YCFactoryEvents` as 'Item' (notice that this makes it possible to add multiple alerts to the same Activator). **Press** the `Create` button.
 
-   ![alt text](assets/image_task06_step04.png)
-
-6. Name the new Activator `FactoryEvents_ACT` and **press the Create button**.
-
-   ![alt text](assets/image_task06_step05.png)
-
-7. Within a few moments, the alert is created within the new Activator. **Press the Open button** to navigate to the new Activator.
+6. Within a few moments, the alert is created within the Activator. **Press the Open button** to navigate to the Activator.
 
    ![alt text](assets/image_task06_step06.png)
 
-8. **Change the time** to the last `30 minutes`. In the monitor part of the page, we see all recent temperature values in that time span. Notice that probable all values in this example are well below the alert limit of 30 degrees Celsius. To force having alerts, change the temperature limit in the definition. **Change it to** `somewhere near and below (some of) the values` in the Y-axis of the Monitor graph. A 'horizontal red line' appears in the Monitor graph at that value you have chosen. In this case it's '23.5'.
+7. **Change the time** to the last `30 minutes`. In the monitor part of the page, we see all recent temperature values in that time span. Notice that probable all values in this example are well below the alert limit of 30 degrees Celsius. To force having alerts, change the temperature limit in the definition. **Change it to** `somewhere near and below (some of) the values` in the Y-axis of the Monitor graph. A 'horizontal red line' appears in the Monitor graph at that value you have chosen. In this case it's '23.5'.
 
    ![alt text](assets/image_task06_step07.png)
 
-9.  First, if that limit is low enough, some temperature values (but not all) will pass that threshold and will pop up in the Condition part. These will end up as Actions, seen at the bottom. Second, notice that in this example, where all temperature values are at the same level, `only the first two values` (for each sensor one value) leads to actions. The following temperature values are ignored because the action condition is based on 'becomes greater than' (the Activator handles this as 'Increases above').
+8.  First, if that limit is low enough, some temperature values (but not all) will pass that threshold and will pop up in the Condition part. These will end up as Actions, seen at the bottom. Second, notice that in this example, where all temperature values are at the same level, `only the first two values` (for each sensor one value) leads to actions. The following temperature values are ignored because the action condition is based on 'becomes greater than' (the Activator handles this as 'Increases above').
 
    ![alt text](assets/image_task06_step08.png)
 
-10. As shown in the Definition, the action will be an email. **Change the message**. The message could be `Temperature too high `. This text can be enriched by adding a property referencing the current temperature. First, **Click** on the `tag` icon and then select `temperature`.
+9. As shown in the Definition, the action will be an email. **Change the message**. The message could be `Temperature too high `. This text can be enriched by adding a property referencing the current temperature. First, **Click** on the `tag` icon and then select `temperature`.
 
    ![alt text](assets/image_task06_step09.png)
 
 
-11. **Add** the same `temperature` as context.
+10. **Add** the same `temperature` as context.
 
    ![alt text](assets/image_task06_step10.png)
 
-12. A alternative edit option is available. **Press the 'Edit action' button**.
+11. A alternative edit option is available. **Press the 'Edit action' button**.
 
    ![alt text](assets/image_task06_step11.png)
 
-13. This will provide the same editing experience, together with a preview of the email to expect. Optionally, you can ask for a test action to be sent. (Notice that access to the email inbox could be limited depending on the account used for this workshop) **Discard changes** afterwards.
+12. This will provide the same editing experience, together with a preview of the email to expect. Optionally, you can ask for a test action to be sent. (Notice that access to the email inbox could be limited depending on the account used for this workshop) **Discard changes** afterwards.
 
    ![alt text](assets/image_task06_step12.png)
 
