@@ -2,24 +2,26 @@
 .alter table RawShippingMsgs folder 'Bronze Layer'
 .create-or-alter function processShippingMsgs()
 {
-    RawShippingMsgs
-    | extend xmltojson = parse_xml(data)
-    | evaluate bag_unpack(xmltojson)
-    | evaluate bag_unpack(ShippingEvent)
-    | extend DestinationAddressName = tostring(DestinationAddress.Name)
-            , DestinatonAddressStreet = tostring(['DestinationAddress']['Street'])
-            , DestinatonAddressCity = tostring(['DestinationAddress']['City'])
-            , DestinatonAddressZip = tostring(['DestinationAddress']['Zip'])
-            , DestinatonAddressCountry = tostring(['DestinationAddress']['Country'])
-            , DestinatonAddressLatitude = toreal(['DestinationAddress']['Latitude'])
-            , DestinatonAddressLongitude = toreal(['DestinationAddress']['Longitude'])
-            , SourceDCCity = tostring(['SourceDistributionCenter']['City'])
-            , SourceDCCountry = tostring(['SourceDistributionCenter']['Country'])
-            , SourceDCLatitude = toreal(['SourceDistributionCenter']['Latitude'])
-            , SourceDCLongitude = toreal(['SourceDistributionCenter']['Longitude'])
-    | project-away DestinationAddress, SourceDistributionCenter, data
+RawShippingMsgs
+| extend xmltojson = parse_xml(data)
+| project Provider = tostring(['xmltojson']['ShippingEvent']['Provider'])
+        , OrderNumber = toguid(['xmltojson']['ShippingEvent']['OrderNumber'])
+        , EventTime = todatetime(['xmltojson']['ShippingEvent']['EventTime'])
+        , Status = tostring(['xmltojson']['ShippingEvent']['Status'])
+        , SourceCity = tostring(['xmltojson']['ShippingEvent']['SourceDistributionCenter']['City'])
+        , SourceCountry = tostring(['xmltojson']['ShippingEvent']['SourceDistributionCenter']['Country'])
+        , SourceLatitude = toreal(['xmltojson']['ShippingEvent']['SourceDistributionCenter']['Latitude'])
+        , SourceLongitude = toreal(['xmltojson']['ShippingEvent']['SourceDistributionCenter']['Longitude'])
+        , DestinationCity = tostring(['xmltojson']['ShippingEvent']['DestinationAddress']['City'])
+        , DestinationCountry = tostring(['xmltojson']['ShippingEvent']['DestinationAddress']['Country'])
+        , DestinationLatitude = toreal(['xmltojson']['ShippingEvent']['DestinationAddress']['Latitude'])
+        , DestinationLongitude = toreal(['xmltojson']['ShippingEvent']['DestinationAddress']['Longitude'])
+        , WeightKG = toreal(['xmltojson']['ShippingEvent']['WeightKg'])
+        , FailureNote = tostring(['xmltojson']['ShippingEvent']['FailureNote'])
+        , DowntimeHours = toreal(['xmltojson']['ShippingEvent']['Metadata']['DowntimeHours'])
+        , ShippingContents = ['xmltojson']['ShippingEvent']['ShippingContents']
 }
-.create table ShippingEvents (EventTime:datetime, OrderNumber:guid, Provider:string, ShippingContents:dynamic, Status:string, WeightKg:dynamic, DestinationAddressName:string, DestinatonAddressStreet:string, DestinatonAddressCity:string, DestinatonAddressZip:string, DestinatonAddressCountry:string, DestinatonAddressLatitude:real, DestinatonAddressLongitude:real, SourceDCCity:string, SourceDCCountry:string, SourceDCLatitude:real, SourceDCLongitude:real) with (folder = 'Silver Layer')
+.create table ShippingEvents (Provider:string, OrderNumber:guid, EventTime:datetime, Status:string, SourceCity:string, SourceCountry:string, SourceLatitude:real, SourceLongitude:real, DestinationCity:string, DestinationCountry:string, DestinationLatitude:real, DestinationLongitude:real, WeightKG:real, FailureNote:string, DowntimeHours:real, ShippingContents:dynamic) with (folder = "Silver Layer")
 .alter table ShippingEvents policy update
 ```[{
     "IsEnabled": true,
