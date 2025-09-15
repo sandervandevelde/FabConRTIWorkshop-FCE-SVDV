@@ -1463,7 +1463,7 @@ Microsoft Fabric OneLake is the single, unified, logical data lake for Microsoft
 
 Here, factory data from several 'silver' tables will be shared via OneLake so a Lakehouse can reference that data as tables too.
 
-1. The timeseries data in the KQL Database is not accessible by default in the Fabric OneLake. **Navigate** to the `EH_YCSneakerEventStore` overview page and see that OneLake availability is disable:
+1. The timeseries data in the KQL Database is not accessible by default in the Fabric OneLake. **Navigate** to the KQL Database `EH_YCSneakerEventStore` overview page and see that OneLake availability is disable:
 
 ![alt text](assets/image_task09_step01.png)
 
