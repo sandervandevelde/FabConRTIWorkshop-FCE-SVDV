@@ -1943,7 +1943,7 @@ These shipments are ingested via the Real-Time Hub experience.
 ![alt text](assets/image_task11_step12.png)
 
 13. Let's upload sample data to test OneLake to Eventstream to Activator flow. **Navigate** to
-    [Shipment History](https://github.com/microsoft/FabConRTIWorkshop/tree/main/assets/shipment-history) on the Github repo.
+    [Shipment History](https://aka.ms/FabConCSVUrl) on the Github repo.
 
 ![alt text](assets/image_task11_step13.png)
 
