@@ -1402,7 +1402,7 @@ GoldLoraWanTemperature
 
 ![alt text](assets/image_task08_step04.png)
 
-8. A dialog is shown. First, select pinning to a new dashboard by selecting `In a new dashboard`. Then, **Name** the new dashboard `FactoryEvents_RTD` and **name** the tile within the dashboard, showing this query `Factory temperature vs. Weather data`. Finally, **Create** the dashboard.
+8. A dialog is shown. First, select pinning to a new dashboard by selecting `In a new dashboard`. Then, **Name** the new dashboard `RTD_FactoryEvents` and **name** the tile within the dashboard, showing this query `Factory temperature vs. Weather data`. Finally, **Create** the dashboard.
 
 ![alt text](assets/image_task08_step05.png)
 
