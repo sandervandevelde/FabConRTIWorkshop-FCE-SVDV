@@ -1629,7 +1629,7 @@ Here, factory data from several 'silver' tables will be shared via OneLake so a 
 
 ![alt text](assets/image_task09_step04.png)
 
-5. In the dialog 'New Lakehouse' **insert** `FactoryEvents_LH` as the name and **click** on `Create`.
+5. In the dialog 'New Lakehouse' **insert** `LH_FactoryEvents` as the name and **click** on `Create`.
 
 ![alt text](assets/image_task09_step05.png)
 
@@ -1654,14 +1654,13 @@ Here, factory data from several 'silver' tables will be shared via OneLake so a 
 
 7. We see the KQL Database `EH_YCSneakerEventStore` is listed. **Select** it and **click the Next Button**. 
 
-
 ![alt text](assets/image_task09_step09.png)
 
-8. Notice that in OneLake, three KQL Database tables are available. Those are the 'silver' tables we made available for OneLake.
+8. Notice that KQL Database tables are available for selection. Those are the 'silver' tables we made available for OneLake.
 
 ![alt text](assets/image_task09_step11.png)
 
-9. **Select** all three tables via the check boxes and **press Next**.
+9. **Select** all three `SILVER` tables via the check boxes and **press Next**.
 
 ![alt text](assets/image_task09_step12.png)
 
@@ -1753,7 +1752,7 @@ Here, we are building a Digital Twin where our production line is operated by se
 
 ![alt text](assets/image_task10_step06.png)
 
-7. A Lakehouse table must be selected, **press** the `Select Lakehouse table` button first. **Select** the `FactoryEvents_LH` in the Workspace and **Select** the `productionline` table.
+7. A Lakehouse table must be selected, **press** the `Select Lakehouse table` button first. **Select** the `LH_FactoryEvents` in the Workspace and **Select** the `productionline` table.
 
 ![alt text](assets/image_task10_step07.png)
 
@@ -1793,7 +1792,7 @@ Here, we are building a Digital Twin where our production line is operated by se
 
 ![alt text](assets/image_task10_step16.png)
 
-16. **Repeat** the last steps by **adding** a generic entity with an entity name `Operator` and using the the `FactoryEvents_LH` Lakehouse `operator` table as datasource. The 'Unique Id' is the operator table `Id` column. **Add** _all_ columns as properties. The 'DisplayName' is the operator table `Name` column. Finally, **run** the ingestion flow by hand for 'operator' entity instances. (Optionally, you can add a scheduler for this mapping too.)
+16. **Repeat** the last steps by **adding** a generic entity with an entity name `Operator` and using the the `LH_FactoryEvents` Lakehouse `operator` table as datasource. The 'Unique Id' is the operator table `Id` column. **Add** _all_ columns as properties. The 'DisplayName' is the operator table `Name` column. Finally, **run** the ingestion flow by hand for 'operator' entity instances. (Optionally, you can add a scheduler for this mapping too.)
 
 ![alt text](assets/image_task10_step17.png)
 
@@ -1821,11 +1820,11 @@ Here, we are building a Digital Twin where our production line is operated by se
 
 ![alt text](assets/image_task10_step23.png)
 
-23. Until now, we have experienced how we can shape both entities, relationships, and instantiate actual entity instances (Twins) by ingesting the context data (production lines, operators, etc). By adding more entities and relationships, your _ontology_ can grow larger and larger. But, we are still missing one important part and that is mapping 'timeseries data' to entities and updating the timeseries related properties with the underlying timeseries rows. We already have three OneLake shortcut tables being filled with Eventhouse table rows in the 'FactoryEvents_LH' Lakehouse. **Let's map** these three tables and relate them via columns in the production line table (eg. energyMeterId, tempSensorId). **Navigate** to the 'mapping' tab of the 'Productionline entity' and **click** `Add data`.
+23. Until now, we have experienced how we can shape both entities, relationships, and instantiate actual entity instances (Twins) by ingesting the context data (production lines, operators, etc). By adding more entities and relationships, your _ontology_ can grow larger and larger. But, we are still missing one important part and that is mapping 'timeseries data' to entities and updating the timeseries related properties with the underlying timeseries rows. We already have three OneLake shortcut tables being filled with Eventhouse table rows in the 'LH_FactoryEvents' Lakehouse. **Let's map** these three tables and relate them via columns in the production line table (eg. energyMeterId, tempSensorId). **Navigate** to the 'mapping' tab of the 'Productionline entity' and **click** `Add data`.
 
 ![alt text](assets/image_task10_step24.png)
 
-24. In the new dialog, select the data source. As Lakehouse, **select** `FactoryEvents_LH` and as table, **select** `SilverLoraWanTemperature`. **Select** this data source.
+24. In the new dialog, select the data source. As Lakehouse, **select** `LH_FactoryEvents` and as table, **select** `SilverLoraWanTemperature`. **Select** this data source.
 
 ![alt text](assets/image_task10_step25.png)
 
