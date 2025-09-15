@@ -1603,7 +1603,7 @@ Finally, we can share these dashboards in several ways and limit the access (eg.
 
 Now, let's investigate how more traditional data lakes can benefit from real-time data.
 
-#### Lab 03.6 - Adding Lakehouse shortcuts to real-time data via OneLake
+#### Lab 03.6 (Bonus) - Adding Lakehouse shortcuts to real-time data via OneLake
 
 A Microsoft Fabric Lakehouse is a unified platform for storing, managing, and analyzing both structured and unstructured data, turning eg. CSV files into tables. Using more traditional SQL, these tables can be queried.
 
@@ -1721,7 +1721,7 @@ Let's dive into that data via a Digital Twin, available in Microsoft Fabric.
 
 </div>
 
-#### Lab 03.7 - Adding a Digital Twin Builder
+#### Lab 03.7 (Bonus) - Adding a Digital Twin Builder
 
 A Digital Twin is a simplified representation, a model, based on real-life 'things' like devices, locations, buildings, vehicles, or even persons.
 
