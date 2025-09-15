@@ -1398,11 +1398,11 @@ GoldLoraWanTemperature
 
 ![alt text](assets/image_task08_step03.png)
 
-7. Because this is an interesting query to share with others within your team, having access to the same Microsoft Fabric workspace, let's turn this into a Real-Time Dashboard. **Put the cursor in the last query** so it is selected. **Click 'Pin to dashboard'**.
+7. Because this is an interesting query to share with others within your team, having access to the same Microsoft Fabric workspace, let's turn this into a Real-Time Dashboard. **Put the cursor in the last query** so it is selected. **Click** `Pin to dashboard`.
 
 ![alt text](assets/image_task08_step04.png)
 
-8. A dialog is shown. First, select pinning to a new dashboard by selecting `In a new dashboard`. Then, **Name** the new dashboard `FactoryEvents_RTD` and **name** the tile within the dashboard, showing this query `Factory temperature vs. Weather data`. Finally, **Create** the dashboard.
+8. A dialog is shown. First, select pinning to a new dashboard by selecting `In a new dashboard`. Then, **Name** the new dashboard `RTD_FactoryEvents` and **name** the tile within the dashboard, showing this query `Factory temperature vs. Weather data`. Finally, **Create** the dashboard.
 
 ![alt text](assets/image_task08_step05.png)
 
@@ -1463,7 +1463,7 @@ Microsoft Fabric OneLake is the single, unified, logical data lake for Microsoft
 
 Here, factory data from several 'silver' tables will be shared via OneLake so a Lakehouse can reference that data as tables too.
 
-1. The timeseries data in the KQL Database is not accessible by default in the Fabric OneLake. **Navigate** to the `EH_YCSneakerEventStore` overview page and see that OneLake availability is disable:
+1. The timeseries data in the KQL Database is not accessible by default in the Fabric OneLake. **Navigate** to the KQL Database `EH_YCSneakerEventStore` overview page and see that OneLake availability is disable:
 
 ![alt text](assets/image_task09_step01.png)
 
