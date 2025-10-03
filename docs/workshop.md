@@ -989,6 +989,12 @@ You will ingest the LoraWan data from an Azure Event Hub.
 
 ![alt text](assets/rtiLabArchitecture_workshop_5.png)
 
+<div class="important" data-title="Note">
+
+> Use this section both when you're participating in the guided lab with an environment provided by the lab instructors or when following this workshop as provided in the repo. For those doing the guided lab, start at step 1. For all others, first complete Appendix B where a generator for LoRaWAN telemetry is set up. Then continue at step 6.
+
+</div>
+
 1. **Open** the Eventstream named `ES_LoraWanStream`, already provided in the 'Lab 03 Factory events' folder of your workspace. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Connect data sources`.
 
 ![alt text](assets/image_task05_step03.png)
@@ -2064,78 +2070,125 @@ These shipments are ingested via the Real-Time Hub experience.
 
 <div class="important" data-title="Note">
 
-> The flow seen in this Appendix provides simulated energy meter data for Lab 03.1. IF you are following this workshop as provided in the repo, start generating simulated Factory energy meter telemetry.
+> The flow seen in this Appendix A provides simulated energy meter data for Lab 03.1. If you are following this workshop as provided in the repo, start generating simulated Factory energy meter telemetry.
 
 </div>
 
-
 1. **Open** the Eventstream named `ES_EnergyMeter`, already provided in the 'Lab 03 Factory events' folder of your workspace. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Use custom endpoint`.
 
-![alt text](assets/image_taskA1_step03.png)
+![alt text](assets/image_labA1_step01.png)
 
 2. **Enter** `EnergyMeterEventsSource` as 'Source name' and then **click** on the button `Add`.
 
-![alt text](assets/image_taskA1_step04.png)
+![alt text](assets/image_labA1_step02.png)
 
 3. **Click** `Publish` to publish the Eventstream as-is.
 
-![alt text](assets/image_labA1_step06.png)
+![alt text](assets/image_labA1_step03.png)
 
 4. in the published Eventstream **Click** `EnergyMeterEventsSource` node to access the settings/details.
 
-![alt text](assets/image_labA1_step07.png)
+![alt text](assets/image_labA1_step04.png)
 
 5. **Select** `Kafka` as the protocol.
 
-![alt text](assets/image_labA1_step08.png)
+![alt text](assets/image_labA1_step05.png)
 
 6. **Select** `SAS Key Authentication` to access the secrets of this source endpoint.
 
-![alt text](assets/image_labA1_step09.png)
+![alt text](assets/image_labA1_step06.png)
 
 7. **Copy** `Bootstrap server` value and **paste it** in a Notepad. You will need this value (and others) in the subsequent steps.
 
-![alt text](assets/image_labA1_step10.png)
+![alt text](assets/image_labA1_step07.png)
 
 8. Similarly, **copy** `Topic name` value. And then **copy** `Connection string-primary key` value by first clicking on the eye and then on the copy icon on the right of that field. **Paste** these values in a `notepad`. You now have separate three values.
 
-![alt text](assets/image_labA1_step11.png)
+![alt text](assets/image_labA1_step08.png)
 
 9. **Navigate** back to the `root level` of your workspace and go back to the folder `Lab 03 Factory events`.
 
-![alt text](assets/image_labA1_step12.png)
+![alt text](assets/image_labA1_step09.png)
 
 10. **Open** the existing notebook `NB_FactoryEnergyMeterGenerator`.
 
-![alt text](assets/image_labA1_step13.png)
+![alt text](assets/image_labA1_step10.png)
 
 11. In the cell with the title '# Kafka Endpoint configuration parameters', **paste** the `bootstrap server value` as the value for the field 'KAFKA_BROKER', the `topic name` as the value for 'KAFKA_TOPIC' and `connection string` as the 'sas_password'.
 
-![alt text](assets/image_labA1_step14.png)
+![alt text](assets/image_labA1_step11.png)
 
 12. **Click** on `Run all` to start generating clickstream events. 
 
-![alt text](assets/image_labA1_step15.png)
+![alt text](assets/image_labA1_step12.png)
 
 13. **Navigate** back to the published `ES_EnergyMeter` Eventstream from the side ribbon (This Notebook will keep running). 
 
-![alt text](assets/image_labA1_step16.png)
+![alt text](assets/image_labA1_step13.png)
 
 Please continue at step 6 of Lab 03 Factory events.
 
+### Appendix B - Simulating LoRaWAN telemetry
 
+<div class="important" data-title="Note">
 
+> The flow seen in this Appendix B provides simulated LoRaWAN data for Lab 03.2. If you are following this workshop as provided in the repo, start generating simulated LoRaWAN telemetry.
 
+</div>
 
+1. **Open** the Eventstream named `ES_LoRaWanStream`, already provided in the 'Lab 03 Factory events' folder of your workspace. On the Screen 'Design a flow to ingest, transform, and route streaming events' **click** on `Use custom endpoint`.
 
+![alt text](assets/image_labA2_step01.png)
 
+2. **Enter** `LoRaWanEventsSource` as 'Source name' and then **click** on the button `Add`.
 
+![alt text](assets/image_labA2_step02.png)
 
+3. **Click** `Publish` to publish the Eventstream as-is.
 
+![alt text](assets/image_labA2_step03.png)
 
+4. in the published Eventstream **Click** `LoRaWanEventsSource` node to access the settings/details.
 
+![alt text](assets/image_labA2_step04.png)
 
+5. **Select** `Kafka` as the protocol.
 
+![alt text](assets/image_labA2_step05.png)
+
+6. **Select** `SAS Key Authentication` to access the secrets of this source endpoint.
+
+![alt text](assets/image_labA2_step06.png)
+
+7. **Copy** `Bootstrap server` value and **paste it** in a Notepad. You will need this value (and others) in the subsequent steps.
+
+![alt text](assets/image_labA2_step07.png)
+
+8. Similarly, **copy** `Topic name` value. And then **copy** `Connection string-primary key` value by first clicking on the eye and then on the copy icon on the right of that field. **Paste** these values in a `notepad`. You now have separate three values.
+
+![alt text](assets/image_labA2_step08.png)
+
+9. **Navigate** back to the `root level` of your workspace and go back to the folder `Lab 03 Factory events`.
+
+![alt text](assets/image_labA2_step09.png)
+
+10. **Open** the existing notebook `NB_FactoryEnergyMeterGenerator`.
+
+![alt text](assets/image_labA2_step10.png)
+
+11. In the cell with the title '# Kafka Endpoint configuration parameters', **paste** the `bootstrap server value` as the value for the field 'KAFKA_BROKER', the `topic name` as the value for 'KAFKA_TOPIC' and `connection string` as the 'sas_password'.
+
+![alt text](assets/image_labA2_step11.png)
+
+12. **Click** on `Run all` to start generating clickstream events. 
+
+![alt text](assets/image_labA2_step12.png)
+
+13. **Navigate** back to the published `ES_LoRaWanStream` Eventstream from the side ribbon (This Notebook will keep running). 
+
+![alt text](assets/image_labA2_step13.png)
+
+Please continue at step 6 of Lab 03 LoRaWAN events.
 
 
 ---
