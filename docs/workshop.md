@@ -2086,7 +2086,7 @@ These shipments are ingested via the Real-Time Hub experience.
 
 ![alt text](assets/image_labA1_step03.png)
 
-4. in the published Eventstream **Click** `EnergyMeterEventsSource` node to access the settings/details.
+4. In the published Eventstream **Click** `EnergyMeterEventsSource` node to access the settings/details.
 
 ![alt text](assets/image_labA1_step04.png)
 
@@ -2148,7 +2148,7 @@ Please continue at step 6 of Lab 03 Factory events.
 
 ![alt text](assets/image_labA2_step03.png)
 
-4. in the published Eventstream **Click** `LoRaWanEventsSource` node to access the settings/details.
+4. In the published Eventstream **Click** `LoRaWanEventsSource` node to access the settings/details.
 
 ![alt text](assets/image_labA2_step04.png)
 
