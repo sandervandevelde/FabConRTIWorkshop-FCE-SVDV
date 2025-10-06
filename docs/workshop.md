@@ -2172,7 +2172,7 @@ Please continue at step 6 of Lab 03 Factory events.
 
 ![alt text](assets/image_labA2_step09.png)
 
-10. **Open** the existing notebook `NB_FactoryEnergyMeterGenerator`.
+10. **Open** the existing notebook `NB_LoRaWANGenerator`.
 
 ![alt text](assets/image_labA2_step10.png)
 
